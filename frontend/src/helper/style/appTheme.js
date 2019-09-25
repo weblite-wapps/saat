@@ -21,6 +21,14 @@ export default createMuiTheme({
     },
   },
   overrides: {
+    MuiButton: {
+      contained: {
+        boxShadow: 'none',
+        '&:active': {
+          boxShadow: 'none',
+        },
+      },
+    },
     MuiTypography: {
       body1: {
         fontFamily: 'iranyekan',
