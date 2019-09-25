@@ -39,6 +39,9 @@ export default createMuiTheme({
         width: '165px',
       },
     },
+    MuiPaper: {
+      rounded: { borderRadius: 25 },
+    },
     MuiDialog: {
       root: {
         display: 'flex',

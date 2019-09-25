@@ -11,6 +11,9 @@ import App from '../components/Main/App.container.react'
 import About from '../components/components/About/About.jsx'
 import Loading from '../helper/components/Loading/Loading.presentational'
 import Snackbar from '../components/components/Snackbar/Snackbar.container.react'
+// TEST
+import LogItem from '../helper/components/LogItem/LogItem.presentational'
+
 // styles
 import './root.scss'
 import theme from '../helper/style/appTheme'
@@ -34,15 +37,18 @@ export default () => (
     <MuiThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
         <div className="app-container ">
-          <App />
+          {/* <App /> */}
           <Snackbar location={{ vertical: 'bottom', horizontal: 'right' }} />
 
           <Suspense fallback={<Loading />}>
-            <Route exact path="/" render={() => <Home />} />
+            <div style={{ margin: 10 }}>
+              <LogItem play name="ریاضی 2 خیلی" time="00:00:03" />
+            </div>
+            {/* <Route exact path="/" render={() => <Home />} />
             <Route path="/Add" render={() => <Add />} />
             <Route path="/Report" render={() => <Report />} />
             <Route path="/About" render={() => <About />} />
-            <Route path="/Edit" render={() => <Edit />} />
+            <Route path="/Edit" render={() => <Edit />} /> */}
           </Suspense>
         </div>
       </ConnectedRouter>
