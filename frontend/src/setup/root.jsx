@@ -12,7 +12,7 @@ import About from '../components/components/About/About.jsx'
 import Loading from '../helper/components/Loading/Loading.presentational'
 import Snackbar from '../components/components/Snackbar/Snackbar.container.react'
 // TEST
-import LogSwitch from '../helper/components/LogSwitch/LogSwitch.presentational'
+import MainTimer from '../helper/components/MainTimer/MainTimer.presentational'
 
 // styles
 import './root.scss'
@@ -43,11 +43,7 @@ export default () => (
 
           <Suspense fallback={<Loading />}>
             <div style={{ margin: 10 }}>
-              <LogSwitch
-                currentTimeLabel="امروز"
-                totalTimeLabel="مجموع زمان"
-                onRightClick={() => console.log('right')}
-              />
+              <MainTimer />
             </div>
             {/* <Route exact path="/" render={() => <Home />} />
             <Route path="/Add" render={() => <Add />} />
