@@ -24,6 +24,10 @@ export default createMuiTheme({
     MuiTypography: {
       body1: {
         fontFamily: 'iranyekan',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        direction: 'rtl',
       },
       h4: {
         color: '#000000',
