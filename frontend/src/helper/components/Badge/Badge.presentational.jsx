@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const CustomizedButton = ({ label, onClick }) => {
+const Badge = ({ label, onClick }) => {
   const classes = useStyles()
   return (
     <Paper className={classes.root}>
@@ -50,14 +50,14 @@ const CustomizedButton = ({ label, onClick }) => {
   )
 }
 
-CustomizedButton.propTypes = {
+Badge.propTypes = {
   onClick: PropTypes.func,
   label: PropTypes.string,
 }
 
-CustomizedButton.defaultProps = {
+Badge.defaultProps = {
   onClick: Function.prototype,
   label: '',
 }
 
-export default CustomizedButton
+export default Badge
