@@ -1,0 +1,29 @@
+@import '../../style/_color';
+@import '../../style/mixin.scss';
+
+
+.tagShape-container {
+  @include no-select;
+  @include flex-center;
+  margin-top: 10px;
+  margin-right: 6px;
+  margin-left: 6px;
+  cursor: pointer;
+  outline: none;
+}
+
+.tagShape-default {
+  background-color: $accent-color;
+  padding: 1.5px 10px;
+}
+
+.tagShape-selected {
+  background-color: $secondary-color;
+  padding: 1.5px 10px;
+}
+
+.tagShape-icon {
+  @include flex-center;
+  background-color: $primary-color;
+  color: white;
+}

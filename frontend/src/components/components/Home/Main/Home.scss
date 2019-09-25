@@ -1,0 +1,15 @@
+.home-normal {
+  margin-top: 80px;
+}
+
+.home-button {
+  position: fixed;
+  left: calc(50% - 60px / 2);
+  bottom: 10%;
+  z-index: 5;
+}
+
+.home-image {
+  max-width: 350px;
+  height: 350px;
+}

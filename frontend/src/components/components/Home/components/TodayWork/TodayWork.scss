@@ -1,0 +1,24 @@
+@import '../../../../../helper/style/_color';
+@import '../../../../../helper/style/mixin.scss';
+
+.todayWork-list {
+  margin-top: 10px;
+}
+
+.todayWork-title {
+  @include no-select;
+}
+
+.todayWork-time {
+  @include no-select;
+  color: $secondary-color;
+}
+
+.todayWork-icon {
+  color: #000000;
+}
+
+.todayWork-stopwatch {
+  @include flex-center;
+  margin: 5px;
+}

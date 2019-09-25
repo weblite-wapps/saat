@@ -1,0 +1,15 @@
+@import '../../../../../helper/style/mixin.scss';
+
+.selectBar-container {
+  margin-top: 80px;
+}
+
+.selectBar-textField {
+  @include no-select;
+  @include flex-center;
+  margin: 0px 25px 0px 40px;
+}
+
+.selectBar-menu {
+  width: 200;
+}

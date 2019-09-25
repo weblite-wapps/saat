@@ -1,0 +1,29 @@
+@import '../../../../helper/style/mixin.scss';
+
+.report-container {
+  margin-top: 80px;
+}
+
+.report-dashboard {
+  position: fixed;
+  top: 0px;
+  background: white;
+  width: 100%;
+  z-index: 5;
+}
+
+.report-controlBar {
+  @include flex-center;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.report-text {
+  @include no-select;
+  margin: 10px;
+  text-align: center;
+}
+
+.report-chart {
+  @include flex-center;
+}

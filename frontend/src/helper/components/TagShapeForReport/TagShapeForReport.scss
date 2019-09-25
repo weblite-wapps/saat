@@ -1,0 +1,13 @@
+@import '../../style/_color';
+@import '../../style/mixin.scss';
+
+.tagShapeForReport-container {
+  @include no-select;
+  @include flex-center;
+  margin: 5px 6px;
+}
+
+.tagShapeForReport-content {
+  background-color: $accent-color;
+  padding: 1.5px 10px;
+}

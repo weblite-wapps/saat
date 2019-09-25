@@ -1,0 +1,40 @@
+@import '../../../../../../helper/style/_color';
+@import '../../../../../../helper/style/mixin.scss';
+
+.workList-title-container {
+  @include no-select;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.workList-pin-and-title {
+  @include flex-center;
+}
+
+.workList-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 4px;
+  margin-bottom: 10px;
+}
+
+.workList-button {
+  display: flex;
+  margin: 0px 5px 10px 5px;
+}
+
+.workList-title {
+  margin: 0px;
+}
+
+.workList-duration {
+  margin: 0px;
+  text-align: right;
+}
+
+.workList-date {
+  @extend .workList-duration;
+  color: $accent-color;
+  font-size: 18px;
+}

@@ -1,0 +1,22 @@
+@import '../style/mixin.scss';
+
+.textField {
+  display: flex;
+  margin: 25px 20px 20px 20px;
+}
+
+.insertButton {
+  margin: 20px 16px;
+}
+
+.buttons {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.chart {
+  @include flex-center;
+  margin-top: 10px;
+}

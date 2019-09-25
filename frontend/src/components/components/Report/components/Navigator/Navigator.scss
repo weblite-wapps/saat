@@ -1,0 +1,13 @@
+@import '../../../../../helper/style/mixin.scss';
+
+
+.navigator-container {
+  @include flex-center;
+  position: relative;
+  margin: 15px 5px;
+}
+
+.navigator-textSlider {
+  width: 90px;
+  @include no-select;
+}

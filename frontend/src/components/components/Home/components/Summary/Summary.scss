@@ -1,0 +1,15 @@
+@import '../../../../../helper/style/mixin.scss';
+
+.summary-container {
+  margin-bottom: 20px;
+}
+
+.summary-textSlider {
+  @include no-select;
+  @include flex-center;
+  position: relative;
+}
+
+.summary-icon {
+  font-size: 40px;
+}
