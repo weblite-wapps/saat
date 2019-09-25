@@ -11,7 +11,7 @@ import PauseIcon from '@material-ui/icons/Pause'
 import LockIcon from '@material-ui/icons/Lock'
 import OpenIcon from '@material-ui/icons/LockOpen'
 // helpers
-import { cns, ab } from '../../functions/utils.helper'
+import { cns, ab, toPersian } from '../../functions/utils.helper'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,13 +57,15 @@ const useStyles = makeStyles(theme => ({
     fontSize: 14,
     lineHeight: '25px',
     letterSpacing: '-0.1px',
+    fontWeight: 'bold',
   },
   logTime: {
     textAlign: 'center',
     fontSize: 12,
     lineHeight: '21px',
-    letterSpacing: '-0.08px',
+    letterSpacing: 1.8,
     margin: '2px 0',
+    fontWeight: 'bold',
   },
 }))
 
@@ -84,7 +86,7 @@ const LogItem = ({ play, pinned, name, time }) => {
             <PlayIcon className={classes.fabIcon} />
           )}
         </Fab>
-        <Typography className={classes.logName}>{name}</Typography>
+        <Typography className={classes.logName}>{toPersian(name)}</Typography>
         <Fab
           size="small"
           aria-label="pin"
@@ -97,7 +99,7 @@ const LogItem = ({ play, pinned, name, time }) => {
           )}
         </Fab>
       </div>
-      <Typography className={classes.logTime}>{time}</Typography>
+      <Typography className={classes.logTime}>{toPersian(time)}</Typography>
     </Paper>
   )
 }

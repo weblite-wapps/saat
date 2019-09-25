@@ -16,6 +16,7 @@ import LogItem from '../helper/components/LogItem/LogItem.presentational'
 
 // styles
 import './root.scss'
+import './fonts/fonts.scss'
 import theme from '../helper/style/appTheme'
 // lazy loading
 const Home = lazy(() =>
@@ -42,7 +43,7 @@ export default () => (
 
           <Suspense fallback={<Loading />}>
             <div style={{ margin: 10 }}>
-              <LogItem play name="ریاضی 2 خیلی" time="00:00:03" />
+              <LogItem play name="تست خیلی سبز فیزیک ۲" time="00:00:03" />
             </div>
             {/* <Route exact path="/" render={() => <Home />} />
             <Route path="/Add" render={() => <Add />} />

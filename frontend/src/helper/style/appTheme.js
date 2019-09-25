@@ -22,6 +22,9 @@ export default createMuiTheme({
   },
   overrides: {
     MuiTypography: {
+      body1: {
+        fontFamily: 'iranyekan',
+      },
       h4: {
         color: '#000000',
         fontWeight: '500',

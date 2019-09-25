@@ -18,6 +18,10 @@ export const cns = (...args) => {
 /* === Logical helpers === */
 
 /** onEnterPress */
-const onEnterPress = (handler = Function.prototype) => ({ key }) => {
+export const onEnterPress = (handler = Function.prototype) => ({ key }) => {
   if (key === 'Enter') handler()
 }
+
+/* === Strings === */
+export const toPersian = string =>
+  string.replace(/[0-9]/g, num => parseInt(num, 10).toLocaleString('ar-EG'))
