@@ -1,13 +1,12 @@
 // modules
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, darken } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+// style
+import { makeStyles, withStyles, darken } from '@material-ui/core/styles'
 // css
 import styles from './Button.style'
-// style
-import { makeStyles } from '@material-ui/core/styles'
 // icons
 import AddIcon from '@material-ui/icons/Add'
 
