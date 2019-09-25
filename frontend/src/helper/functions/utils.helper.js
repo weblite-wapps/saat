@@ -25,3 +25,9 @@ export const onEnterPress = (handler = Function.prototype) => ({ key }) => {
 /* === Strings === */
 export const toPersian = string =>
   string.replace(/[0-9]/g, num => parseInt(num, 10).toLocaleString('ar-EG'))
+
+/** Detect language direction */
+
+// is rlt if arabic pattern contains all character
+const ARABIC_PATTERN = /[\u0600-\u06FF]/
+export const getDirection = text => (ARABIC_PATTERN.test(text) ? 'rtl' : 'ltr')

@@ -12,7 +12,7 @@ import About from '../components/components/About/About.jsx'
 import Loading from '../helper/components/Loading/Loading.presentational'
 import Snackbar from '../components/components/Snackbar/Snackbar.container.react'
 // TEST
-import Button from '../helper/components/Button/Button.presentational'
+import CollapsableLog from '../helper/components/CollapsableLog/CollapsableLog.presentational'
 
 // styles
 import './root.scss'
@@ -43,11 +43,7 @@ export default () => (
 
           <Suspense fallback={<Loading />}>
             <div style={{ margin: 10 }}>
-              <Button text="سلام فرام د ادر ساید" />
-              <br />
-              <Button variant="labeled" text="سلام فرام د ادر ساید" />
-              <br />
-              <Button variant="normal" text="سلام فرام د ادر ساید" />
+              <CollapsableLog />
             </div>
             {/* <Route exact path="/" render={() => <Home />} />
             <Route path="/Add" render={() => <Add />} />

@@ -69,35 +69,39 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const LogItem = ({ play, pinned, name, time }) => {
+const LogItem = ({ play, pinned, name, time, disableHandler }) => {
   const classes = useStyles()
 
   return (
     <Paper elevation={0} className={classes.root}>
       <div className={classes.logHelper}>
-        <Fab
-          size="small"
-          aria-label="playPause"
-          className={cns(classes.fab, ab(classes.fabPinned)(play))}
-        >
-          {play ? (
-            <PauseIcon className={classes.fabIcon} />
-          ) : (
-            <PlayIcon className={classes.fabIcon} />
-          )}
-        </Fab>
+        {!disableHandler && (
+          <Fab
+            size="small"
+            aria-label="playPause"
+            className={cns(classes.fab, ab(classes.fabPinned)(play))}
+          >
+            {play ? (
+              <PauseIcon className={classes.fabIcon} />
+            ) : (
+              <PlayIcon className={classes.fabIcon} />
+            )}
+          </Fab>
+        )}{' '}
         <Typography className={classes.logName}>{toPersian(name)}</Typography>
-        <Fab
-          size="small"
-          aria-label="pin"
-          className={cns(classes.fab, ab(classes.fabPinned)(pinned))}
-        >
-          {pinned ? (
-            <LockIcon className={classes.fabIcon} />
-          ) : (
-            <OpenIcon className={classes.fabIcon} />
-          )}
-        </Fab>
+        {!disableHandler && (
+          <Fab
+            size="small"
+            aria-label="pin"
+            className={cns(classes.fab, ab(classes.fabPinned)(pinned))}
+          >
+            {pinned ? (
+              <LockIcon className={classes.fabIcon} />
+            ) : (
+              <OpenIcon className={classes.fabIcon} />
+            )}
+          </Fab>
+        )}
       </div>
       <Typography className={classes.logTime}>{toPersian(time)}</Typography>
     </Paper>

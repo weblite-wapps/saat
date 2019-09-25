@@ -8,6 +8,8 @@ import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
 // icons
 import CloseIcon from '@material-ui/icons/Close'
+// helper
+import { getDirection } from '../../functions/utils.helper'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,6 +18,8 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     maxWidth: 200,
     borderRadius: 11,
+    minHeight: 30,
+    margin: 5,
     backgroundColor: '#818181',
     color: '#fff',
     overflow: 'hidden',
@@ -25,7 +29,7 @@ const useStyles = makeStyles(() => ({
   },
   typography: {
     fontSize: 12,
-    lineHeight: '21px',
+    lineHeight: '30px',
     letterSpacing: -0.08,
     marginRight: 10,
     marginLeft: 12,
@@ -38,24 +42,31 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const Badge = ({ label, onClick }) => {
+const Badge = ({ label, onClick, disableHandler }) => {
   const classes = useStyles()
+  const direction = getDirection(label)
   return (
     <Paper className={classes.root}>
-      <IconButton onClick={onClick} className={classes.button}>
-        <CloseIcon className={classes.icon} />
-      </IconButton>
-      <Typography className={classes.typography}>{label}</Typography>
+      {!disableHandler && (
+        <IconButton onClick={onClick} className={classes.button}>
+          <CloseIcon className={classes.icon} />
+        </IconButton>
+      )}
+      <Typography className={classes.typography} style={{ direction }}>
+        {label}
+      </Typography>
     </Paper>
   )
 }
 
 Badge.propTypes = {
+  disableHandler: PropTypes.bool,
   onClick: PropTypes.func,
   label: PropTypes.string,
 }
 
 Badge.defaultProps = {
+  disableHandler: false,
   onClick: Function.prototype,
   label: '',
 }

@@ -29,6 +29,23 @@ export default createMuiTheme({
         },
       },
     },
+    MuiExpansionPanelDetails: {
+      root: {
+        padding: 0,
+      },
+    },
+    MuiExpansionPanelSummary: {
+      root: {
+        padding: 0,
+      },
+      content: {
+        margin: '0 !important',
+        transition: 'none !important',
+      },
+      expanded: {
+        margin: 0,
+      },
+    },
     MuiTypography: {
       body1: {
         fontFamily: 'iranyekan',
