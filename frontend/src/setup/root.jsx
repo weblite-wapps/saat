@@ -12,7 +12,7 @@ import About from '../components/components/About/About.jsx'
 import Loading from '../helper/components/Loading/Loading.presentational'
 import Snackbar from '../components/components/Snackbar/Snackbar.container.react'
 // TEST
-import MainTimer from '../helper/components/MainTimer/MainTimer.presentational'
+import Button from '../helper/components/Button/Button.presentational'
 
 // styles
 import './root.scss'
@@ -43,7 +43,7 @@ export default () => (
 
           <Suspense fallback={<Loading />}>
             <div style={{ margin: 10 }}>
-              <MainTimer />
+              <Button label="ساعت شمار جدید" />
             </div>
             {/* <Route exact path="/" render={() => <Home />} />
             <Route path="/Add" render={() => <Add />} />
