@@ -21,7 +21,39 @@ export default createMuiTheme({
     },
   },
   overrides: {
+    MuiButton: {
+      contained: {
+        boxShadow: 'none',
+        '&:active': {
+          boxShadow: 'none',
+        },
+      },
+    },
+    MuiExpansionPanelDetails: {
+      root: {
+        padding: 0,
+      },
+    },
+    MuiExpansionPanelSummary: {
+      root: {
+        padding: 0,
+      },
+      content: {
+        margin: '0 !important',
+        transition: 'none !important',
+      },
+      expanded: {
+        margin: 0,
+      },
+    },
     MuiTypography: {
+      body1: {
+        fontFamily: 'iranyekan',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        direction: 'rtl',
+      },
       h4: {
         color: '#000000',
         fontWeight: '500',
@@ -38,6 +70,9 @@ export default createMuiTheme({
         fontSize: '27px',
         width: '165px',
       },
+    },
+    MuiPaper: {
+      rounded: { borderRadius: 25 },
     },
     MuiDialog: {
       root: {
