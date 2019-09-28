@@ -1,10 +1,10 @@
 import React from 'react'
 import Dialog from '@material-ui/core/Dialog'
 import {
-  Transition,
   ContentWithStyle as Content,
   AppBarWithStyle as AppBar,
 } from './Edit.helper.jsx'
+import Transition from '../../../../helper/components/Transition/Transition'
 
 const Edit = props => (
   <Dialog

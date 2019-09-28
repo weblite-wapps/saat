@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // components
 import Add from './Add.presentational'
 // views
-import { logsView } from '../../../Main/App.reducer'
+import { logsView, isLoadingView } from '../../../Main/App.reducer'
 import {
   titleView,
   selectedTagsView,
@@ -13,6 +13,7 @@ import {
   startTimeView,
   endTimeView,
   isErrorView,
+  expandedView,
 } from './Add.reducer'
 // actions
 import { dispatchChangeTab } from '../../../Main/App.action'
@@ -24,6 +25,10 @@ import {
   dispatchHandleAddTagInAdd,
   dispatchHandleAddLog,
   dispatchHandleAddCustomLog,
+  dispatchToggleExpanded,
+  dispatchChangeStartTime,
+  dispatchChangeEndTime,
+  dispatchChangeDate,
 } from './Add.action'
 // selectors
 import { getAddFilteredSuggestions } from '../../../Main/App.selector'
@@ -39,6 +44,8 @@ const mapStateToProps = state => ({
   startTime: startTimeView(),
   endTime: endTimeView(),
   isError: isErrorView(),
+  isLoading: isLoadingView(),
+  expanded: expandedView(),
 })
 
 const mapDispatchToProps = () => ({
@@ -50,6 +57,10 @@ const mapDispatchToProps = () => ({
   handleAddTag: dispatchHandleAddTagInAdd,
   onAdd: dispatchHandleAddLog,
   onCustomAdd: dispatchHandleAddCustomLog,
+  onExpand: dispatchToggleExpanded,
+  onStartTimeChange: ({ target: { value } }) => dispatchChangeStartTime(value),
+  onEndTimeChange: ({ target: { value } }) => dispatchChangeEndTime(value),
+  onDateChange: ({ target: { value } }) => dispatchChangeDate(value),
 })
 
 export default connect(

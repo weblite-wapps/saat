@@ -57,3 +57,8 @@ export const checkToSetSecondsElapsed = createAction(
 )
 export const dispatchCheckToSetSecondsElapsed = (...args) =>
   dispatch(checkToSetSecondsElapsed(...args))
+
+export const SET_IS_OPEN_DIALOG = 'SET_IS_OPEN_DIALOG'
+export const setIsOpenDialog = createAction(SET_IS_OPEN_DIALOG)
+export const dispatchSetIsOpenDialog = (...args) =>
+  dispatch(setIsOpenDialog(...args))
