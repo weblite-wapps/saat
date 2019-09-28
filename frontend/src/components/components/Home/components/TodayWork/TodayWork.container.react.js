@@ -23,16 +23,20 @@ import { getWorksDuration } from '../../../../../helper/selectors/workDuration.s
 const mapStateToProps = (state, { log: { _id } }) => ({
   isLoading: isLoadingView(),
   runningId: runningIdView(),
-  secondsElapsed: secondsElapsedView(),
+  secondsElapsed: console.log(secondsElapsedView()) || secondsElapsedView(),
   workDuration: getWorksDuration(state)[_id],
 })
 
-const mapDispatchToProps = (_, { log: { _id, title, tags, isPinned, date } }) => ({
+const mapDispatchToProps = (
+  _,
+  { log: { _id, title, tags, isPinned, date } },
+) => ({
   setSecondsElapsed: dispatchSetSecondsElapsed,
   continueCounting: dispatchCountinueCounting,
   onStartClick: dispatchHandleSaveStartTime,
   onStopClick: dispatchHandleSaveEndTime,
-  onToggleIsPinned: () => dispatchHandleToggleIsPinned(_id, title, tags, !isPinned, date),
+  onToggleIsPinned: () =>
+    dispatchHandleToggleIsPinned(_id, title, tags, !isPinned, date),
   addLogToNextDay: (end, date) =>
     dispatchAddLogToNextDay(title, tags, isPinned, end, date),
   changeRunningId: dispatchChangeRunningId,

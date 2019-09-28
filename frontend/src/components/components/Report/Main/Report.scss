@@ -12,7 +12,11 @@
 .report-controlBar {
   @include flex-center;
   position: relative;
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  padding: 0 20px;
 }
 
 .report-text {
@@ -23,4 +27,18 @@
 
 .report-chart {
   @include flex-center;
+}
+
+.report-controlBar__typography {
+  font-size: 12px;
+  line-height: 21px;
+  font-weight: bold;
+}
+
+.report-controlBar__button {
+  padding: 0;
+  width: 105px;
+  height: 35px;
+  max-width: 30%;
+  margin: 5px 0;
 }

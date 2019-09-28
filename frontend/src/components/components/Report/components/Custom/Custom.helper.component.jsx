@@ -9,9 +9,9 @@ import './Custom.scss'
 
 export const Buttons = ({ onCalculation, onExport }) => (
   <div className="custom-buttons">
-    <Button label="Calculate" onClick={onCalculation} componentName="Add" />
+    <Button text="Calculate" variant="labeled" onClick={onCalculation} />
     <span style={{ margin: '5px' }} />
-    <Button label="Export" onClick={onExport} componentName="Add" />
+    <Button text="Export" variant="labeled" onClick={onExport} />
   </div>
 )
 

@@ -64,14 +64,14 @@ export const Pickers = ({
 }) => (
   <>
     <Picker
-      label="Start date"
+      label="تاریخ شروع"
       type="date"
       isError={isError.startDate}
       value={startDate}
       onChange={onStartDateChange}
     />
     <Picker
-      label="End date"
+      label="تاریخ پایان"
       type="date"
       isError={isError.endDate}
       value={endDate}

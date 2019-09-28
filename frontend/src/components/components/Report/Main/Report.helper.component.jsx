@@ -1,6 +1,8 @@
 // modules
+import * as R from 'ramda'
 import React from 'react'
 import PropTypes from 'prop-types'
+// Mui components
 import Collapse from '@material-ui/core/Collapse'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
@@ -16,7 +18,6 @@ import Button from '../../../../helper/components/Button/Button.presentational'
 import ShowChart from '../components/ShowChart/ShowChart.container.react'
 import Custom from '../components/Custom/Custom.container.react'
 import WorkList from '../components/WorkList/Main/WorkList.container.react'
-import PieChart from '../components/WorkList/components/PieChart.presentational'
 import Leaderboard from '../components/Leaderboard/Leaderboard.container.react'
 // selectors
 import {
@@ -55,12 +56,47 @@ IconButton.propTypes = {
   mode: PropTypes.string.isRequired,
 }
 
+const controls = [
+  // {
+  //   mode: 'leaderboard',
+  //   label: 'لیدربرد',
+  //   filter: () => true,
+  // },
+  {
+    mode: 'export',
+    label: 'خروجی',
+    filter: () => true,
+  },
+  {
+    mode: 'showChart',
+    label: 'نمودار',
+    filter: () => true,
+  },
+  {
+    mode: 'workList',
+    label: 'لیست موارد',
+    filter: () => true,
+  },
+]
+
 export const ControlBar = props => (
   <div className="report-controlBar">
-    <IconButton {...props} mode="workList" />
-    <IconButton {...props} mode="export" />
-    <IconButton {...props} mode="showChart" />
-    <IconButton {...props} mode="leaderboard" />
+    {R.map(
+      ({ mode, label, filter }) =>
+        filter(props) ? (
+          <Button
+            text={label}
+            onClick={() => props.changeExpandMode(mode)}
+            selected={mode === props.expandMode}
+            variant="labeled"
+            classesProp={{
+              typography: 'report-controlBar__typography',
+              button: 'report-controlBar__button',
+            }}
+          />
+        ) : null,
+      controls,
+    )}
   </div>
 )
 
@@ -97,7 +133,6 @@ export const BarChartPanel = ({ expandMode }) => (
     unmountOnExit
   >
     <ShowChart />
-    <Divider light />
   </Collapse>
 )
 

@@ -34,7 +34,6 @@ export const getNow = () =>
   new Date(
     moment()
       .tz('Asia/Tehran')
-      .format(),
   )
 
 export const getParsedNow = () =>

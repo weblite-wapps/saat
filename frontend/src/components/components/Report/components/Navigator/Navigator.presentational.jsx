@@ -47,29 +47,23 @@ const styles = {
   },
 }
 
-const Navigator = ({ classes, onPreviousClick, onNextClick, currentPage }) => (
-  <div className="navigator-container">
-    <Paper className={cns(classes.paper, classes.currentTimeContainer)}>
-      <IconButton
-        onClick={onNextClick}
-        disabled={formattedDate(currentPage) === formattedDate(getToday())}
-      >
-        <LeftIcon
-          className={
-            formattedDate(currentPage) === formattedDate(getToday())
-              ? classes.iconDisabled
-              : classes.icon
-          }
-        />
-      </IconButton>
-      <Typography className={classes.typography}>
-        {formattedDate(currentPage)}
-      </Typography>
-      <IconButton onClick={onPreviousClick}>
-        <RightIcon className={classes.icon} />
-      </IconButton>
-    </Paper>
-  </div>
-)
+const Navigator = ({ classes, onPreviousClick, onNextClick, currentPage }) => {
+  const isToday = formattedDate(currentPage) === getToday()
+  return (
+    <div className="navigator-container">
+      <Paper className={cns(classes.paper, classes.currentTimeContainer)}>
+        <IconButton onClick={onNextClick} disabled={isToday}>
+          <LeftIcon className={isToday ? classes.iconDisabled : classes.icon} />
+        </IconButton>
+        <Typography className={classes.typography}>
+          {isToday ? 'امروز' : formattedDate(currentPage)}
+        </Typography>
+        <IconButton onClick={onPreviousClick}>
+          <RightIcon className={classes.icon} />
+        </IconButton>
+      </Paper>
+    </div>
+  )
+}
 
 export default withStyles(styles)(Navigator)
