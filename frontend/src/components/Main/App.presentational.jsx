@@ -2,7 +2,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // helpers
-import { Logo, Tabs } from './App.helper.component'
+// import { Tabs } from './App.helper.component'
+import Tabs from '../../helper/components/Tabs/Tabs.presentational'
 // styles
 import './App.scss'
 
@@ -37,10 +38,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="AppBar">
-        <Logo {...this.props} />
         <Tabs {...this.props} />
-      </div>
     )
   }
 }

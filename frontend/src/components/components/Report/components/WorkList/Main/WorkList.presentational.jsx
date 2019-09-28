@@ -1,19 +1,17 @@
 // modules
 import React from 'react'
 import PropTypes from 'prop-types'
-import { findDOMNode } from 'react-dom'
 import { withStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
-import Divider from '@material-ui/core/Divider'
-import MuiButton from '@material-ui/core/Button'
 import { differenceInSeconds } from 'date-fns'
 // components
 import Popover from '../../../../../../helper/components/Popover/Popover.presentational'
+import CollapsableLog from '../../../../../../helper/components/CollapsableLog/CollapsableLog.presentational'
 // helpers
-import { TitleAndDuration, Tags } from './WorkList.helper.component'
 import {
   sumTimes,
   getNow,
+  formattedSeconds,
 } from '../../../../../../helper/functions/time.helper'
 // styles
 import './WorkList.scss'
@@ -23,7 +21,7 @@ class WorkList extends React.Component {
   constructor(props) {
     super(props)
     this.state = { anchorEl: null }
-    this.handleOpenPopover = this._handleOpenPopover.bind(this)
+    this._handleOpenPopover = this._handleOpenPopover.bind(this)
     this._changeAnchorEl = this._changeAnchorEl.bind(this)
   }
 
@@ -31,7 +29,7 @@ class WorkList extends React.Component {
     const {
       log: { _id, times },
       setSecondsElapsed,
-      countinueCounting,
+      continueCounting,
     } = this.props
     const len = times.length
 
@@ -39,7 +37,7 @@ class WorkList extends React.Component {
       setSecondsElapsed(
         sumTimes(times) + differenceInSeconds(getNow(), times[len - 1].start),
       )
-      countinueCounting(_id)
+      continueCounting(_id)
     }
   }
 
@@ -47,66 +45,54 @@ class WorkList extends React.Component {
     this.setState({ anchorEl })
   }
 
-  _handleOpenPopover() {
+  _handleOpenPopover(e) {
     const {
       changePopoverId,
       log: { _id },
     } = this.props
-    this._changeAnchorEl(findDOMNode(this.button))
+    this._changeAnchorEl(e.target)
     changePopoverId(_id)
   }
 
   render() {
     const {
-      classes,
       userId,
       selectedUser,
-      log: { _id, times },
+      log: { _id, times, title, tags },
       log,
       popoverId,
       changePopoverId,
       handleDeleteLog,
       editClick,
+      workDuration,
+      secondsElapsed,
     } = this.props
     const len = times.length
     const anchorEl = this.state.anchorEl
+    const playing = !!(len && log.times[len - 1].end === 'running')
+
     return (
-      <>
-        <List disablePadding>
-          <TitleAndDuration {...this.props} len={len} />
-          <Tags {...this.props} />
-          {selectedUser === userId && (
-            <div className="workList-button">
-              <MuiButton
-                ref={node => {
-                  this.button = node
-                }}
-                variant="contained"
-                onClick={() => this._handleOpenPopover()}
-                classes={{ raised: classes.WorkList }}
-              >
-                Delete
-              </MuiButton>
-              <Popover
-                popoverIsOpen={_id === popoverId}
-                anchorEl={anchorEl}
-                anchorReference="anchorEl"
-                onClose={() => changePopoverId('')}
-                onYep={handleDeleteLog}
-                onNop={() => changePopoverId('')}
-              />
-              <MuiButton
-                variant="contained"
-                onClick={() => editClick(log)}
-                classes={{ raised: classes.WorkList }}
-              >
-                Edit
-              </MuiButton>
-            </div>
-          )}
-        </List>
-        <Divider light />
-      </>
+      <List disablePadding>
+        <div className="workList-root">
+          <CollapsableLog
+            onDeleteClick={this._handleOpenPopover}
+            onEditClick={() => editClick(log)}
+            logTime={playing ? formattedSeconds(secondsElapsed) : workDuration}
+            logName={title}
+            tags={tags}
+          />
+        </div>
+        {selectedUser === userId && (
+          <Popover
+            popoverIsOpen={_id === popoverId}
+            anchorEl={anchorEl}
+            anchorReference="anchorEl"
+            onClose={() => changePopoverId('')}
+            onYep={handleDeleteLog}
+            onNop={() => changePopoverId('')}
+          />
+        )}
+      </List>
     )
   }
 }
@@ -120,7 +106,7 @@ WorkList.propTypes = {
   handleDeleteLog: PropTypes.func.isRequired,
   changePopoverId: PropTypes.func.isRequired,
   setSecondsElapsed: PropTypes.func.isRequired,
-  countinueCounting: PropTypes.func.isRequired,
+  continueCounting: PropTypes.func.isRequired,
   editMode: PropTypes.bool,
 }
 

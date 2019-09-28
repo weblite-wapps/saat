@@ -2,6 +2,12 @@
   "name": "loglite",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@material-ui/core": "^4.4.3",
     "@material-ui/icons": "^4.4.3",
@@ -10,6 +16,7 @@
     "history": "^4.9.0",
     "moment-timezone": "^0.5.25",
     "node-sass": "^4.11.0",
+    "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-autocomplete": "^1.7.2",
@@ -29,12 +36,6 @@
     "rxjs": "^5.5.2",
     "superagent": "^3.8.1",
     "typeface-roboto": "^0.0.45"
-  },
-  "scripts": {
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "homepage": ".",
   "eslintConfig": {

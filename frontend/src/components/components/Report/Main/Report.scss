@@ -1,15 +1,12 @@
 @import '../../../../helper/style/mixin.scss';
 
 .report-container {
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .report-dashboard {
-  position: fixed;
-  top: 0px;
   background: white;
   width: 100%;
-  z-index: 5;
 }
 
 .report-controlBar {

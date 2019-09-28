@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Collapse from '@material-ui/core/Collapse'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import Tooltip from '@material-ui/core/Tooltip' 
+import Tooltip from '@material-ui/core/Tooltip'
 // icons
 import FlagIcon from '@material-ui/icons/Flag'
 import ListAltIcon from '@material-ui/icons/ListAlt'
@@ -47,7 +47,6 @@ const IconButton = ({ expandMode, changeExpandMode, mode }) => (
       {mode === 'leaderboard' && <FlagIcon />}
     </Button>
   </Tooltip>
-
 )
 
 IconButton.propTypes = {
@@ -58,7 +57,6 @@ IconButton.propTypes = {
 
 export const ControlBar = props => (
   <div className="report-controlBar">
-    <Navigator isActive={props.expandMode === 'workList'} />
     <IconButton {...props} mode="workList" />
     <IconButton {...props} mode="export" />
     <IconButton {...props} mode="showChart" />
@@ -145,22 +143,22 @@ export const WorkListPanel = ({
       timeout="auto"
       unmountOnExit
     >
-      <div className="report-text">
-        <Typography variant="subtitle1">
-          {selectedUser === userId ? totalDuration : staffTotalDuration}
-        </Typography>
-      </div>
-      <Divider light />
+      {/*<div className="report-text">*/}
+      {/*  <Typography variant="subtitle1">*/}
+      {/*    {selectedUser === userId ? totalDuration : staffTotalDuration}*/}
+      {/*  </Typography>*/}
+      {/*</div>*/}
+      {/*<Divider light />*/}
 
-      <div className="report-chart">
-        <PieChart
-          pieChartData={
-            selectedUser === userId ? pieChartData : staffPieChartData
-          }
-        />
-      </div>
-      <Divider light />
-
+      {/*<div className="report-chart">*/}
+      {/*  <PieChart*/}
+      {/*    pieChartData={*/}
+      {/*      selectedUser === userId ? pieChartData : staffPieChartData*/}
+      {/*    }*/}
+      {/*  />*/}
+      {/*</div>*/}
+      {/*<Divider light />*/}
+      <Navigator />
       {(selectedUser === userId ? logs : staffLogs)
         .filter(log => log.date === formattedDate(currentPage))
         .map(log => (

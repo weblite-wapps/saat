@@ -10,6 +10,19 @@ import {
   differenceInSeconds,
 } from 'date-fns'
 
+export const addZeroToNumbers = num => {
+  const floored = Math.floor(num)
+  return floored < 10 ? `0${floored}` : String(floored)
+}
+
+export const breakDuration = duration => {
+  const second = addZeroToNumbers(duration % 60)
+  const minute = addZeroToNumbers((duration % 3600) / 60)
+  const hour = addZeroToNumbers(duration / 3600)
+
+  return { second, minute, hour }
+}
+
 export const getTimeZone = time =>
   new Date(
     moment(time)
@@ -24,7 +37,10 @@ export const getNow = () =>
       .format(),
   )
 
-export const getParsedNow = () => moment().tz('Asia/Tehran').format()
+export const getParsedNow = () =>
+  moment()
+    .tz('Asia/Tehran')
+    .format()
 
 export const formatTime = time =>
   setHours(
@@ -39,17 +55,22 @@ export const sumTimes = times =>
     0,
   )(times)
 
+// export const formattedSeconds = seconds => {
+//   if (Math.floor(seconds / 60) === 0) {
+//     return `${seconds % 60}s`
+//   } else if (Math.floor(seconds / 3600) === 0) {
+//     return seconds % 60 === 0
+//       ? `${Math.floor(seconds / 60)}m`
+//       : `${Math.floor(seconds / 60)}m${seconds % 60}s`
+//   }
+//   return Math.floor(seconds % 3600 === 0)
+//     ? `${Math.floor(seconds / 3600)}h`
+//     : `${Math.floor(seconds / 3600)}h${Math.floor((seconds % 3600) / 60)}m`
+// }
+
 export const formattedSeconds = seconds => {
-  if (Math.floor(seconds / 60) === 0) {
-    return `${seconds % 60}s`
-  } else if (Math.floor(seconds / 3600) === 0) {
-    return seconds % 60 === 0
-      ? `${Math.floor(seconds / 60)}m`
-      : `${Math.floor(seconds / 60)}m${seconds % 60}s`
-  }
-  return Math.floor(seconds % 3600 === 0)
-    ? `${Math.floor(seconds / 3600)}h`
-    : `${Math.floor(seconds / 3600)}h${Math.floor((seconds % 3600) / 60)}m`
+  const { second, minute, hour } = breakDuration(seconds)
+  return `${hour}:${minute}:${second}`
 }
 
 export const formattedMinutes = minutes => {

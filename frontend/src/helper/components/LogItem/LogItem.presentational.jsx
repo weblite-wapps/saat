@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const LogItem = ({ play, pinned, name, time, disableHandler }) => {
+const LogItem = ({ playing, pinned, name, time, disableHandler, onPlay, onPause, onTogglePin }) => {
   const classes = useStyles()
 
   return (
@@ -79,12 +79,12 @@ const LogItem = ({ play, pinned, name, time, disableHandler }) => {
           <Fab
             size="small"
             aria-label="playPause"
-            className={cns(classes.fab, ab(classes.fabPinned)(play))}
+            className={cns(classes.fab, ab(classes.fabPinned)(playing))}
           >
-            {play ? (
-              <PauseIcon className={classes.fabIcon} />
+            {playing ? (
+              <PauseIcon className={classes.fabIcon} onClick={onPause} />
             ) : (
-              <PlayIcon className={classes.fabIcon} />
+              <PlayIcon className={classes.fabIcon} onClick={onPlay} />
             )}
           </Fab>
         )}{' '}
@@ -96,9 +96,9 @@ const LogItem = ({ play, pinned, name, time, disableHandler }) => {
             className={cns(classes.fab, ab(classes.fabPinned)(pinned))}
           >
             {pinned ? (
-              <LockIcon className={classes.fabIcon} />
+              <LockIcon className={classes.fabIcon} onClick={onTogglePin} />
             ) : (
-              <OpenIcon className={classes.fabIcon} />
+              <OpenIcon className={classes.fabIcon} onClick={onTogglePin} />
             )}
           </Fab>
         )}
@@ -109,11 +109,11 @@ const LogItem = ({ play, pinned, name, time, disableHandler }) => {
 }
 
 LogItem.propTypes = {
-  play: PropTypes.bool,
+  playing: PropTypes.bool,
   pinned: PropTypes.bool,
 }
 LogItem.defaultProps = {
-  play: false,
+  playing: false,
   pinned: false,
 }
 

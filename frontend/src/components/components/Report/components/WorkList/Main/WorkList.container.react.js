@@ -39,7 +39,7 @@ const mapDispatchToProps = (_, { log: { _id } }) => ({
   handleDeleteLog: () => dispatchHandleDeleteLog(_id),
   changePopoverId: dispatchChangePopoverId,
   setSecondsElapsed: dispatchSetSecondsElapsed,
-  countinueCounting: dispatchCountinueCounting,
+  continueCounting: dispatchCountinueCounting,
   editClick: dispatchEditClick,
   onToggleIsPinned: dispatchHandleToggleIsPinned,
 })

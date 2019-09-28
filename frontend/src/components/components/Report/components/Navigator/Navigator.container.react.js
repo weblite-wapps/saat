@@ -10,8 +10,7 @@ import {
   dispatchNextPage,
 } from '../../Main/Report.action'
 
-const mapStateToProps = (_, { isActive }) => ({
-  isActive,
+const mapStateToProps = () => ({
   expandMode: expandModeView(),
   currentPage: currentPageView(),
 })

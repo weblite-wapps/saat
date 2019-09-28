@@ -5,8 +5,24 @@ import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Popover from '@material-ui/core/Popover'
-// styles
-import styles from '../../components/Button/Button.style'
+import { primary_color } from '../../style/_color'
+
+const styles = {
+  button: {
+    backgroundColor: primary_color,
+    fontSize: '13px',
+    color: 'white',
+    borderRadius: '5px',
+    padding: '5px 10px',
+    margin: '5px',
+    with: '50%',
+    minHeight: '25px',
+    textTransform: 'capitalize',
+  },
+  paper: {
+    borderRadius: '5px',
+  },
+}
 
 const CustomizedPopover = ({
   classes,
@@ -18,6 +34,7 @@ const CustomizedPopover = ({
   onNop,
 }) => (
   <Popover
+    classes={{ paper: classes.paper }}
     open={popoverIsOpen}
     onClose={onClose}
     anchorEl={anchorEl}
@@ -31,22 +48,26 @@ const CustomizedPopover = ({
       horizontal: 'center',
     }}
   >
-    <Typography variant="subtitle1" style={{ margin: '5px' }}>
-      Are you sure?
+    <Typography
+      dir="rtl"
+      variant="subtitle1"
+      style={{ margin: '10px 15px 5px' }}
+    >
+      آیا مطمئنید؟
     </Typography>
     <Button
       variant="contained"
       onClick={onYep}
-      classes={{ contained: classes.WorkList }}
+      classes={{ contained: classes.button }}
     >
-      Yep
+      بله
     </Button>
     <Button
       variant="contained"
       onClick={onNop}
-      classes={{ contained: classes.WorkList }}
+      classes={{ contained: classes.button }}
     >
-      Nope
+      خیر
     </Button>
   </Popover>
 )

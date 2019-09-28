@@ -18,6 +18,7 @@ const useStyles = makeStyles(() => ({
     lineHeight: '70px',
     letterSpacing: -0.32,
     fontWeight: 'bold',
+    marginBottom: -12,
   },
   typography: {
     display: 'flex',

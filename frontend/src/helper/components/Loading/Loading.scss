@@ -12,7 +12,7 @@
 
 .sp-3balls {
   position: absolute;
-  top: 100px;
+  top: 150px;
   left: calc(50% - 10px);
   background-color: black;
   opacity: 1;
@@ -29,7 +29,7 @@
 
 .sp-3balls:before {
   left: 30px;
-  top: 0px;
+  top: 0;
   -webkit-animation: spScaleAlphaBefore 1s infinite linear;
   animation: spScaleAlphaBefore 1s infinite linear;
 }

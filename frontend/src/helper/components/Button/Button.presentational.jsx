@@ -62,7 +62,6 @@ const CustomizedButton = ({
   style,
 }) => {
   const classes = useStyles()
-  console.log(classes)
   const fixed = variant === 'fixed'
   const labeled = variant === 'labeled'
 

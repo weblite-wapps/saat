@@ -9,15 +9,19 @@ import { dispatchChangeTextSlider } from '../../Main/Home.action'
 // selectors
 import { getTotalDuration } from './Summary.selector'
 // helpers
-import { formattedSeconds } from '../../../../../helper/functions/time.helper';
+import { breakDuration } from '../../../../../helper/functions/time.helper'
 
-const mapStateToProps = (state) => ({
-  name: textSliderView().name,
-  duration: formattedSeconds(getTotalDuration(state)),
-})
+const mapStateToProps = state => {
+  const duration = getTotalDuration(state)
+  return {
+    timeLabel: textSliderView().name,
+    ...breakDuration(duration),
+  }
+}
 
 const mapDispatchToProps = () => ({
-  changeTextSlider: dispatchChangeTextSlider,
+  onLeftClick: () => dispatchChangeTextSlider('Back'),
+  onRightClick: () => dispatchChangeTextSlider('Next'),
 })
 
 export default connect(

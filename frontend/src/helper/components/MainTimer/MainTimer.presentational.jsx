@@ -12,13 +12,14 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    maxWidth: 320,
+    maxWidth: 300,
     margin: 'auto',
+    marginBottom: '18px',
   },
   colon: {
-    fontSize: 45,
+    fontSize: '70px',
     lineHeight: '70px',
-    letterSpacing: -0.32,
+    letterSpacing: -0.49,
     fontWeight: 'bold',
   },
 }))

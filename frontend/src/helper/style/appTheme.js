@@ -54,6 +54,15 @@ export default createMuiTheme({
         whiteSpace: 'nowrap',
         direction: 'rtl',
       },
+      caption: {
+        fontFamily: 'iranyekan',
+        fontWeight: 'bold',
+        letterSpacing: 0,
+        direction: 'rtl',
+        color: '#ccc',
+        marginBottom: '-10px',
+        fontSize: '10px',
+      },
       h4: {
         color: '#000000',
         fontWeight: '500',
@@ -63,12 +72,13 @@ export default createMuiTheme({
         color: primary_color,
       },
       h5: {
-        color: secondary_color,
+        direction: 'rtl',
+        fontFamily: 'iranyekan',
+        color: 'white',
+        fontSize: '18px',
+        fontWeight: 'bold',
         textTransform: 'uppercase',
-        margin: '5px',
-        textAlign: 'center',
-        fontSize: '27px',
-        width: '165px',
+        textAlign: 'left',
       },
     },
     MuiPaper: {
@@ -83,8 +93,10 @@ export default createMuiTheme({
     },
     MuiToolbar: {
       root: {
-        backgroundColor: '#62666C',
         justifyContent: 'space-between',
+      },
+      regular: {
+        minHeight: '45px',
       },
     },
     MuiInputBase: {
@@ -115,8 +127,18 @@ export default createMuiTheme({
     MuiTab: {
       root: {
         height: '50px',
+        width: '50%',
+      },
+      wrapper: {
+        flexDirection: 'row',
       },
     },
+    // MuiSvgIcon: {
+    //   root: {
+    //     marginBottom: 0,
+    //     marginLeft: 6,
+    //   }
+    // },
     MuiTabIndicator: {
       root: {
         height: '5px',
