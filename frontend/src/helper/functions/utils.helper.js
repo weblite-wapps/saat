@@ -24,7 +24,7 @@ export const onEnterPress = (handler = Function.prototype) => ({ key }) => {
 
 /* === Strings === */
 export const toPersian = string =>
-  string.replace(/[0-9]/g, num => parseInt(num, 10).toLocaleString('ar-EG'))
+  string.toString().replace(/[0-9]/g, num => parseInt(num, 10).toLocaleString('fa'))
 
 /** Detect language direction */
 

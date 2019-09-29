@@ -20,6 +20,10 @@ coverage
 # dotenv environment variables file
 .env
 
+# Floobits
+.floo
+.flooignore
+
 # node_modules
 node_modules/
 

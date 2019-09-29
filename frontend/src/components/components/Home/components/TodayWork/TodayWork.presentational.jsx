@@ -1,22 +1,16 @@
 // modules
 import React from 'react'
 import PropTypes from 'prop-types'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import Divider from '@material-ui/core/Divider'
 import { isWithinRange, differenceInSeconds } from 'date-fns'
+// components
+import LogItem from '../../../../../helper/components/LogItem/LogItem.presentational'
 // helpers
-import {
-  PinButton,
-  BriefInfo,
-  ActionButtons,
-  Collapse,
-} from './TodayWork.helper.component'
 import {
   formatTime,
   sumTimes,
   getNow,
   getTimeZone,
+  formattedSeconds,
 } from '../../../../../helper/functions/time.helper'
 import {
   previousDay,
@@ -36,7 +30,7 @@ export default class TodayWork extends React.Component {
     const {
       log: { _id, times },
       setSecondsElapsed,
-      countinueCounting,
+      continueCounting,
       changeRunningId,
     } = this.props
     const len = times.length
@@ -46,7 +40,7 @@ export default class TodayWork extends React.Component {
         sumTimes(times) +
           differenceInSeconds(getNow(), getTimeZone(times[len - 1].start)),
       )
-      countinueCounting(_id)
+      continueCounting(_id)
       changeRunningId(_id)
     }
   }
@@ -88,28 +82,35 @@ export default class TodayWork extends React.Component {
   }
 
   render() {
-    const {
-      log: { times },
-    } = this.props
-    const len = times.length
+    const { log, onToggleIsPinned, workDuration, secondsElapsed } = this.props
+    const len = log.times.length
+    const playing = !!(len && log.times[len - 1].end === 'running')
 
     return (
-      <>
-        <List dense disablePadding className="list">
-          <ListItem dense disableGutters>
-            <PinButton {...this.props} />
-            <BriefInfo {...this.props} />
-            <ActionButtons
-              {...this.props}
-              len={len}
-              onStart={this.handleStartClick}
-              onStop={this.handleStopClick}
-            />
-          </ListItem>
-          <Collapse {...this.props} />
-        </List>
-        <Divider light />
-      </>
+      <div className="todayWork-root">
+        {/*<List dense disablePadding className="list">*/}
+        {/*  <ListItem dense disableGutters>*/}
+        {/*    <PinButton {...this.props} />*/}
+        {/*    <BriefInfo {...this.props} />*/}
+        {/*    <ActionButtons*/}
+        {/*      {...this.props}*/}
+        {/*      len={len}*/}
+        {/*      onStart={this.handleStartClick}*/}
+        {/*      onStop={this.handleStopClick}*/}
+        {/*    />*/}
+        {/*  </ListItem>*/}
+        {/*  <Collapse {...this.props} />*/}
+        {/*</List>*/}
+        <LogItem
+          name={log.title}
+          pinned={log.isPinned}
+          playing={playing}
+          time={playing ? formattedSeconds(secondsElapsed) : workDuration}
+          onTogglePin={onToggleIsPinned}
+          onPause={this.handleStopClick}
+          onPlay={this.handleStartClick}
+        />
+      </div>
     )
   }
 }
@@ -125,5 +126,5 @@ TodayWork.propTypes = {
   addLogToNextDay: PropTypes.func.isRequired,
   changeRunningId: PropTypes.func.isRequired,
   setSecondsElapsed: PropTypes.func.isRequired,
-  countinueCounting: PropTypes.func.isRequired,
+  continueCounting: PropTypes.func.isRequired,
 }

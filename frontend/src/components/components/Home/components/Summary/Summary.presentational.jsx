@@ -1,23 +1,30 @@
 // modules
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-// helpers
-import { SliderText, DurationPanel } from './Summary.helper.component'
+// components
+import MainTimer from '../../../../../helper/components/MainTimer/MainTimer.presentational'
+import LogSwitch from '../../../../../helper/components/LogSwitch/LogSwitch.presentational'
 // styles
 import './Summary.scss'
 import styles from './Summary.style'
 
-const Summary = props => (
+const Summary = ({
+  hour,
+  minute,
+  second,
+  timeLabel,
+  onLeftClick,
+  onRightClick,
+}) => (
   <div className="summary-container">
-    <SliderText text="You worked" variant="h4" />
-    <SliderText text={props.duration} variant="h3" />
-    <DurationPanel {...props} />
+    <MainTimer hour={hour} minute={minute} second={second} />
+    <LogSwitch
+      totalTimeLabel="مجموع زمان"
+      currentTimeLabel={timeLabel}
+      onLeftClick={onLeftClick}
+      onRightClick={onRightClick}
+    />
   </div>
 )
-
-Summary.propTypes = {
-  duration: PropTypes.string.isRequired,
-}
 
 export default withStyles(styles)(Summary)

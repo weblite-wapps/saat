@@ -7,6 +7,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles'
 // Setup
 import store, { history } from './redux'
 // Component
+import AppBar from '../helper/components/AppBar/AppBar.presentational'
 import App from '../components/Main/App.container.react'
 import About from '../components/components/About/About.jsx'
 import Loading from '../helper/components/Loading/Loading.presentational'
@@ -38,19 +39,18 @@ export default () => (
     <MuiThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
         <div className="app-container ">
-          {/* <App /> */}
+          <AppBar />
+          <App />
           <Snackbar location={{ vertical: 'bottom', horizontal: 'right' }} />
-
-          <Suspense fallback={<Loading />}>
-            <div style={{ margin: 10 }}>
-              <CollapsableLog />
-            </div>
-            {/* <Route exact path="/" render={() => <Home />} />
-            <Route path="/Add" render={() => <Add />} />
-            <Route path="/Report" render={() => <Report />} />
-            <Route path="/About" render={() => <About />} />
-            <Route path="/Edit" render={() => <Edit />} /> */}
-          </Suspense>
+          <div className="app-body">
+            <Suspense fallback={<Loading />}>
+              <Route exact path="/" render={() => <Home />} />
+              <Route path="/Add" render={() => <Add />} />
+              <Route path="/Report" render={() => <Report />} />
+              <Route path="/About" render={() => <About />} />
+              <Route path="/Edit" render={() => <Edit />} />
+            </Suspense>
+          </div>
         </div>
       </ConnectedRouter>
     </MuiThemeProvider>

@@ -1,10 +1,12 @@
 // modules
+import * as R from 'ramda'
 import React from 'react'
 import PropTypes from 'prop-types'
+// Mui components
 import Collapse from '@material-ui/core/Collapse'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import Tooltip from '@material-ui/core/Tooltip' 
+import Tooltip from '@material-ui/core/Tooltip'
 // icons
 import FlagIcon from '@material-ui/icons/Flag'
 import ListAltIcon from '@material-ui/icons/ListAlt'
@@ -16,7 +18,6 @@ import Button from '../../../../helper/components/Button/Button.presentational'
 import ShowChart from '../components/ShowChart/ShowChart.container.react'
 import Custom from '../components/Custom/Custom.container.react'
 import WorkList from '../components/WorkList/Main/WorkList.container.react'
-import PieChart from '../components/WorkList/components/PieChart.presentational'
 import Leaderboard from '../components/Leaderboard/Leaderboard.container.react'
 // selectors
 import {
@@ -47,7 +48,6 @@ const IconButton = ({ expandMode, changeExpandMode, mode }) => (
       {mode === 'leaderboard' && <FlagIcon />}
     </Button>
   </Tooltip>
-
 )
 
 IconButton.propTypes = {
@@ -56,13 +56,47 @@ IconButton.propTypes = {
   mode: PropTypes.string.isRequired,
 }
 
+const controls = [
+  // {
+  //   mode: 'leaderboard',
+  //   label: 'لیدربرد',
+  //   filter: () => true,
+  // },
+  {
+    mode: 'export',
+    label: 'خروجی',
+    filter: () => true,
+  },
+  {
+    mode: 'showChart',
+    label: 'نمودار',
+    filter: () => true,
+  },
+  {
+    mode: 'workList',
+    label: 'لیست موارد',
+    filter: () => true,
+  },
+]
+
 export const ControlBar = props => (
   <div className="report-controlBar">
-    <Navigator isActive={props.expandMode === 'workList'} />
-    <IconButton {...props} mode="workList" />
-    <IconButton {...props} mode="export" />
-    <IconButton {...props} mode="showChart" />
-    <IconButton {...props} mode="leaderboard" />
+    {R.map(
+      ({ mode, label, filter }) =>
+        filter(props) ? (
+          <Button
+            text={label}
+            onClick={() => props.changeExpandMode(mode)}
+            selected={mode === props.expandMode}
+            variant="labeled"
+            classesProp={{
+              typography: 'report-controlBar__typography',
+              button: 'report-controlBar__button',
+            }}
+          />
+        ) : null,
+      controls,
+    )}
   </div>
 )
 
@@ -99,7 +133,6 @@ export const BarChartPanel = ({ expandMode }) => (
     unmountOnExit
   >
     <ShowChart />
-    <Divider light />
   </Collapse>
 )
 
@@ -145,22 +178,22 @@ export const WorkListPanel = ({
       timeout="auto"
       unmountOnExit
     >
-      <div className="report-text">
-        <Typography variant="subtitle1">
-          {selectedUser === userId ? totalDuration : staffTotalDuration}
-        </Typography>
-      </div>
-      <Divider light />
+      {/*<div className="report-text">*/}
+      {/*  <Typography variant="subtitle1">*/}
+      {/*    {selectedUser === userId ? totalDuration : staffTotalDuration}*/}
+      {/*  </Typography>*/}
+      {/*</div>*/}
+      {/*<Divider light />*/}
 
-      <div className="report-chart">
-        <PieChart
-          pieChartData={
-            selectedUser === userId ? pieChartData : staffPieChartData
-          }
-        />
-      </div>
-      <Divider light />
-
+      {/*<div className="report-chart">*/}
+      {/*  <PieChart*/}
+      {/*    pieChartData={*/}
+      {/*      selectedUser === userId ? pieChartData : staffPieChartData*/}
+      {/*    }*/}
+      {/*  />*/}
+      {/*</div>*/}
+      {/*<Divider light />*/}
+      <Navigator />
       {(selectedUser === userId ? logs : staffLogs)
         .filter(log => log.date === formattedDate(currentPage))
         .map(log => (

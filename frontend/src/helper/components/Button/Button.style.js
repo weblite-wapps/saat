@@ -36,7 +36,7 @@ export default {
     backgroundColor: primary_color,
     fontSize: '13px',
     color: 'white',
-    borderRadius: '0px',
+    borderRadius: '5px',
     padding: '5px 10px',
     margin: '5px',
     minWidth: '5px',

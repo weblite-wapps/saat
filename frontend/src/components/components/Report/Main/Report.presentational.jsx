@@ -18,11 +18,10 @@ import './Report.scss'
 export default props => (
   <div className="report-container">
     <div className="report-dashboard">
-      <SelectBar />
+      {/* <SelectBar /> */}
       <ControlBar {...props} />
-      <Divider light />
     </div>
-    <List disablePadding style={{ marginTop: '210px' }}>
+    <List disablePadding>
       <ExportPanel {...props} />
       <BarChartPanel {...props} />
       <WorkListPanel {...props} />

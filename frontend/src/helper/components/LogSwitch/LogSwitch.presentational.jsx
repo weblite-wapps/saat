@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 // third-party-packages
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -25,6 +24,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 2,
     backgroundColor: '#818181',
     color: 'white',
+    maxWidth: '55%',
+    userSelect: 'none',
   },
   typography: {
     fontWeight: 'bold',
@@ -34,13 +35,24 @@ const useStyles = makeStyles(theme => ({
   },
   totalTimeLabel: {
     textAlign: 'center',
-    maxWidth: '50%',
     flexGrow: 2,
+    maxWidth: '45%',
+    userSelect: 'none',
   },
   icon: {
     fill: 'white',
   },
+
+  iconDisabled: {
+    fill: '#a5a5a5',
+  },
 }))
+
+const timeLabelMap = {
+  Today: 'امروز',
+  'This Week': 'این هفته',
+  'This Month': 'این ماه',
+}
 
 const LogSwitch = ({
   currentTimeLabel,
@@ -52,14 +64,32 @@ const LogSwitch = ({
   return (
     <Paper className={classes.paper}>
       <Paper className={cns(classes.paper, classes.currentTimeContainer)}>
-        <IconButton className={classes.button} onClick={onLeftClick}>
-          <LeftIcon className={classes.icon} />
+        <IconButton
+          className={classes.button}
+          onClick={onLeftClick}
+          disabled={currentTimeLabel === 'Today'}
+        >
+          <LeftIcon
+            className={
+              currentTimeLabel === 'Today' ? classes.iconDisabled : classes.icon
+            }
+          />
         </IconButton>
         <Typography className={classes.typography}>
-          {currentTimeLabel}
+          {timeLabelMap[currentTimeLabel]}
         </Typography>
-        <IconButton className={classes.button} onClick={onRightClick}>
-          <RightIcon className={classes.icon} />
+        <IconButton
+          className={classes.button}
+          onClick={onRightClick}
+          disabled={currentTimeLabel === 'This Month'}
+        >
+          <RightIcon
+            className={
+              currentTimeLabel === 'This Month'
+                ? classes.iconDisabled
+                : classes.icon
+            }
+          />
         </IconButton>
       </Paper>
       <Typography className={cns(classes.typography, classes.totalTimeLabel)}>
@@ -68,7 +98,5 @@ const LogSwitch = ({
     </Paper>
   )
 }
-
-LogSwitch.propTypes = {}
 
 export default LogSwitch

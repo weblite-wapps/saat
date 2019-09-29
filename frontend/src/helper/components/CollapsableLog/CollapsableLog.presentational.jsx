@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // third-party-packages
-import Paper from '@material-ui/core/paper'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
@@ -64,8 +63,8 @@ const useStyles = makeStyles(() => ({
 
 const CollapsableLog = ({
   tags,
-  onLeftClick,
-  onRightClick,
+  onDeleteClick,
+  onEditClick,
   logName,
   logTime,
 }) => {
@@ -89,14 +88,14 @@ const CollapsableLog = ({
           <div className={classes.buttonContainer}>
             <Button
               text="حذف"
-              onClick={onLeftClick}
+              onClick={onDeleteClick}
               variant="normal"
               classesProp={{ button: classes.leftBtn }}
             />
             <Button
               text="ویرایش"
               variant="normal"
-              onClick={onRightClick}
+              onClick={onEditClick}
               classesProp={{ button: classes.rightBtn }}
             />
           </div>
@@ -113,8 +112,8 @@ CollapsableLog.propTypes = {
       label: PropTypes.string,
     }),
   ),
-  onLeftClick: PropTypes.func.isRequired,
-  onRightClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
   logName: PropTypes.string.isRequired,
   logTime: PropTypes.string.isRequired,
 }

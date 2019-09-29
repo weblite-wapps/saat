@@ -74,34 +74,6 @@ BriefInfo.propTypes = {
   workDuration: PropTypes.string.isRequired,
 }
 
-export const ActionButtons = ({
-  log: { times },
-  isLoading,
-  len,
-  onStart,
-  onStop,
-}) => (
-  <ListItemSecondaryAction>
-    {len && times[len - 1].end === 'running' ? (
-      <IconButton disabled={isLoading} onClick={onStop}>
-        <Pause className="todayWork-icon" />
-      </IconButton>
-    ) : (
-      <IconButton disabled={isLoading} onClick={onStart}>
-        <Play className="todayWork-icon" />
-      </IconButton>
-    )}
-  </ListItemSecondaryAction>
-)
-
-ActionButtons.propTypes = {
-  log: PropTypes.shape({}).isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  len: PropTypes.number.isRequired,
-  onStart: PropTypes.func.isRequired,
-  onStop: PropTypes.func.isRequired,
-}
-
 export const Collapse = ({ runningId, log: { _id }, secondsElapsed }) => (
   <MuiCollapse
     component="li"
