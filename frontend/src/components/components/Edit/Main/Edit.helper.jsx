@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 // cores
-import Slide from '@material-ui/core/Slide'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
@@ -27,7 +26,6 @@ import TextField from '../../../../helper/components/TextField/TextField.present
 import './Edit.scss'
 import { default as style } from './Edit.style'
 
-export const Transition = props => <Slide direction="up" {...props} />
 
 const AppBar = ({ close, submit, classes, isLoading }) => (
   <MuiAppBar style={{ position: 'fixed' }}>

@@ -23,8 +23,10 @@ export const onEnterPress = (handler = Function.prototype) => ({ key }) => {
 }
 
 /* === Strings === */
-export const toPersian = string =>
-  string.toString().replace(/[0-9]/g, num => parseInt(num, 10).toLocaleString('fa'))
+export const toPersian = (string = '') =>
+typeof string === 'string'
+? string.replace(/[0-9]/g, num => parseInt(num, 10).toLocaleString('fa-IR'))
+: string.toLocaleString('fa-IR')
 
 /** Detect language direction */
 

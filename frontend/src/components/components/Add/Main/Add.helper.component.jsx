@@ -9,7 +9,8 @@ import './Add.scss'
 export const TextField = ({ isError, title, onTitleChange }) => (
   <div className="add-textField">
     <CustomizedTextField
-      label="Title"
+      label="عنوان ساعت شمار"
+      placeholder="عنوان ساعت شمار را وارد کنید"
       value={title}
       onChange={e => onTitleChange(e.target.value)}
       isError={isError.title}

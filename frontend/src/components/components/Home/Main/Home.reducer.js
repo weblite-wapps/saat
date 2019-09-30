@@ -10,6 +10,7 @@ import {
   SET_SECONDS_ELAPSED,
   INCREMENT_SECONDS_ELAPSED,
   CHANGE_RUNNING_ID,
+  SET_IS_OPEN_DIALOG,
 } from './Home.action'
 // helpers
 import { NextName, NextDuration } from './Home.helper'
@@ -19,17 +20,20 @@ const initialState = {
   homeTotalDuration: { today: 0, thisWeek: 0, thisMonth: 0 },
   secondsElapsed: 0,
   runningId: '',
+  isOpen: false,
 }
 
 // lenses
 const durationLens = R.lensProp('duration')
 const secondsElapsedLens = R.lensProp('secondsElapsed')
 const runningIdLens = R.lensProp('runningId')
+const isOpenLens = R.lensProp('isOpen')
 // views
 export const textSliderView = () => R.path(['Home', 'textSlider'])(getState())
 export const secondsElapsedView = () =>
   R.path(['Home', 'secondsElapsed'])(getState())
 export const runningIdView = () => R.path(['Home', 'runningId'])(getState())
+export const isOpenView = () => R.path(['Home', 'isOpen'])(getState())
 
 // reducers
 const reducers = {
@@ -63,6 +67,8 @@ const reducers = {
     R.set(secondsElapsedLens, R.inc(state.secondsElapsed), state),
 
   [CHANGE_RUNNING_ID]: (state, { _id }) => R.set(runningIdLens, _id, state),
+
+  [SET_IS_OPEN_DIALOG]: (state, isOpen) => R.set(isOpenLens, isOpen, state),
 }
 
 export default (state = initialState, { type, payload }) =>
