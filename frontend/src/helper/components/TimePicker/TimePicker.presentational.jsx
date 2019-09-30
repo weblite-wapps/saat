@@ -9,7 +9,7 @@ import { TimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 // styles
 import styles from '../../style/appStyle'
 
-jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true })
+jMoment.loadPersian({ dialect: 'persian-modern' })
 
 // style
 const useStyles = makeStyles(() => ({
@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
   },
   pickers: {
     display: 'flex',
-    justifyContent: 'space-between', 
+    justifyContent: 'space-between',
   },
 
   pickerComponent: {

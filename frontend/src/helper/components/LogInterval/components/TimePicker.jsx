@@ -12,7 +12,7 @@
 // } from '@material-ui/pickers'
 // import { cns, ab } from '../../functions/utils.helper'
 
-// jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true })
+// jMoment.loadPersian({ dialect: 'persian-modern' })
 // // helper
 
 // // style
