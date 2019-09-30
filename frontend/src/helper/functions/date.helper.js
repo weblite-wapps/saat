@@ -10,6 +10,11 @@ export const formattedDate = date =>
       .format('YYYY/MM/DD'),
   )
 
+export const universlFormattedDate = date =>
+  moment(date)
+    .locale('fa')
+    .format('YYYY/MM/DD')
+
 export const previousDay = date => subDays(date, 1)
 
 export const nextDay = date => addDays(date, 1)

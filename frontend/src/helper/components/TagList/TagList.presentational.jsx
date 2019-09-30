@@ -9,7 +9,12 @@ import './TagList.scss'
 const TagList = ({ tags, onTagClick }) => (
   <div className="tagList-container">
     {tags.map(tag => (
-      <Badge onTagClick={() => onTagClick(tag)} key={tag._id} label={tag.label} />
+      <Badge
+        isSelected={tag.isSelected}
+        key={tag._id}
+        label={tag.label}
+        onClick={() => onTagClick(tag)}
+      />
     ))}
   </div>
 )

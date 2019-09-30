@@ -7,11 +7,15 @@ import { push } from '../../../../setup/redux'
 import { dispatchChangeSnackbarStage } from '../../Snackbar/Snackbar.action'
 // helpers
 import {
+  getNow,
   getParsedNow,
   formattedSeconds,
 } from '../../../../helper/functions/time.helper'
 import { getRequest } from '../../../../helper/functions/request.helper'
-import { formattedDate } from '../../../../helper/functions/date.helper'
+import {
+  formattedDate,
+  universlFormattedDate,
+} from '../../../../helper/functions/date.helper'
 import { checkBeforeAddTag } from '../../../Main/App.helper'
 import { checkBeforeAction } from './Report.helper'
 // actions
@@ -300,8 +304,8 @@ const updateChartEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          startDate,
-          endDate,
+          startDate: String(startDate),
+          endDate: String(endDate),
           now: getParsedNow(),
         })
         .on(

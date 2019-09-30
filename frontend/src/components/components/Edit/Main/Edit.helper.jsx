@@ -26,17 +26,16 @@ import TextField from '../../../../helper/components/TextField/TextField.present
 import './Edit.scss'
 import { default as style } from './Edit.style'
 
-
 const AppBar = ({ close, submit, classes, isLoading }) => (
   <MuiAppBar style={{ position: 'fixed' }}>
     <Toolbar>
       <IconButton disabled={isLoading} className="icon" onClick={close}>
         <CloseButton classes={{ root: classes.svgIcon }} />
       </IconButton>
-      <strong>Edit Log</strong>
-      <IconButton disabled={isLoading} className="icon" onClick={submit}>
-        <Done classes={{ root: classes.svgIcon }} />
-      </IconButton>
+      <strong>ویرایش</strong>
+      {/* <IconButton disabled={isLoading} className="icon" onClick={submit}> */}
+      {/* <Done classes={{ root: classes.svgIcon }} /> */}
+      {/* </IconButton> */}
     </Toolbar>
   </MuiAppBar>
 )
@@ -60,7 +59,7 @@ export const Content = ({
   <div className="intervalList">
     <div className="title-panel">
       <TextField
-        label="Title"
+        label="عنوان ساعت شمار"
         value={title}
         onChange={onTitleChange}
         isError={isError && isError.title}
@@ -112,13 +111,12 @@ class IntervalItem extends Component {
     return (
       <ListItem className="todayWorklist" key={_id}>
         <div className="interval-panel">
-          <Typography className="interval">INTERVAL</Typography>
           <Typography className="counter">{index + 1}</Typography>
         </div>
         <Picker
           value={start}
           onChange={e => onStartTimeChange(e, _id)}
-          label="Start time"
+          label="ساعت شروع"
           type="time"
           isError={false}
           classes={{ container: classes.textField }}
@@ -126,7 +124,7 @@ class IntervalItem extends Component {
         <Picker
           value={R.toUpper(R.head(end)) + R.tail(end)}
           onChange={e => end !== 'running' && onEndTimeChange(e, _id)}
-          label="End time"
+          label="ساعت پایان"
           type={end === 'running' ? 'text' : 'time'}
           isError={false}
           classes={{ container: classes.textField }}

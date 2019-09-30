@@ -70,7 +70,6 @@ const Picker = ({ label, value, onChange }) => {
             <DatePicker
               className={classes.datePicker}
               clearable
-              disablePast
               okLabel="تأیید"
               cancelLabel="لغو"
               clearLabel="پاک کردن"

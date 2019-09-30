@@ -6,10 +6,11 @@ import MuiCollapse from '@material-ui/core/Collapse'
 import Button from '../../../../helper/components/Button/Button.presentational'
 // import Picker from '../../../../../helper/components/Picker/Picker.presentational'
 import TextField from '../../../../helper/components/TextField/TextField.presentational'
-import Autocomplete from '../../../../helper/components/Autocomplete/Autocomplete.presentational'
 import DatePicker from '../../../../helper/components/Picker/Picker.presentational'
 import TimePicker from '../../../../helper/components/TimePicker/TimePicker.presentational'
 import TagList from '../../../../helper/components/TagList/TagList.presentational'
+// helpers
+import { isPhoneOrTablet } from '../../../../helper/functions/device.helper'
 // styles
 import './Add.scss'
 
@@ -39,6 +40,7 @@ const Add = ({
   onExpand,
   onAdd,
   onCustomAdd,
+  onKeyDown,
 }) => (
   <div className="c--add_container">
     <TextField
@@ -48,18 +50,28 @@ const Add = ({
       onChange={e => onTitleChange(e.target.value)}
       isError={isError.title}
     />
-    <Autocomplete
+
+    <TextField
       label="تگ‌ها"
-      suggestions={suggestions}
-      inputValue={queryTag}
-      onInputValueChange={e => onQueryTagChange(e.target.value)}
-      onSelect={value => onQueryTagChange(value)}
-      onAdd={handleAddTag}
-    />
-    <Button
-      text="+"
-      onClick={handleAddTag}
-      componentName="Add"
+      placeholder="تگ مورد نظر را وارد کنید"
+      value={queryTag}
+      onChange={e => onQueryTagChange(e.target.value)}
+      isError={isError.queryTag}
+      inputProps={{
+        onKeyDown: e => {
+          if (e.key === 'Enter' && !e.shiftKey && !isPhoneOrTablet) {
+            e.preventDefault()
+            handleAddTag()
+          }
+        },
+        style: {
+          minHeight: 30,
+          fontSize: '12px',
+          lineHeight: '21px',
+          letterSpacing: '-0.08px',
+          fontFamily: 'iranyekan',
+        },
+      }}
     />
 
     <TagList tags={tags} onTagClick={onTagClick} />
@@ -103,13 +115,10 @@ const Add = ({
     <Button
       variant="fixed"
       text="افزودن"
-      onClick={() =>
-        onCustomAdd(title, selectedTags, date, startTime, endTime)
-      }
+      onClick={() => onCustomAdd(title, selectedTags, date, startTime, endTime)}
     />
   </div>
 )
-
 
 Add.propTypes = {
   title: PropTypes.string.isRequired,

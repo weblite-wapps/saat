@@ -7,7 +7,8 @@ import Paper from '@material-ui/core/Paper'
 // style
 import { makeStyles } from '@material-ui/core/styles'
 // icons
-import CloseIcon from '@material-ui/icons/Close'
+import Add from '@material-ui/icons/Add'
+import Remove from '@material-ui/icons/Remove'
 // helper
 import { getDirection } from '../../functions/utils.helper'
 
@@ -21,6 +22,18 @@ const useStyles = makeStyles(() => ({
     minHeight: 30,
     margin: 5,
     backgroundColor: '#818181',
+    color: '#fff',
+    overflow: 'hidden',
+  },
+  selectedRoot: {
+    display: 'inline-flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    maxWidth: 200,
+    borderRadius: 11,
+    minHeight: 30,
+    margin: 5,
+    backgroundColor: '#84CE2C',
     color: '#fff',
     overflow: 'hidden',
   },
@@ -42,14 +55,22 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const Badge = ({ label, onClick, disableHandler }) => {
+const Badge = ({ label, disableHandler, isSelected, onClick }) => {
   const classes = useStyles()
   const direction = getDirection(label)
+
   return (
-    <Paper className={classes.root}>
+    <Paper
+      className={isSelected ? classes.selectedRoot : classes.root}
+      onClick={onClick}
+    >
       {!disableHandler && (
         <IconButton onClick={onClick} className={classes.button}>
-          <CloseIcon className={classes.icon} />
+          {isSelected ? (
+            <Remove className={classes.icon} />
+          ) : (
+            <Add className={classes.icon} />
+          )}
         </IconButton>
       )}
       <Typography className={classes.typography} style={{ direction }}>
@@ -61,14 +82,16 @@ const Badge = ({ label, onClick, disableHandler }) => {
 
 Badge.propTypes = {
   disableHandler: PropTypes.bool,
-  onClick: PropTypes.func,
+  isSelected: PropTypes.bool,
   label: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 Badge.defaultProps = {
   disableHandler: false,
-  onClick: Function.prototype,
+  isSelected: false,
   label: '',
+  onClick: Function.prototype,
 }
 
 export default Badge

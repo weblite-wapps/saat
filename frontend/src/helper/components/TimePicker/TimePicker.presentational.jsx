@@ -79,7 +79,6 @@ const Picker = ({ label, isError, value, style, onChange }) => {
           <TimePicker
             className={classes.datePicker}
             clearable
-            disablePast
             okLabel="تأیید"
             cancelLabel="لغو"
             clearLabel="پاک کردن"
