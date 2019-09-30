@@ -25,6 +25,7 @@ import {
   getStaffWorksDuration,
 } from '../../../../helper/selectors/workDuration.selector'
 // helpers
+import { toPersian } from '../../../../helper/functions/utils.helper'
 import { formattedDate } from '../../../../helper/functions/date.helper'
 import { tooltipTitles } from './Report.helper'
 // styles
@@ -114,7 +115,21 @@ export const ExportPanel = ({ expandMode, totalDurationFromServer }) => (
     <div className="report-export">
       <Custom />
       <div className="report-text">
-        <Typography variant="subtitle1">{totalDurationFromServer}</Typography>
+        {totalDurationFromServer && (
+          <Typography className="report-text__typography">
+            {totalDurationFromServer === 'calc'
+              ? 'در حال محاسبه'
+              : 'مقدار مورد نظر :'}
+          </Typography>
+        )}
+        {totalDurationFromServer && totalDurationFromServer !== 'calc' && (
+          <Typography
+            className="report-text__typography"
+            style={{ marginTop: 5 }}
+          >
+            {toPersian(totalDurationFromServer)}
+          </Typography>
+        )}
       </div>
     </div>
   </Collapse>

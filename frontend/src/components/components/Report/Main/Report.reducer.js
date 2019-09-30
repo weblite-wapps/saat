@@ -46,7 +46,7 @@ const initialState = {
   tags: [],
   startDate: startOfToday(getNow()),
   endDate: getNow(),
-  totalDuration: 'Not calculated',
+  totalDuration: '',
   CSV: '',
   currentPage: getNow(),
   pages: {},
@@ -165,7 +165,7 @@ const reducers = {
   [CHANGE_END_DATE]: (state, { value }) => R.set(endDateLens, value, state),
 
   [CALCULATE_TOTAL_DURATION]: state =>
-    R.set(totalDurationLens, 'calculating', state),
+    R.set(totalDurationLens, 'calc', state),
 
   [RESTORE_TOTAL_DUARTION]: (state, { totalDuration }) =>
     R.set(totalDurationLens, totalDuration, state),

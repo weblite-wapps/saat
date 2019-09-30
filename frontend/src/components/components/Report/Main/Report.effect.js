@@ -6,7 +6,10 @@ import { push } from '../../../../setup/redux'
 // local modules
 import { dispatchChangeSnackbarStage } from '../../Snackbar/Snackbar.action'
 // helpers
-import { getParsedNow } from '../../../../helper/functions/time.helper'
+import {
+  getParsedNow,
+  formattedSeconds,
+} from '../../../../helper/functions/time.helper'
 import { getRequest } from '../../../../helper/functions/request.helper'
 import { formattedDate } from '../../../../helper/functions/date.helper'
 import { checkBeforeAddTag } from '../../../Main/App.helper'
@@ -176,7 +179,7 @@ const calculateTotalDurationEpic = action$ =>
     )
     .do(() => dispatchSetIsLoading(false))
     .do(() => W && W.analytics('CALCULATE_CLICK'))
-    .map(({ body }) => restoreTotalDuration(body))
+    .map(({ body }) => restoreTotalDuration(formattedSeconds(body, true)))
 
 const convertJSONToCSVEpic = action$ =>
   action$

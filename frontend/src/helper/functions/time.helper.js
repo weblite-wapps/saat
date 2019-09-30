@@ -68,9 +68,10 @@ export const sumTimes = times =>
 //     : `${Math.floor(seconds / 3600)}h${Math.floor((seconds % 3600) / 60)}m`
 // }
 
-export const formattedSeconds = seconds => {
+export const formattedSeconds = (seconds, withSpace) => {
+  const splitter = withSpace ? ' ' : ''
   const { second, minute, hour } = breakDuration(seconds)
-  return `${hour}:${minute}:${second}`
+  return `${hour}${splitter}:${splitter}${minute}${splitter}:${splitter}${second}`
 }
 
 export const formattedMinutes = minutes => {

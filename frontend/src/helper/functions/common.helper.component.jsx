@@ -37,7 +37,8 @@ export const TagPanel = ({
         onAdd={handleAddTag}
       />
       <CustomizedButton
-        label="ADD"
+        text="ADD"
+        variant="labeled"
         onClick={handleAddTag}
         componentName="Add"
       />

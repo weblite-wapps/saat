@@ -95,7 +95,6 @@ app.get("/fetchTotalDurations", ({ query: { wis, userId, today, now } }, res) =>
 app.get("/calculateTotalDuration", ({ query }, res) =>
   fetchLogs(modifiedQuery(query))
     .then(logs => dynamicSumLogs(logs, query.now))
-    .then(sum => formattedSeconds(sum))
     .then(totalDuration => res.json(totalDuration))
     .catch(logger))
 

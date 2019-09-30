@@ -10,7 +10,7 @@ import './Custom.scss'
 export const Buttons = ({ onCalculation, onExport }) => (
   <div className="custom-buttons">
     <Button
-      text="نمایش و محاسبه"
+      text="محاسبه و نمایش"
       variant="labeled"
       onClick={onCalculation}
       classesProp={{
