@@ -125,7 +125,7 @@ export const ExportPanel = ({ expandMode, totalDurationFromServer }) => (
         {totalDurationFromServer && totalDurationFromServer !== 'calc' && (
           <Typography
             className="report-text__typography"
-            style={{ marginTop: 5 }}
+            style={{ marginTop: 5, direction: 'ltr' }}
           >
             {toPersian(totalDurationFromServer)}
           </Typography>

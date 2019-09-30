@@ -165,8 +165,8 @@ const calculateTotalDurationEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          startDate: startDateView(),
-          endDate: endDateView(),
+          startDate: formattedDate(startDateView()),
+          endDate: formattedDate(endDateView()),
           selectedTags: selectedTagsView(),
           now: getParsedNow(),
         })

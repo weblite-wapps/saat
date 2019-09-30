@@ -40,13 +40,10 @@ const MySelect = ({ options, currentValue, onChange }) => (
   <Select
     value={currentValue}
     onChange={e => onChange(e.target.value)}
-    input={<BootstrapInput name="age" id="age-customized-select" />}
+    input={<BootstrapInput />}
   >
     {options.map(({ value, label }) => (
-      <MenuItem
-        value={value}
-        className="select-option"
-      >
+      <MenuItem value={value} className="select-option">
         {label}
       </MenuItem>
     ))}

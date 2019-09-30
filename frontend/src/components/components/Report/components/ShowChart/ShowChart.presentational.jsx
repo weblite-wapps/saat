@@ -7,7 +7,6 @@ import subDays from 'date-fns/sub_days'
 import {
   Pickers,
   BarChart,
-  Buttons,
 } from '../../../../../helper/functions/common.helper.component'
 import Select from '../../../../../helper/components/Select/Select.presentational'
 import Button from '../../../../../helper/components/Button/Button.presentational'
