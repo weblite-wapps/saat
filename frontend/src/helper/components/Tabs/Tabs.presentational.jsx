@@ -42,31 +42,31 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     minHeight: '35px',
   },
-  button: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 0,
-    backgroundColor: '#F0F0F0',
-    alignItems: 'center',
+  // button: {
+  //   width: '100%',
+  //   height: '100%',
+  //   borderRadius: 0,
+  //   backgroundColor: '#F0F0F0',
+  //   alignItems: 'center',
 
-    '&:hover': {
-      backgroundColor: '#CCCCCC',
-    },
-    '&, &:active': {
-      boxShadow: 'none',
-    },
-  },
-  typography: {
-    fontSize: 12,
-    lineHeight: '21px',
-    letterSpacing: -0.08,
-    marginRight: 5,
-  },
-  icon: {
-    width: 20,
-    height: 20,
-    marginLeft: 3,
-  },
+  //   '&:hover': {
+  //     backgroundColor: '#CCCCCC',
+  //   },
+  //   '&, &:active': {
+  //     boxShadow: 'none',
+  //   },
+  // },
+  // typography: {
+  //   fontSize: 12,
+  //   lineHeight: '21px',
+  //   letterSpacing: -0.08,
+  //   marginRight: 5,
+  // },
+  // icon: {
+  //   width: 20,
+  //   height: 20,
+  //   marginLeft: 3,
+  // },
 }))
 
 const HeaderTabs = ({ tabIndex, changeTab }) => {

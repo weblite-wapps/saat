@@ -7,16 +7,13 @@ import Summary from '../components/Summary/Summary.container.react'
 import Button from '../../../../helper/components/Button/Button.presentational'
 import Add from '../../Add/Main/Add.container.react'
 // helpers
-import { TodayWorkList, FabButton } from './Home.helper.component'
+import { TodayWorkList } from './Home.helper.component'
 import Transition from '../../../../helper/components/Transition/Transition'
 import DialogToolbar from '../../../../helper/components/DialogToolbar/DialogToolbar.presentational'
-import {
-  AppBarWithStyle as AppBar,
-} from '../../Edit/Main/Edit.helper'
 // styles
 import './Home.scss'
 
-const Home = ({ logs, isLoading, isOpen, onClose, onAdd }) => (
+const Home = ({ logs, isOpen, onClose, onAdd }) => (
   <div className="home-normal">
     <Summary />
     <span className="home-logs-list">
@@ -29,7 +26,6 @@ const Home = ({ logs, isLoading, isOpen, onClose, onAdd }) => (
     />
 
     <Dialog
-      // style={{ marginTop: '125px' }}
       open={isOpen}
       fullScreen
       transitionDuration={300}
@@ -38,7 +34,6 @@ const Home = ({ logs, isLoading, isOpen, onClose, onAdd }) => (
       <DialogToolbar
         title="افزودن ساعت شمار جدید"
         onClose={onClose}
-        isLoading={isLoading}
       />
       <Add />
     </Dialog>

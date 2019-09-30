@@ -9,6 +9,7 @@ import TextField from '../../../../helper/components/TextField/TextField.present
 import Autocomplete from '../../../../helper/components/Autocomplete/Autocomplete.presentational'
 import DatePicker from '../../../../helper/components/Picker/Picker.presentational'
 import TimePicker from '../../../../helper/components/TimePicker/TimePicker.presentational'
+import TagList from '../../../../helper/components/TagList/TagList.presentational'
 // styles
 import './Add.scss'
 
@@ -39,7 +40,7 @@ const Add = ({
   onAdd,
   onCustomAdd,
 }) => (
-  <div className="add-container">
+  <div className="c--add_container">
     <TextField
       label="عنوان ساعت شمار"
       placeholder="عنوان ساعت شمار را وارد کنید"
@@ -61,6 +62,8 @@ const Add = ({
       componentName="Add"
     />
 
+    <TagList tags={tags} onTagClick={onTagClick} />
+
     <Button
       variant="labeled"
       text="وارد کردن زمان به صورت دستی"
@@ -73,7 +76,7 @@ const Add = ({
       componentName="Add"
     /> */}
 
-    <MuiCollapse component="li" in={expanded} timeout="auto" unmountOnExit>
+    <MuiCollapse in={expanded} timeout="auto" unmountOnExit>
       <DatePicker
         label="تاریخ"
         type="date"
@@ -88,7 +91,7 @@ const Add = ({
         value={startTime}
         onChange={onStartTimeChange}
       />
-      <DatePicker
+      <TimePicker
         label="ساعت پایان"
         type="time"
         isError={isError.endTime}

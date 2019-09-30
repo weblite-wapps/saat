@@ -12,9 +12,6 @@ import App from '../components/Main/App.container.react'
 import About from '../components/components/About/About.jsx'
 import Loading from '../helper/components/Loading/Loading.presentational'
 import Snackbar from '../components/components/Snackbar/Snackbar.container.react'
-// TEST
-import CollapsableLog from '../helper/components/CollapsableLog/CollapsableLog.presentational'
-
 // styles
 import './root.scss'
 import './fonts/fonts.scss'
@@ -32,7 +29,6 @@ const Report = lazy(() =>
 const Edit = lazy(() =>
   import('../components/components/Edit/Main/Edit.container.react'),
 )
-// const About = lazy(() => import('../components/components/About/About.jsx'))
 
 export default () => (
   <Provider store={store}>

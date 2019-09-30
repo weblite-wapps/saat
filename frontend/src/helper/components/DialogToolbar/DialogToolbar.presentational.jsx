@@ -12,10 +12,10 @@ import CloseButton from '@material-ui/icons/Close'
 import { default as style } from './DialogToolbar.style'
 import './DialogToolbar.scss'
 
-const DialogToolbar = ({ title, close, classes, isLoading }) => (
+const DialogToolbar = ({ title, onClose, classes, isLoading }) => (
     <MuiAppBar style={{ position: 'fixed' }}>
         <Toolbar>
-        <IconButton disabled={isLoading} className="icon" onClick={close}>
+        <IconButton disabled={isLoading} className="icon" onClick={onClose}>
             <CloseButton classes={{ root: classes.svgIcon }} />
         </IconButton>
         <strong>{title}</strong>
@@ -26,7 +26,7 @@ const DialogToolbar = ({ title, close, classes, isLoading }) => (
 DialogToolbar.propTypes = {
     close: PropTypes.func.isRequired,
     classes: PropTypes.shape({}).isRequired,
-    isLoading: PropTypes.bool.isRequired,
+    // isLoading: PropTypes.bool.isRequired,
   }
 
 export default withStyles(style)(DialogToolbar)

@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
   pickerContainer: {
     display: 'inline-flex',
@@ -32,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid #818181',
     borderRadius: 11,
     boxSizing: 'border-box',
-    width: 125,
+    width: '100%',
     height: 35,
     '& input': {
       textAlign: 'center',
