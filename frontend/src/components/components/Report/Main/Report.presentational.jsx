@@ -18,7 +18,7 @@ import './Report.scss'
 export default props => (
   <div className="report-container">
     <div className="report-dashboard">
-      {/* <SelectBar /> */}
+      {/*<SelectBar />*/}
       <ControlBar {...props} />
     </div>
     <List disablePadding>

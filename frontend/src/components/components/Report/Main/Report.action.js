@@ -143,6 +143,10 @@ export const restoreBarChartData = createAction(
 export const dispatchRestoreBarChartData = (...args) =>
   dispatch(restoreBarChartData(...args))
 
+export const CHANGE_BAR_CHART_DATE_MODE = 'CHANGE_BAR_CHART_DATE_MODE'
+export const dispatchChangeBarChartDateMode = (...args) =>
+  dispatch(createAction(CHANGE_BAR_CHART_DATE_MODE)(...args))
+
 export const RESTORE_LEADERBOARD_DATA = 'RESTORE_LEADERBOARD_DATA'
 export const restoreLeaderboardData = createAction(
   RESTORE_LEADERBOARD_DATA,

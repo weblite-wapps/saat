@@ -1,13 +1,19 @@
 @import '../../../../../helper/style/mixin.scss';
 
+.showChart-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
 .showChart-insertButton {
   margin: 20px 16px;
 }
 
-.showChart-buttons {
-  margin: 20px 10px;
-  display: flex;
-  align-items: center;
+.showChart-button {
+  width: 100%;
+  margin-top: 15px;
 }
 
 .showChart-chart {

@@ -9,6 +9,11 @@
   width: 100%;
 }
 
+.report-export {
+  position: relative;
+  padding: 0 20px;
+}
+
 .report-controlBar {
   @include flex-center;
   position: relative;

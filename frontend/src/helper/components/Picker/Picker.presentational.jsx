@@ -5,25 +5,29 @@ import JalaliUtils from '@date-io/jalaali'
 import { withStyles } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import { Typography } from '@material-ui/core'
+import InputBase from '@material-ui/core/InputBase'
 // styles
 import styles from '../../style/appStyle'
+// helpers
+import { formattedDate } from '../../functions/date.helper'
 
-jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true })
+// TODO: persian digits
+jMoment.loadPersian({ dialect: 'persian-modern' })
 
 // style
 const useStyles = makeStyles(theme => ({
-  timePickerComponent: {
-    marginTop: 15,
-  },
-  pickers: {
-    display: 'flex',
-    justifyContent: 'space-between',
+  root: {
+    width: '100%',
+    marginTop: '15px',
   },
 
   pickerComponent: {
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+    marginTop: '5px',
   },
   pickerContainer: {
     display: 'inline-flex',
@@ -32,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid #818181',
     borderRadius: 11,
     boxSizing: 'border-box',
-    width: 125,
+    width: '100%',
     height: 35,
     '& input': {
       textAlign: 'center',
@@ -41,44 +45,51 @@ const useStyles = makeStyles(theme => ({
       padding: 6,
     },
   },
-  small: {
-    width: 85,
-  },
   datePicker: {
     marginTop: 0,
+    width: '100%',
+    textAlign: 'right',
   },
   typography: {
-    color: '#818181',
-    marginLeft: 7,
     fontSize: 12,
     lineHeight: '21px',
-    fontWeight: 500,
     letterSpacing: -0.08,
-  },
-  label: {
     color: '#000',
     textAlign: 'right',
-    marginBottom: 3,
   },
 }))
 
-const Picker = ({ label, isError, value, style, onChange }) => {
+const Picker = ({ label, value, onChange }) => {
   const classes = useStyles()
   return (
     <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
-      <div className={classes.pickerComponent}>
-        <div className={classes.pickerContainer}>
-          <DatePicker
-            className={classes.datePicker}
-            clearable
-            disablePast
-            okLabel="تأیید"
-            cancelLabel="لغو"
-            clearLabel="پاک کردن"
-            labelFunc={date => (date ? date.format('jYYYY/jMM/jDD') : '')}
-            value={value}
-            onChange={onChange}
-          />
+      <div className={classes.root}>
+        <Typography className={classes.typography}>{label}</Typography>
+        <div className={classes.pickerComponent}>
+          <div className={classes.pickerContainer}>
+            <DatePicker
+              className={classes.datePicker}
+              clearable
+              disablePast
+              okLabel="تأیید"
+              cancelLabel="لغو"
+              clearLabel="پاک کردن"
+              labelFunc={date => (date ? formattedDate(date) : '')}
+              value={value}
+              TextFieldComponent={InputBase}
+              inputProps={{
+                style: {
+                  color: '#818181',
+                  textAlign: 'right',
+                  fontSize: 12,
+                  lineHeight: '21px',
+                  letterSpacing: -0.08,
+                  fontFamily: 'iranyekan',
+                },
+              }}
+              onChange={onChange}
+            />
+          </div>
         </div>
       </div>
     </MuiPickersUtilsProvider>

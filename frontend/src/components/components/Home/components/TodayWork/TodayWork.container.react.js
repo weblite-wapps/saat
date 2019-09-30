@@ -23,7 +23,7 @@ import { getWorksDuration } from '../../../../../helper/selectors/workDuration.s
 const mapStateToProps = (state, { log: { _id } }) => ({
   isLoading: isLoadingView(),
   runningId: runningIdView(),
-  secondsElapsed: console.log(secondsElapsedView()) || secondsElapsedView(),
+  secondsElapsed: secondsElapsedView(),
   workDuration: getWorksDuration(state)[_id],
 })
 

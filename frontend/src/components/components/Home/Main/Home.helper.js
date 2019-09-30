@@ -49,5 +49,4 @@ export const getSecondsElapsed = (logs, _id) => {
 const checkIsRunning = log => R.prop('end', R.last(log.times)) === 'running'
 
 export const checkToShowInHome = log =>
-  log.date === formattedDate(getNow()) ||
-  checkIsRunning(log)
+  log.date === formattedDate(getNow()) || checkIsRunning(log)

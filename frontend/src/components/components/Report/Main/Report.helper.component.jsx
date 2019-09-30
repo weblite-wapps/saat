@@ -111,12 +111,12 @@ export const ExportPanel = ({ expandMode, totalDurationFromServer }) => (
     timeout="auto"
     unmountOnExit
   >
-    <Custom />
-    <Divider light />
-    <div className="report-text">
-      <Typography variant="subtitle1">{totalDurationFromServer}</Typography>
+    <div className="report-export">
+      <Custom />
+      <div className="report-text">
+        <Typography variant="subtitle1">{totalDurationFromServer}</Typography>
+      </div>
     </div>
-    <Divider light />
   </Collapse>
 )
 
