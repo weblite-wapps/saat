@@ -58,11 +58,11 @@ IconButton.propTypes = {
 }
 
 const controls = [
-  // {
-  //   mode: 'leaderboard',
-  //   label: 'لیدربرد',
-  //   filter: () => true,
-  // },
+  {
+    mode: 'leaderboard',
+    label: 'لیدربرد',
+    filter: () => true,
+  },
   {
     mode: 'export',
     label: 'خروجی',
@@ -163,7 +163,6 @@ export const LeaderboardPanel = ({ expandMode }) => (
     unmountOnExit
   >
     <Leaderboard />
-    <Divider light />
   </Collapse>
 )
 

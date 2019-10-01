@@ -133,9 +133,9 @@ const initialFetchEpic = action$ =>
     .do(({ body: { totalDurations } }) =>
       dispatchLoadTotalDurations(totalDurations),
     )
-    .do(({ body: { leaderboard } }) =>
-      dispatchRestoreLeaderboardData(leaderboard),
-    )
+    // .do(({ body: { leaderboard } }) =>
+    //   dispatchRestoreLeaderboardData(leaderboard),
+    // )
     .mergeMap(({ body: { pins } }) =>
       postRequest('/saveLogs')
         .send({

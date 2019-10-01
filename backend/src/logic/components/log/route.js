@@ -1,10 +1,10 @@
 // modules
-import mongoose from 'mongoose'
-import * as R from 'ramda'
+import mongoose from "mongoose";
+import * as R from "ramda";
 // components
-import app from '../../../setup/server'
+import app from "../../../setup/server";
 // db helpers
-import { fetchLogs, saveLog, deleteLog, saveTime, updateLog } from './db'
+import { fetchLogs, saveLog, deleteLog, saveTime, updateLog } from "./db";
 // helpers
 import {
   dynamicSumLogs,
@@ -14,69 +14,69 @@ import {
   getJSON,
   getLeaderboardData,
   getRunningTimeId
-} from '../../../helper/query.helper'
+} from "../../../helper/query.helper";
 import {
   getStartDayOfWeek,
   getStartDayOfMonth
-} from '../../../helper/date.helper'
-import { formattedSeconds, getNow } from '../../../helper/time.helper'
+} from "../../../helper/date.helper";
+import { formattedSeconds, getNow } from "../../../helper/time.helper";
 // const
-const logger = console.log
+const logger = console.log;
 
-app.get('/fetchLogs', ({ query: { wis, userId, date } }, res) =>
+app.get("/fetchLogs", ({ query: { wis, userId, date } }, res) =>
   fetchLogs({ wis, userId, date })
     .then(logs => res.json(R.reverse(logs)))
     .catch(logger)
-)
+);
 
-app.post('/saveLog', (req, res) =>
+app.post("/saveLog", (req, res) =>
   saveLog({ ...req.body, created_at: getNow() })
     .then(log => res.send(log))
     .catch(logger)
-)
+);
 
-app.post('/saveCustomLog', (req, res) =>
+app.post("/saveCustomLog", (req, res) =>
   saveLog({ ...req.body, created_at: getNow() })
     .then(log => res.send(log))
     .catch(logger)
-)
+);
 
-app.post('/insertLogToNextDay', (req, res) =>
+app.post("/insertLogToNextDay", (req, res) =>
   saveLog({ ...req.body, created_at: getNow() })
     .then(log => res.send(log))
     .catch(logger)
-)
+);
 
-app.post('/deleteLog', ({ query }, res) =>
+app.post("/deleteLog", ({ query }, res) =>
   deleteLog({ _id: mongoose.Types.ObjectId(query._id) })
     .then(() => res.send(query))
     .catch(logger)
-)
+);
 
-app.post('/saveStartTime', ({ body }, res) =>
+app.post("/saveStartTime", ({ body }, res) =>
   saveTime(
     { _id: mongoose.Types.ObjectId(body._id) },
-    { $push: { times: { start: body.start, end: 'running' } } }
+    { $push: { times: { start: body.start, end: "running" } } }
   )
     .then(({ times }) => {
       res.send({
         ...body,
         runningTimeId: getRunningTimeId(times)
-      })
+      });
     })
     .catch(logger)
-)
+);
 
-app.post('/saveEndTime', ({ body }, res) =>
+app.post("/saveEndTime", ({ body }, res) =>
   saveTime(
-    { _id: mongoose.Types.ObjectId(body.runningId), 'times.end': 'running' },
-    { $set: { 'times.$.end': body.end } }
+    { _id: mongoose.Types.ObjectId(body.runningId), "times.end": "running" },
+    { $set: { "times.$.end": body.end } }
   )
     .then(() => res.send(body))
     .catch(logger)
-)
+);
 
-app.get('/fetchTotalDurations', ({ query: { wis, userId, today, now } }, res) =>
+app.get("/fetchTotalDurations", ({ query: { wis, userId, today, now } }, res) =>
   Promise.all([
     fetchLogs({ wis, userId, date: today }),
     fetchLogs({
@@ -104,27 +104,27 @@ app.get('/fetchTotalDurations', ({ query: { wis, userId, today, now } }, res) =>
       })
     )
     .catch(logger)
-)
+);
 
-app.get('/calculateTotalDuration', ({ query }, res) =>
+app.get("/calculateTotalDuration", ({ query }, res) =>
   fetchLogs(modifiedQuery(query))
     .then(logs => dynamicSumLogs(logs, query.now))
     .then(totalDuration => res.json(totalDuration))
     .catch(logger)
-)
+);
 
-app.get('/convertJSONToCSV', ({ query }, res) =>
+app.get("/convertJSONToCSV", ({ query }, res) =>
   fetchLogs(modifiedQuery(query))
     .then(logs => getJSON(logs, query.now))
     .then(csv => {
-      res.setHeader('Content-disposition', 'attachment; filename=data.csv')
-      res.set('Content-Type', 'text/csv')
-      res.status(200).send(csv)
+      res.setHeader("Content-disposition", "attachment; filename=data.csv");
+      res.set("Content-Type", "text/csv");
+      res.status(200).send(csv);
     })
     .catch(logger)
-)
+);
 
-app.get('/barChartData', ({ query }, res) => {
+app.get("/barChartData", ({ query }, res) => {
   const newQuery = {
     wis: query.wis,
     userId: query.userId,
@@ -132,7 +132,7 @@ app.get('/barChartData', ({ query }, res) => {
       $gte: new Date(query.startDate),
       $lte: new Date(query.endDate)
     }
-  }
+  };
   fetchLogs(newQuery)
     .then(logs =>
       res.send(
@@ -143,24 +143,27 @@ app.get('/barChartData', ({ query }, res) => {
         })
       )
     )
-    .catch(logger)
-})
+    .catch(logger);
+});
 
 app.get(
-  '/leaderboardData',
+  "/leaderboardData",
   ({ query: { wis, startDate, endDate, now } }, res) => {
     const newQuery = {
       wis,
-      $and: [{ date: { $gte: startDate } }, { date: { $lte: endDate } }]
-    }
+      created_at: {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate)
+      }
+    };
     fetchLogs(newQuery)
-      .then(logs => res.send(getLeaderboardData(logs, now)))
-      .catch(logger)
+      .then(logs => res.send(getLeaderboardData(logs, new Date(now))))
+      .catch(logger);
   }
-)
+);
 
-app.post('/updateLog', ({ body, body: { _id } }, res) =>
+app.post("/updateLog", ({ body, body: { _id } }, res) =>
   updateLog({ _id }, body)
     .then(log => res.send(log))
     .catch(logger)
-)
+);

@@ -14,7 +14,7 @@ import { getNow } from '../../../../../helper/functions/time.helper'
 // styles
 import './ShowChart.scss'
 
-const updaters = {
+export const updaters = {
   today: update => {
     const now = getNow()
     update(startOfToday(now), now)
@@ -30,7 +30,7 @@ const updaters = {
   custom: () => {},
 }
 
-const options = [
+export const options = [
   {
     value: 'today',
     label: 'امروز',

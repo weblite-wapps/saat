@@ -327,8 +327,8 @@ const updateLeaderboardEpic = action$ =>
       getRequest('/leaderboardData')
         .query({
           wis: wisView(),
-          startDate,
-          endDate,
+          startDate: String(startDate),
+          endDate: String(endDate),
           now: getParsedNow(),
         })
         .on(

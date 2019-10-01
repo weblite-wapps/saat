@@ -24,6 +24,6 @@ export default ({ username, profileImage }) => (
     src={profileImage && `https://www.weblite.me:3000/image/${profileImage}`}
     style={{ backgroundColor: mapCharsToColor(username) }}
   >
-    {(!profileImage) && R.head(username)}
+    {!profileImage && R.head(username)}
   </Avatar>
 )
