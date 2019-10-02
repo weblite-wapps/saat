@@ -11,6 +11,7 @@ import InputBase from '@material-ui/core/InputBase'
 import styles from '../../style/appStyle'
 // helpers
 import { formattedDate } from '../../functions/date.helper'
+import { cns, toPersian } from '../../functions/utils.helper'
 
 // TODO: persian digits
 jMoment.loadPersian({ dialect: 'persian-modern' })
@@ -19,7 +20,7 @@ jMoment.loadPersian({ dialect: 'persian-modern' })
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    marginTop: '15px',
+    marginTop: '10px',
   },
 
   pickerComponent: {
@@ -57,6 +58,11 @@ const useStyles = makeStyles(theme => ({
     color: '#000',
     textAlign: 'right',
   },
+  input: {
+    color: '#818181',
+    fontFamily: 'iranyekan',
+    textAlign: 'center',
+  },
 }))
 
 const Picker = ({ label, value, onChange }) => {
@@ -74,17 +80,10 @@ const Picker = ({ label, value, onChange }) => {
               cancelLabel="لغو"
               clearLabel="پاک کردن"
               labelFunc={date => (date ? formattedDate(date) : '')}
-              value={value}
+              value={toPersian(value)}
               TextFieldComponent={InputBase}
               inputProps={{
-                style: {
-                  color: '#818181',
-                  textAlign: 'right',
-                  fontSize: 12,
-                  lineHeight: '21px',
-                  letterSpacing: -0.08,
-                  fontFamily: 'iranyekan',
-                },
+                className: cns(classes.typography, classes.input),
               }}
               onChange={onChange}
             />

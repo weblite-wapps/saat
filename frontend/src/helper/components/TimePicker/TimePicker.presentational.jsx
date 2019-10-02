@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import jMoment from 'moment-jalaali'
 import JalaliUtils from '@date-io/jalaali'
-import { withStyles } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import { TimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 // styles
 import styles from '../../style/appStyle'
+// helper
+import { cns } from '../../functions/utils.helper'
 
 jMoment.loadPersian({ dialect: 'persian-modern' })
 
@@ -22,9 +24,9 @@ const useStyles = makeStyles(() => ({
   },
 
   pickerComponent: {
-    display: 'inline-flex',
+    display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'column',
     width: '100%',
   },
   pickerContainer: {
@@ -68,13 +70,19 @@ const Picker = ({ label, isError, value, style, onChange }) => {
   const classes = useStyles()
   const [selectedDate, handleDateChange] = useState(moment())
 
+  console.log(selectedDate)
   const changeHandler = date => {
     handleDateChange(date)
     onChange(date)
   }
   return (
     <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
-      <div className={classes.pickerComponent}>
+      <div
+        className={cns(classes.pickerComponent, classes.timePickerComponent)}
+      >
+        <Typography className={cns(classes.label, classes.typography)}>
+          {label}
+        </Typography>
         <div className={classes.pickerContainer}>
           <TimePicker
             className={classes.datePicker}

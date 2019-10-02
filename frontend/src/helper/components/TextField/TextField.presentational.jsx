@@ -6,7 +6,6 @@ import { FormControl, InputLabel, InputBase } from '@material-ui/core'
 // styles
 import './TextField.scss'
 
-
 const useStyles = makeStyles(() => ({
   root: {
     marginTop: 15,

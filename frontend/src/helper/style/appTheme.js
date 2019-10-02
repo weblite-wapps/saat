@@ -42,9 +42,9 @@ export default createMuiTheme({
         margin: '0 !important',
         transition: 'none !important',
       },
-      "&$expanded": {
-        "margin": 0
-      }
+      '&$expanded': {
+        margin: 0,
+      },
     },
     MuiTypography: {
       body1: {
@@ -99,9 +99,26 @@ export default createMuiTheme({
         minHeight: '45px',
       },
     },
+    MuiFormLabel: {
+      root: {
+        fontFamily: 'iranyekan',
+      },
+    },
+    MuiInput: {
+      underline: {
+        '&::before': {
+          display: 'none',
+        },
+
+        '&::after': {
+          display: 'none',
+        },
+      },
+    },
     MuiInputBase: {
       root: {
         fontSize: '16px',
+        fontFamily: 'iranyekan',
       },
     },
     MuiList: {

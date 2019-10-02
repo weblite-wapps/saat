@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MuiCollapse from '@material-ui/core/Collapse'
+import { makeStyles } from '@material-ui/core/styles'
 // components
 import Button from '../../../../helper/components/Button/Button.presentational'
 // import Picker from '../../../../../helper/components/Picker/Picker.presentational'
@@ -13,6 +14,15 @@ import TagList from '../../../../helper/components/TagList/TagList.presentationa
 import { isPhoneOrTablet } from '../../../../helper/functions/device.helper'
 // styles
 import './Add.scss'
+
+const useStyles = makeStyles(() => ({
+  button: {
+    width: '100%',
+  },
+  input: {
+    minHeight: 30,
+  },
+}))
 
 const Add = ({
   isLoading,
@@ -41,84 +51,84 @@ const Add = ({
   onAdd,
   onCustomAdd,
   onKeyDown,
-}) => (
-  <div className="c--add_container">
-    <TextField
-      label="عنوان ساعت شمار"
-      placeholder="عنوان ساعت شمار را وارد کنید"
-      value={title}
-      onChange={e => onTitleChange(e.target.value)}
-      isError={isError.title}
-    />
+}) => {
+  const classes = useStyles()
+  return (
+    <div className="c--add_container scroll-bar">
+      <TextField
+        label="عنوان ساعت شمار"
+        placeholder="عنوان ساعت شمار را وارد کنید"
+        value={title}
+        onChange={e => onTitleChange(e.target.value)}
+        isError={isError.title}
+      />
 
-    <TextField
-      label="تگ‌ها"
-      placeholder="تگ مورد نظر را وارد کنید"
-      value={queryTag}
-      onChange={e => onQueryTagChange(e.target.value)}
-      isError={isError.queryTag}
-      inputProps={{
-        onKeyDown: e => {
-          if (e.key === 'Enter' && !e.shiftKey && !isPhoneOrTablet) {
-            e.preventDefault()
-            handleAddTag()
-          }
-        },
-        style: {
-          minHeight: 30,
-          fontSize: '12px',
-          lineHeight: '21px',
-          letterSpacing: '-0.08px',
-          fontFamily: 'iranyekan',
-        },
-      }}
-    />
+      <TextField
+        label="تگ‌ها"
+        placeholder="تگ مورد نظر را وارد کنید"
+        value={queryTag}
+        onChange={e => onQueryTagChange(e.target.value)}
+        isError={isError.queryTag}
+        inputProps={{
+          onKeyDown: e => {
+            if (e.key === 'Enter' && !e.shiftKey && !isPhoneOrTablet) {
+              e.preventDefault()
+              handleAddTag()
+            }
+          },
+          className: classes.input,
+        }}
+      />
 
-    <TagList tags={tags} onTagClick={onTagClick} />
+      <TagList tags={tags} onTagClick={onTagClick} />
 
-    <Button
-      variant="labeled"
-      text="وارد کردن زمان به صورت دستی"
-      onClick={onExpand}
-    />
-    {/* <Button
+      <Button
+        variant="labeled"
+        text="وارد کردن زمان به صورت دستی"
+        onClick={onExpand}
+        classesProp={{ button: classes.button }}
+      />
+      {/* <Button
       disabled={isLoading}
       text="Add"
       onClick={() => onAdd(title, selectedTags)}
       componentName="Add"
     /> */}
 
-    <MuiCollapse in={expanded} timeout="auto" unmountOnExit>
-      <DatePicker
-        label="تاریخ"
-        type="date"
-        isError={isError.date}
-        value={date}
-        onChange={onDateChange}
-      />
-      <TimePicker
-        label="ساعت شروع"
-        type="time"
-        isError={isError.startTime}
-        value={startTime}
-        onChange={onStartTimeChange}
-      />
-      <TimePicker
-        label="ساعت پایان"
-        type="time"
-        isError={isError.endTime}
-        value={endTime}
-        onChange={onEndTimeChange}
-      />
-    </MuiCollapse>
+      <MuiCollapse in={expanded} timeout="auto" unmountOnExit>
+        <DatePicker
+          label="تاریخ"
+          type="date"
+          isError={isError.date}
+          value={date}
+          onChange={onDateChange}
+        />
+        <TimePicker
+          label="ساعت شروع"
+          type="time"
+          isError={isError.startTime}
+          value={startTime}
+          onChange={onStartTimeChange}
+        />
+        <TimePicker
+          label="ساعت پایان"
+          type="time"
+          isError={isError.endTime}
+          value={endTime}
+          onChange={onEndTimeChange}
+        />
+      </MuiCollapse>
 
-    <Button
-      variant="fixed"
-      text="افزودن"
-      onClick={() => onCustomAdd(title, selectedTags, date, startTime, endTime)}
-    />
-  </div>
-)
+      <Button
+        variant="fixed"
+        text="افزودن"
+        onClick={() =>
+          onCustomAdd(title, selectedTags, date, startTime, endTime)
+        }
+      />
+    </div>
+  )
+}
 
 Add.propTypes = {
   title: PropTypes.string.isRequired,
