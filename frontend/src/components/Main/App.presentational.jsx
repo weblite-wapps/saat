@@ -37,9 +37,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-        <Tabs {...this.props} />
-    )
+    return <Tabs {...this.props} />
   }
 }
 

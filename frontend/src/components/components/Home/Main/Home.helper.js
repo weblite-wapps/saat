@@ -3,7 +3,10 @@ import * as R from 'ramda'
 import differenceInSeconds from 'date-fns/difference_in_seconds'
 // helpers
 import { sumTimes, getNow } from '../../../../helper/functions/time.helper'
-import { formattedDate } from '../../../../helper/functions/date.helper'
+import {
+  formattedDate,
+  universlFormattedDate,
+} from '../../../../helper/functions/date.helper'
 
 const timesLens = R.lensProp('times')
 export const getTimes = (logs, _id) =>
@@ -49,4 +52,4 @@ export const getSecondsElapsed = (logs, _id) => {
 const checkIsRunning = log => R.prop('end', R.last(log.times)) === 'running'
 
 export const checkToShowInHome = log =>
-  log.date === formattedDate(getNow()) || checkIsRunning(log)
+  log.date === universlFormattedDate(getNow()) || checkIsRunning(log)

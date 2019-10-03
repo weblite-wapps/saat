@@ -53,6 +53,7 @@ export default createMuiTheme({
         overflow: 'hidden',
         whiteSpace: 'nowrap',
         direction: 'rtl',
+        userSelect: 'none',
       },
       caption: {
         fontFamily: 'iranyekan',
@@ -93,6 +94,8 @@ export default createMuiTheme({
     },
     MuiToolbar: {
       root: {
+        userSelect: 'none',
+
         justifyContent: 'space-between',
       },
       regular: {
@@ -101,6 +104,8 @@ export default createMuiTheme({
     },
     MuiFormLabel: {
       root: {
+        userSelect: 'none',
+
         fontFamily: 'iranyekan',
       },
     },

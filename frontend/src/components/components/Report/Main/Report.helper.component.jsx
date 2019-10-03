@@ -2,8 +2,9 @@
 import * as R from 'ramda'
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
 // Mui components
-import Collapse from '@material-ui/core/Collapse'
+import MuiCollapse from '@material-ui/core/Collapse'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -25,11 +26,24 @@ import {
   getStaffWorksDuration,
 } from '../../../../helper/selectors/workDuration.selector'
 // helpers
-import { toPersian } from '../../../../helper/functions/utils.helper'
-import { formattedDate } from '../../../../helper/functions/date.helper'
+import { toPersian, cns, ab } from '../../../../helper/functions/utils.helper'
+import {
+  formattedDate,
+  universlFormattedDate
+} from '../../../../helper/functions/date.helper'
+import { formattedSeconds } from '../../../../helper/functions/time.helper'
 import { tooltipTitles } from './Report.helper'
 // styles
 import './Report.scss'
+
+const Collapse = withStyles({
+  container: {
+    height: '100%',
+  },
+  wrapper: {
+    height: '100%',
+  },
+})(props => <MuiCollapse classes={props.classes} {...props} />)
 
 const IconButton = ({ expandMode, changeExpandMode, mode }) => (
   <Tooltip
@@ -61,7 +75,7 @@ const controls = [
   {
     mode: 'leaderboard',
     label: 'لیدربرد',
-    filter: () => true,
+    filter: R.prop('creator'),
   },
   {
     mode: 'export',
@@ -92,7 +106,10 @@ export const ControlBar = props => (
             variant="labeled"
             classesProp={{
               typography: 'report-controlBar__typography',
-              button: 'report-controlBar__button',
+              button: cns(
+                'report-controlBar__button',
+                ab('small-button')(props.creator),
+              ),
             }}
           />
         ) : null,
@@ -107,7 +124,7 @@ ControlBar.propTypes = {
 
 export const ExportPanel = ({ expandMode, totalDurationFromServer }) => (
   <Collapse
-    component="li"
+    component="div"
     in={expandMode === 'export'}
     timeout="auto"
     unmountOnExit
@@ -142,7 +159,7 @@ ExportPanel.propTypes = {
 
 export const BarChartPanel = ({ expandMode }) => (
   <Collapse
-    component="li"
+    component="div"
     in={expandMode === 'showChart'}
     timeout="auto"
     unmountOnExit
@@ -157,7 +174,7 @@ BarChartPanel.propTypes = {
 
 export const LeaderboardPanel = ({ expandMode }) => (
   <Collapse
-    component="li"
+    component="div"
     in={expandMode === 'leaderboard'}
     timeout="auto"
     unmountOnExit
@@ -184,35 +201,37 @@ export const WorkListPanel = ({
 }) => {
   const getDuration =
     selectedUser === userId ? getWorksDuration : getStaffWorksDuration
+  const totalTime = selectedUser === userId ? totalDuration : staffTotalDuration
 
   return (
     <Collapse
-      component="li"
+      component="div"
       in={expandMode === 'workList'}
       timeout="auto"
       unmountOnExit
     >
-      {/*<div className="report-text">*/}
-      {/*  <Typography variant="subtitle1">*/}
-      {/*    {selectedUser === userId ? totalDuration : staffTotalDuration}*/}
-      {/*  </Typography>*/}
-      {/*</div>*/}
-      {/*<Divider light />*/}
-
-      {/*<div className="report-chart">*/}
-      {/*  <PieChart*/}
-      {/*    pieChartData={*/}
-      {/*      selectedUser === userId ? pieChartData : staffPieChartData*/}
-      {/*    }*/}
-      {/*  />*/}
-      {/*</div>*/}
-      {/*<Divider light />*/}
       <Navigator />
+      <div className="report-worklist__statics">
+        <Typography
+          className="report-worklist__text"
+          style={{ direction: 'ltr' }}
+        >
+          {toPersian(formattedSeconds(totalTime, true))}
+        </Typography>
+        <Typography className="report-worklist__text">
+          {'مجموع زمان :'}
+        </Typography>
+      </div>
       {(selectedUser === userId ? logs : staffLogs)
-        .filter(log => log.date === formattedDate(currentPage))
+        .filter(log => log.date === universlFormattedDate(currentPage))
         .map(log => (
           <WorkList key={log._id} log={log} getDuration={getDuration} />
         ))}
+      <div
+        style={{
+          height: 15,
+        }}
+      />
     </Collapse>
   )
 }

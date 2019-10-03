@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 12,
     lineHeight: '21px',
     fontFamily: 'iranyekan',
+    userSelect: 'none',
   },
   toolbar: {
     minHeight: 40,
@@ -30,7 +31,10 @@ const useStyles = makeStyles(theme => ({
 const DialogToolbar = ({ title, onClose, classes, isLoading }) => {
   const defaultClasses = useStyles()
   return (
-    <MuiAppBar style={{ position: 'fixed' }}>
+    <MuiAppBar
+      style={{ position: 'static', backgroundColor: '#818181' }}
+      elevation={0}
+    >
       <Toolbar className={defaultClasses.toolbar}>
         <IconButton disabled={isLoading} className="icon" onClick={onClose}>
           <CloseButton classes={{ root: classes.svgIcon }} />

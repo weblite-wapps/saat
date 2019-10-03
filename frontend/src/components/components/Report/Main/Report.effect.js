@@ -169,8 +169,8 @@ const calculateTotalDurationEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          startDate: formattedDate(startDateView()),
-          endDate: formattedDate(endDateView()),
+          startDate: universlFormattedDate(startDateView()),
+          endDate: universlFormattedDate(endDateView()),
           selectedTags: selectedTagsView(),
           now: getParsedNow(),
         })
@@ -194,8 +194,8 @@ const convertJSONToCSVEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          startDate: startDateView(),
-          endDate: endDateView(),
+          startDate: universlFormattedDate(startDateView()),
+          endDate: universlFormattedDate(endDateView()),
           selectedTags: selectedTagsView(),
           now: getParsedNow(),
         })
@@ -229,7 +229,7 @@ const fetchPreviousDayLogsDataEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          date: formattedDate(currentPageView()),
+          date: universlFormattedDate(currentPageView()),
         })
         .on('error', err => {
           if (err.status !== 304) {
@@ -268,7 +268,7 @@ const fetchNextDayLogsDataEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          date: formattedDate(currentPageView()),
+          date: universlFormattedDate(currentPageView()),
         })
         .on('error', err => {
           if (err.status !== 304) {
@@ -304,8 +304,8 @@ const updateChartEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          startDate: String(startDate),
-          endDate: String(endDate),
+          startDate: universlFormattedDate(startDate),
+          endDate: universlFormattedDate(endDate),
           now: getParsedNow(),
         })
         .on(
@@ -327,8 +327,8 @@ const updateLeaderboardEpic = action$ =>
       getRequest('/leaderboardData')
         .query({
           wis: wisView(),
-          startDate: String(startDate),
-          endDate: String(endDate),
+          startDate: universlFormattedDate(startDate),
+          endDate: universlFormattedDate(endDate),
           now: getParsedNow(),
         })
         .on(

@@ -2,8 +2,11 @@
 import { createSelector } from 'reselect'
 import * as R from 'ramda'
 // helpers
-import { sumTimes, sumLogs, formattedSeconds } from './Report.helper'
-import { formattedDate } from '../../../../helper/functions/date.helper'
+import { sumTimes, sumLogs } from './Report.helper'
+import {
+  formattedDate,
+  universlFormattedDate,
+} from '../../../../helper/functions/date.helper'
 
 const getLogs = state => state.App.logs
 const getStaffLogs = state => state.Report.staffLogs
@@ -14,23 +17,19 @@ const getTabIndex = state => state.App.tabIndex
 const getTotalDuration = createSelector(
   [getLogs, getCurrentPage, getSelectedUser, getTabIndex],
   (logs, currentPage) =>
-    formattedSeconds(
-      R.compose(
-        sumLogs,
-        R.filter(log => log.date === formattedDate(currentPage)),
-      )(logs),
-    ),
+    R.compose(
+      sumLogs,
+      R.filter(log => log.date === universlFormattedDate(currentPage)),
+    )(logs),
 )
 
 const getStaffTotalDuration = createSelector(
   [getStaffLogs, getCurrentPage, getSelectedUser, getTabIndex],
   (logs, currentPage) =>
-    formattedSeconds(
-      R.compose(
-        sumLogs,
-        R.filter(log => log.date === formattedDate(currentPage)),
-      )(logs),
-    ),
+    R.compose(
+      sumLogs,
+      R.filter(log => log.date === universlFormattedDate(currentPage)),
+    )(logs),
 )
 
 const getPieChartData = createSelector(
@@ -38,7 +37,7 @@ const getPieChartData = createSelector(
   (logs, currentPage) =>
     R.compose(
       R.map(log => ({ name: log.title, value: sumTimes(log.times) })),
-      R.filter(log => log.date === formattedDate(currentPage)),
+      R.filter(log => log.date === universlFormattedDate(currentPage)),
     )(logs),
 )
 
@@ -47,7 +46,7 @@ const getStaffPieChartData = createSelector(
   (logs, currentPage) =>
     R.compose(
       R.map(log => ({ name: log.title, value: sumTimes(log.times) })),
-      R.filter(log => log.date === formattedDate(currentPage)),
+      R.filter(log => log.date === universlFormattedDate(currentPage)),
     )(logs),
 )
 

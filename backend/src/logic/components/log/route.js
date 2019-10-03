@@ -128,9 +128,9 @@ app.get("/barChartData", ({ query }, res) => {
   const newQuery = {
     wis: query.wis,
     userId: query.userId,
-    created_at: {
-      $gte: new Date(query.startDate),
-      $lte: new Date(query.endDate)
+    date: {
+      $gte: query.startDate,
+      $lte: query.endDate
     }
   };
   fetchLogs(newQuery)
@@ -151,9 +151,9 @@ app.get(
   ({ query: { wis, startDate, endDate, now } }, res) => {
     const newQuery = {
       wis,
-      created_at: {
-        $gte: new Date(startDate),
-        $lte: new Date(endDate)
+      date: {
+        $gte: startDate,
+        $lte: endDate
       }
     };
     fetchLogs(newQuery)

@@ -30,9 +30,9 @@ const initialState = {
   title: '',
   queryTag: '',
   suggestions: [],
-  date: formattedDate(getNow()),
-  startTime: getCurrentTime(getNow()),
-  endTime: getCurrentTime(getNow()),
+  date: getNow(),
+  startTime: getNow(),
+  endTime: getNow(),
   selectedTags: [],
   tags: [],
   isError: {

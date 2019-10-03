@@ -13,7 +13,7 @@ import {
 // local modules
 import { mapCharsToColor } from '../../functions/colorMap.helper'
 // helpers
-import { formattedMinutes } from '../../functions/time.helper'
+import { formattedSeconds } from '../../functions/time.helper'
 // const
 const COLORS = [
   '#b93433',
@@ -35,7 +35,7 @@ const CustomizedBarChart = ({ barChartData, XDataKey, YDataKey }) => (
     <YAxis dataKey={YDataKey} />
 
     <Tooltip
-      formatter={duration => formattedMinutes(duration)}
+      formatter={duration => formattedSeconds(duration)}
       animationDuration={500}
     />
 

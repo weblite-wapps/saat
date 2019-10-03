@@ -7,7 +7,10 @@ import { dispatchChangeSnackbarStage } from '../../Snackbar/Snackbar.action'
 // helpers
 import { getRequest } from '../../../../helper/functions/request.helper'
 import { getSecondsElapsed } from './Home.helper'
-import { getToday } from '../../../../helper/functions/date.helper'
+import {
+  getToday,
+  universlFormattedDate,
+} from '../../../../helper/functions/date.helper'
 // actions
 import {
   SAVE_START_TIME,
@@ -31,7 +34,7 @@ import {
 // views
 import { wisView, userIdView, logsView } from '../../../Main/App.reducer'
 import { runningIdView } from '../../Home/Main/Home.reducer'
-import { getParsedNow } from '../../../../helper/functions/time.helper'
+import { getNow, getParsedNow } from '../../../../helper/functions/time.helper'
 
 const refetchTotalDurationEpic = action$ =>
   action$
@@ -42,7 +45,7 @@ const refetchTotalDurationEpic = action$ =>
         .query({
           wis: wisView(),
           userId: userIdView(),
-          today: getToday(),
+          today: universlFormattedDate(getNow()),
           now: getParsedNow(),
         })
         .on(

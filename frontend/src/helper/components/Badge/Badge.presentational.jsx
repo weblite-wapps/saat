@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Add from '@material-ui/icons/Add'
 import Remove from '@material-ui/icons/Remove'
 // helper
-import { getDirection } from '../../functions/utils.helper'
+import { getDirection, ab, cns } from '../../functions/utils.helper'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,25 +20,25 @@ const useStyles = makeStyles(() => ({
     maxWidth: 200,
     borderRadius: 11,
     minHeight: 30,
-    margin: 5,
     backgroundColor: '#818181',
     color: '#fff',
     overflow: 'hidden',
+    margin: '10px 0 0 5px',
+    cursor: 'pointer',
   },
+
+  rootWithoutHandler: {
+    margin: '10px 5px 0',
+  },
+
   selectedRoot: {
-    display: 'inline-flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    maxWidth: 200,
-    borderRadius: 11,
-    minHeight: 30,
-    margin: 5,
     backgroundColor: '#84CE2C',
-    color: '#fff',
-    overflow: 'hidden',
   },
   button: {
     borderRadius: 0,
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   typography: {
     fontSize: 12,
@@ -48,7 +48,6 @@ const useStyles = makeStyles(() => ({
     marginLeft: 12,
   },
   icon: {
-    marginLeft: 10,
     fill: '#fff',
     height: 15,
     width: 15,
@@ -61,11 +60,15 @@ const Badge = ({ label, disableHandler, isSelected, onClick }) => {
 
   return (
     <Paper
-      className={isSelected ? classes.selectedRoot : classes.root}
+      className={cns(
+        classes.root,
+        ab(classes.rootWithoutHandler)(disableHandler),
+        ab(classes.selectedRoot)(isSelected),
+      )}
       onClick={onClick}
     >
       {!disableHandler && (
-        <IconButton onClick={onClick} className={classes.button}>
+        <IconButton className={classes.button}>
           {isSelected ? (
             <Remove className={classes.icon} />
           ) : (

@@ -64,6 +64,9 @@ export default ({
       }}
       currentValue={dateMode}
       options={options}
+      inputStyle={{
+        marginTop: 5,
+      }}
     />
     <Pickers {...props} />
     <Button

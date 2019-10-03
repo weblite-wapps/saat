@@ -58,9 +58,9 @@ const mapDispatchToProps = () => ({
   onAdd: dispatchHandleAddLog,
   onCustomAdd: dispatchHandleAddCustomLog,
   onExpand: dispatchToggleExpanded,
-  onStartTimeChange: ({ target: { value } }) => dispatchChangeStartTime(value),
-  onEndTimeChange: ({ target: { value } }) => dispatchChangeEndTime(value),
-  onDateChange: ({ target: { value } }) => dispatchChangeDate(value),
+  onStartTimeChange: dispatchChangeStartTime,
+  onEndTimeChange: dispatchChangeEndTime,
+  onDateChange: dispatchChangeDate,
 })
 
 export default connect(

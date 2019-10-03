@@ -29,7 +29,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = () => ({
-  // update: dispatchUpdateLeaderboard,
   update: (startDate, endDate) => {
     dispatchChangeStartDate(startDate)
     dispatchChangeEndDate(endDate)

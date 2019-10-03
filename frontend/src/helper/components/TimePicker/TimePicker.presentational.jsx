@@ -9,7 +9,7 @@ import { TimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 // styles
 import styles from '../../style/appStyle'
 // helper
-import { cns } from '../../functions/utils.helper'
+import { cns, toPersian } from '../../functions/utils.helper'
 
 jMoment.loadPersian({ dialect: 'persian-modern' })
 
@@ -40,7 +40,6 @@ const useStyles = makeStyles(() => ({
     height: 35,
     '& input': {
       textAlign: 'center',
-      color: '#CCC',
       fontWeight: 500,
       padding: 6,
     },
@@ -53,7 +52,6 @@ const useStyles = makeStyles(() => ({
   },
   typography: {
     color: '#818181',
-    marginLeft: 7,
     fontSize: 12,
     lineHeight: '21px',
     fontWeight: 500,
@@ -62,39 +60,52 @@ const useStyles = makeStyles(() => ({
   label: {
     color: '#000',
     textAlign: 'right',
+    marginLeft: 7,
     marginBottom: 3,
+  },
+  input: {
+    color: '#818181',
+    fontFamily: 'iranyekan',
+    textAlign: 'center',
   },
 }))
 
-const Picker = ({ label, isError, value, style, onChange }) => {
+const Picker = ({ label, isError, value, className, onChange, running }) => {
   const classes = useStyles()
-  const [selectedDate, handleDateChange] = useState(moment())
 
-  console.log(selectedDate)
-  const changeHandler = date => {
-    handleDateChange(date)
-    onChange(date)
-  }
   return (
     <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
       <div
-        className={cns(classes.pickerComponent, classes.timePickerComponent)}
+        className={cns(
+          classes.pickerComponent,
+          classes.timePickerComponent,
+          className,
+        )}
       >
         <Typography className={cns(classes.label, classes.typography)}>
           {label}
         </Typography>
         <div className={classes.pickerContainer}>
-          <TimePicker
-            className={classes.datePicker}
-            clearable
-            okLabel="تأیید"
-            cancelLabel="لغو"
-            clearLabel="پاک کردن"
-            ampm={false}
-            labelFunc={date => (date ? date.format('hh:mm') : '')}
-            value={selectedDate}
-            onChange={changeHandler}
-          />
+          {!running ? (
+            <TimePicker
+              className={classes.datePicker}
+              clearable
+              okLabel="تأیید"
+              cancelLabel="لغو"
+              clearLabel="پاک کردن"
+              ampm={false}
+              labelFunc={date => (date ? toPersian(date.format('hh:mm')) : '')}
+              value={value}
+              onChange={value => onChange(new Date(value))}
+              inputProps={{
+                className: cns(classes.typography, classes.input),
+              }}
+            />
+          ) : (
+            <Typography className={classes.typography} color="black">
+              در حال اجرا
+            </Typography>
+          )}
         </div>
       </div>
     </MuiPickersUtilsProvider>
@@ -103,16 +114,18 @@ const Picker = ({ label, isError, value, style, onChange }) => {
 
 Picker.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  style: PropTypes.shape({}),
+  className: PropTypes.string,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   isError: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  running: PropTypes.bool,
 }
 
 Picker.defaultProps = {
-  style: {},
+  className: '',
+  running: false,
 }
 
 export default withStyles(styles)(Picker)

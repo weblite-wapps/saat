@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MuiCollapse from '@material-ui/core/Collapse'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, darken } from '@material-ui/core/styles'
 // components
 import Button from '../../../../helper/components/Button/Button.presentational'
 // import Picker from '../../../../../helper/components/Picker/Picker.presentational'
@@ -12,15 +12,30 @@ import TimePicker from '../../../../helper/components/TimePicker/TimePicker.pres
 import TagList from '../../../../helper/components/TagList/TagList.presentational'
 // helpers
 import { isPhoneOrTablet } from '../../../../helper/functions/device.helper'
+import { cns, ab } from '../../../../helper/functions/utils.helper'
 // styles
 import './Add.scss'
 
 const useStyles = makeStyles(() => ({
   button: {
+    marginTop: 15,
     width: '100%',
+    height: 35,
+  },
+  greenButton: {
+    background: '#84CE2D',
+    '&:hover': {
+      backgroundColor: darken('#84CE2D', 0.1),
+    },
   },
   input: {
-    minHeight: 30,
+    minHeight: 35,
+    padding: '0 12px',
+  },
+  buttonText: {
+    fontSize: 12,
+    lineHeight: '21px',
+    fontWeight: 'bold',
   },
 }))
 
@@ -86,14 +101,11 @@ const Add = ({
         variant="labeled"
         text="وارد کردن زمان به صورت دستی"
         onClick={onExpand}
-        classesProp={{ button: classes.button }}
+        classesProp={{
+          button: cns(classes.button, ab(classes.greenButton)(expanded)),
+          typography: classes.buttonText,
+        }}
       />
-      {/* <Button
-      disabled={isLoading}
-      text="Add"
-      onClick={() => onAdd(title, selectedTags)}
-      componentName="Add"
-    /> */}
 
       <MuiCollapse in={expanded} timeout="auto" unmountOnExit>
         <DatePicker
@@ -123,7 +135,9 @@ const Add = ({
         variant="fixed"
         text="افزودن"
         onClick={() =>
-          onCustomAdd(title, selectedTags, date, startTime, endTime)
+          expanded
+            ? onCustomAdd(title, selectedTags, date, startTime, endTime)
+            : onAdd(title, selectedTags)
         }
       />
     </div>

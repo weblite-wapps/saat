@@ -59,6 +59,7 @@ const CustomizedButton = ({
   classesProp,
   selected,
   style,
+  disableAddIcon,
 }) => {
   const classes = useStyles()
   const fixed = variant === 'fixed'
@@ -81,7 +82,7 @@ const CustomizedButton = ({
       <Typography className={cns(classes.typography, classesProp.typography)}>
         {text}
       </Typography>
-      {variant === 'fixed' && (
+      {variant === 'fixed' && !disableAddIcon && (
         <AddIcon className={cns(classes.icon, classesProp.icon)} />
       )}
     </Button>
@@ -95,6 +96,7 @@ CustomizedButton.propTypes = {
     typography: PropTypes.string,
     icon: PropTypes.string,
   }),
+  disableAddIcon: PropTypes.bool,
   className: PropTypes.string,
   variant: PropTypes.oneOf(['fixed', 'labeled', 'normal']),
   onClick: PropTypes.func,
@@ -108,6 +110,7 @@ CustomizedButton.defaultProps = {
   variant: 'fixed',
   selected: false,
   onClick: Function.prototype,
+  disableAddIcon: false,
 }
 
 export default CustomizedButton

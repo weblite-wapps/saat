@@ -41,7 +41,7 @@ const LeaderboardListItem = ({ rank, profileImage, fullName, score }) => (
             }}
           >
             <img
-              src="/user.svg"
+              src="user.svg"
               style={{
                 width: 22,
                 height: 22,
@@ -54,13 +54,6 @@ const LeaderboardListItem = ({ rank, profileImage, fullName, score }) => (
           <Typography variant="subtitle1" align="center">
             {fullName}
           </Typography>
-          {/*<Typography*/}
-          {/*  style={{ fontSize: '8px' }}*/}
-          {/*  variant="body2"*/}
-          {/*  align="center"*/}
-          {/*>*/}
-          {/*  {finishTime}*/}
-          {/*</Typography>*/}
         </div>
       </div>
 
@@ -81,7 +74,6 @@ LeaderboardListItem.propTypes = {
   rank: PropTypes.number.isRequired,
   profileImage: PropTypes.string.isRequired,
   fullName: PropTypes.string.isRequired,
-  finishTime: PropTypes.string.isRequired,
   score: PropTypes.string.isRequired,
 }
 

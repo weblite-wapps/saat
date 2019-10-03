@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
     backgroundColor: '#F0F0F0',
-    marginTop: 10,
+    margin: '0 0 10px',
   },
   rightBtn: {
     flex: '2 2 auto',
@@ -57,7 +57,12 @@ const useStyles = makeStyles(() => ({
   },
   buttonContainer: {
     display: 'flex',
-    marginTop: 5,
+  },
+  noTagsText: {
+    color: '#818181',
+    fontSize: '14px',
+    fontFamily: 'iranyekan',
+    marginTop: 10,
   },
 }))
 
@@ -65,6 +70,7 @@ const CollapsableLog = ({
   tags,
   onDeleteClick,
   onEditClick,
+  showButtons,
   logName,
   logTime,
 }) => {
@@ -80,25 +86,29 @@ const CollapsableLog = ({
       <ExpansionPanelDetails>
         <div className={classes.expanded}>
           <div className={classes.tagsContainer}>
-            {tags.map(({ label, id }) => (
-              <Badge key={id} label={label} disableHandler />
-            ))}
+            {tags.length ? (
+              tags.map(tag => <Badge key={tag} label={tag} disableHandler />)
+            ) : (
+              <span className={classes.noTagsText}>{'تگی وجود ندارد'}</span>
+            )}
           </div>
 
-          <div className={classes.buttonContainer}>
-            <Button
-              text="حذف"
-              onClick={onDeleteClick}
-              variant="normal"
-              classesProp={{ button: classes.leftBtn }}
-            />
-            <Button
-              text="ویرایش"
-              variant="normal"
-              onClick={onEditClick}
-              classesProp={{ button: classes.rightBtn }}
-            />
-          </div>
+          {showButtons ? (
+            <div className={classes.buttonContainer}>
+              <Button
+                text="حذف"
+                onClick={onDeleteClick}
+                variant="normal"
+                classesProp={{ button: classes.leftBtn }}
+              />
+              <Button
+                text="ویرایش"
+                variant="normal"
+                onClick={onEditClick}
+                classesProp={{ button: classes.rightBtn }}
+              />
+            </div>
+          ) : null}
         </div>
       </ExpansionPanelDetails>
     </ExpansionPanel>
@@ -112,12 +122,14 @@ CollapsableLog.propTypes = {
       label: PropTypes.string,
     }),
   ),
+  showButtons: PropTypes.bool,
   onDeleteClick: PropTypes.func.isRequired,
   onEditClick: PropTypes.func.isRequired,
   logName: PropTypes.string.isRequired,
   logTime: PropTypes.string.isRequired,
 }
 CollapsableLog.defaultProps = {
+  showButtons: false,
   tags: [],
 }
 

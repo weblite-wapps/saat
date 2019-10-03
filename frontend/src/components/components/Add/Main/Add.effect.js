@@ -8,7 +8,10 @@ import {
   getRequest,
   postRequest,
 } from '../../../../helper/functions/request.helper'
-import { formattedDate } from '../../../../helper/functions/date.helper'
+import {
+  formattedDate,
+  universlFormattedDate,
+} from '../../../../helper/functions/date.helper'
 import { formatTime, getNow } from '../../../../helper/functions/time.helper'
 import { checkBeforeAddTag } from '../../../Main/App.helper'
 import { checkBeforeAddLog, checkBeforeAddCustomLog } from './Add.helper'
@@ -95,7 +98,7 @@ const effectHandleAddLog = action$ =>
           .send({
             title,
             tags,
-            date: formattedDate(getNow()),
+            date: universlFormattedDate(getNow()),
             times: [],
             isPinned: false,
             userId: userIdView(),
@@ -147,8 +150,8 @@ const effectHandleAddCustomLog = action$ =>
           .send({
             title,
             tags,
-            times: [{ start: formatTime(start), end: formatTime(end) }],
-            date,
+            times: [{ start, end }],
+            date: universlFormattedDate(date),
             isPinned: false,
             userId: userIdView(),
             wis: wisView(),

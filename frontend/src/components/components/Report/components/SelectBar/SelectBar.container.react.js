@@ -4,7 +4,11 @@ import { connect } from 'react-redux'
 import SelectBar from './SelectBar.presentational'
 // views
 import { selectedUserView } from '../../Main/Report.reducer'
-import { creatorView, usersView } from '../../../../Main/App.reducer'
+import {
+  creatorView,
+  userIdView,
+  usersView,
+} from '../../../../Main/App.reducer'
 // actions
 import { dispatchChangeSelectedUser } from '../../Main/Report.action'
 

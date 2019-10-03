@@ -36,11 +36,11 @@ const BootstrapInput = withStyles(() => ({
   },
 }))(InputBase)
 
-const MySelect = ({ options, currentValue, onChange }) => (
+const MySelect = ({ options, currentValue, onChange, inputStyle }) => (
   <Select
     value={currentValue}
     onChange={e => onChange(e.target.value)}
-    input={<BootstrapInput />}
+    input={<BootstrapInput placeholder={'asdadsad'} style={inputStyle} />}
   >
     {options.map(({ value, label }) => (
       <MenuItem value={value} className="select-option">

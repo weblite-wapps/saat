@@ -41,7 +41,6 @@ const useStyles = makeStyles(theme => ({
     height: 35,
     '& input': {
       textAlign: 'center',
-      color: '#CCC',
       fontWeight: 500,
       padding: 6,
     },
@@ -55,6 +54,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 12,
     lineHeight: '21px',
     letterSpacing: -0.08,
+    fontWeight: 500,
     color: '#000',
     textAlign: 'right',
   },
@@ -65,11 +65,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Picker = ({ label, value, onChange }) => {
+const Picker = ({ label, value, onChange, style }) => {
   const classes = useStyles()
   return (
     <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
-      <div className={classes.root}>
+      <div className={classes.root} style={style}>
         <Typography className={classes.typography}>{label}</Typography>
         <div className={classes.pickerComponent}>
           <div className={classes.pickerContainer}>
@@ -80,7 +80,7 @@ const Picker = ({ label, value, onChange }) => {
               cancelLabel="لغو"
               clearLabel="پاک کردن"
               labelFunc={date => (date ? formattedDate(date) : '')}
-              value={toPersian(value)}
+              value={value}
               TextFieldComponent={InputBase}
               inputProps={{
                 className: cns(classes.typography, classes.input),
