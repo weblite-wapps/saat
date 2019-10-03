@@ -2,7 +2,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Dialog from '@material-ui/core/Dialog'
-import { makeStyles } from '@material-ui/core/styles'
 // components
 import Summary from '../components/Summary/Summary.container.react'
 import Button from '../../../../helper/components/Button/Button.presentational'

@@ -6,7 +6,6 @@ import SelectBar from './SelectBar.presentational'
 import { selectedUserView } from '../../Main/Report.reducer'
 import {
   creatorView,
-  userIdView,
   usersView,
 } from '../../../../Main/App.reducer'
 // actions

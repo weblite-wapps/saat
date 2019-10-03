@@ -1,7 +1,7 @@
 // modules
 import { connect } from 'react-redux'
 // components
-import Leaderbord from './Leaderboard.presentational'
+import Leaderboard from './Leaderboard.presentational'
 // views
 import {
   startDateView,
@@ -13,7 +13,6 @@ import {
 import {
   dispatchChangeStartDate,
   dispatchChangeEndDate,
-  dispatchUpdateLeaderboard,
   dispatchHandleUpdateLeaderboard,
   dispatchChangeBarChartDateMode,
 } from '../../Main/Report.action'
@@ -48,4 +47,4 @@ const mapDispatchToProps = () => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Leaderbord)
+)(Leaderboard)

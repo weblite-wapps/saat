@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles'
 // Mui components
 import MuiCollapse from '@material-ui/core/Collapse'
 import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
 import Tooltip from '@material-ui/core/Tooltip'
 // icons
 import FlagIcon from '@material-ui/icons/Flag'
@@ -28,7 +27,6 @@ import {
 // helpers
 import { toPersian, cns, ab } from '../../../../helper/functions/utils.helper'
 import {
-  formattedDate,
   universlFormattedDate
 } from '../../../../helper/functions/date.helper'
 import { formattedSeconds } from '../../../../helper/functions/time.helper'

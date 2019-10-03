@@ -6,7 +6,6 @@ import TagList from '../../../../../helper/components/TagList/TagList.presentati
 import TextField from '../../../../../helper/components/TextField/TextField.presentational'
 // helpers
 import {
-  TagPanel,
   Pickers,
 } from '../../../../../helper/functions/common.helper.component'
 import { Buttons, CSVDownloader } from './Custom.helper.component'

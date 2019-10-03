@@ -1,6 +1,5 @@
 // modules
 import React from 'react'
-import List from '@material-ui/core/List'
 // components
 import SelectBar from '../components/SelectBar/SelectBar.container.react'
 // helpers

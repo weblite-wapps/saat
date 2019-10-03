@@ -8,7 +8,6 @@ import { dispatchChangeSnackbarStage } from '../../Snackbar/Snackbar.action'
 import { getRequest } from '../../../../helper/functions/request.helper'
 import { getSecondsElapsed } from './Home.helper'
 import {
-  getToday,
   universlFormattedDate,
 } from '../../../../helper/functions/date.helper'
 // actions

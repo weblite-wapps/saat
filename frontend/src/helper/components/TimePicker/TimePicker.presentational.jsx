@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 import jMoment from 'moment-jalaali'
 import JalaliUtils from '@date-io/jalaali'
 import Typography from '@material-ui/core/Typography'

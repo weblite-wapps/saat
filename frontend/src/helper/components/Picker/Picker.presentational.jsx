@@ -11,13 +11,13 @@ import InputBase from '@material-ui/core/InputBase'
 import styles from '../../style/appStyle'
 // helpers
 import { formattedDate } from '../../functions/date.helper'
-import { cns, toPersian } from '../../functions/utils.helper'
+import { cns } from '../../functions/utils.helper'
 
 // TODO: persian digits
 jMoment.loadPersian({ dialect: 'persian-modern' })
 
 // style
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
     marginTop: '10px',

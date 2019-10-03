@@ -34,8 +34,7 @@ export default class App extends React.Component {
 
   _handleNormalMode() {
     const { setAPI, fetchTodayData } = this.props
-    setAPI(true, { name: 'Ali', id: '110' })
-    this.props.creator && push('/report')
+    setAPI(false, { name: 'Ali', id: '110' })
     fetchTodayData()
   }
 

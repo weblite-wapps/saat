@@ -4,7 +4,6 @@ import differenceInSeconds from 'date-fns/difference_in_seconds'
 // helpers
 import { sumTimes, getNow } from '../../../../helper/functions/time.helper'
 import {
-  formattedDate,
   universlFormattedDate,
 } from '../../../../helper/functions/date.helper'
 

@@ -7,7 +7,6 @@ import { push } from '../../../../setup/redux'
 import { dispatchChangeSnackbarStage } from '../../Snackbar/Snackbar.action'
 // helpers
 import {
-  getNow,
   getParsedNow,
   formattedSeconds,
 } from '../../../../helper/functions/time.helper'

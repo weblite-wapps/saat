@@ -1,20 +1,12 @@
 // modules
 import React from 'react'
 import PropTypes from 'prop-types'
-import startOfToday from 'date-fns/start_of_today'
-import subDays from 'date-fns/sub_days'
 // components
 import Autocomplete from '../components/Autocomplete/Autocomplete.presentational'
-import CustomizedButton from '../components/Button/Button.presentational'
 import TagList from '../components/TagList/TagList.presentational'
 import Picker from '../components/Picker/Picker.presentational'
-import Button from '../../helper/components/Button/Button.presentational'
 import CustomizedBarChart from '../../helper/components/BarCharts/BarChart.presentational'
 import CustomizedDoubleBarChart from '../../helper/components/BarCharts/DoubleBarChart.presentational'
-// helpers
-import { formattedDate } from '../../helper/functions/date.helper'
-import { getNow } from '../../helper/functions/time.helper'
-
 // styles
 import './common.scss'
 

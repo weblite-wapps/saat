@@ -16,7 +16,6 @@ import {
 } from '../../helper/functions/time.helper'
 import {
   formattedDate,
-  getToday,
   previousDay,
   universlFormattedDate,
 } from '../../helper/functions/date.helper'
@@ -24,7 +23,6 @@ import {
 import { dispatchLoadTagsDataInAdd } from '../components/Add/Main/Add.action'
 import {
   dispatchAddPage,
-  dispatchRestoreLeaderboardData,
 } from '../components/Report/Main/Report.action'
 import {
   dispatchRefetchTotalDuration,

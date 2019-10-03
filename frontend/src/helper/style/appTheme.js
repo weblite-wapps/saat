@@ -42,9 +42,6 @@ export default createMuiTheme({
         margin: '0 !important',
         transition: 'none !important',
       },
-      '&$expanded': {
-        margin: 0,
-      },
     },
     MuiTypography: {
       body1: {
