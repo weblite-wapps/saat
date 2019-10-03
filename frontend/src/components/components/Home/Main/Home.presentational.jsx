@@ -1,18 +1,23 @@
 // modules
 import React from 'react'
 import PropTypes from 'prop-types'
+import Dialog from '@material-ui/core/Dialog'
+import { makeStyles } from '@material-ui/core/styles'
 // components
 import Summary from '../components/Summary/Summary.container.react'
 import Button from '../../../../helper/components/Button/Button.presentational'
+import Add from '../../Add/Main/Add.container.react'
 // helpers
-import { TodayWorkList, FabButton } from './Home.helper.component'
+import { TodayWorkList } from './Home.helper.component'
+import Transition from '../../../../helper/components/Transition/Transition'
+import DialogToolbar from '../../../../helper/components/DialogToolbar/DialogToolbar.presentational'
 // styles
 import './Home.scss'
 
-const Home = ({ logs, onAdd }) => (
-  <div className="home-normal">
+const Home = ({ logs, isOpen, onClose, onAdd }) => (
+  <div className="home-normal scroll-bar">
     <Summary />
-    <span className="home-logs-list">
+    <span className="home-logs-list scroll-bar">
       <TodayWorkList logs={logs} />
     </span>
     <Button
@@ -20,6 +25,17 @@ const Home = ({ logs, onAdd }) => (
       variant="fixed"
       onClick={() => onAdd('work', [], true)}
     />
+    <Dialog
+      open={isOpen}
+      fullScreen
+      transitionDuration={300}
+      style={{ top: 40 }}
+      hideBackdrop
+      TransitionComponent={Transition}
+    >
+      <DialogToolbar title="افزودن ساعت شمار جدید" onClose={onClose} />
+      <Add />
+    </Dialog>
   </div>
 )
 

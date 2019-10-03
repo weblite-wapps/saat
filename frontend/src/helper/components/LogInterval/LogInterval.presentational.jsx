@@ -13,15 +13,24 @@ import CloseIcon from '@material-ui/icons/Close'
 
 const useStyles = makeStyles(() => ({}))
 
-const LogInterval = ({ label, onClick, index }) => {
+const LogInterval = ({
+  label,
+  onDelete,
+  index,
+  onStartTimeChange,
+  onEndTimeChange,
+  startTime,
+  endTime,
+  running,
+}) => {
   const classes = useStyles()
   return (
     <div>
       <Button>
         <CloseIcon />
       </Button>
-      {/* <TimePicker label="ساعت شروع" /> */}
-      {/* <TimePicker label="ساعت پایان" /> */}
+      <TimePicker label="ساعت شروع" />
+      <TimePicker label="ساعت پایان" />
       <Button>
         <Typography>{index}</Typography>
       </Button>

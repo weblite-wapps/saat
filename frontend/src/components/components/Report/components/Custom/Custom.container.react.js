@@ -23,6 +23,7 @@ import {
   dispatchHandleAddTag,
   dispatchHandleCalculation,
   dispatchHandleExport,
+  dispatchChangeBarChartDateMode,
 } from '../../Main/Report.action'
 // selector
 import { getReportFilteredSuggestions } from '../../../../Main/App.selector'
@@ -43,8 +44,14 @@ const mapDispatchToProps = () => ({
   addTag: dispatchAddTag,
   calculateTotalDuration: dispatchCalculateTotalDuration,
   convertJSONToCSV: dispatchConvertJSONToCSV,
-  onStartDateChange: ({ target: { value } }) => dispatchChangeStartDate(value),
-  onEndDateChange: ({ target: { value } }) => dispatchChangeEndDate(value),
+  onStartDateChange: value => {
+    dispatchChangeStartDate(value)
+    dispatchChangeBarChartDateMode('custom')
+  },
+  onEndDateChange: value => {
+    dispatchChangeEndDate(value)
+    dispatchChangeBarChartDateMode('custom')
+  },
   handleAddTag: dispatchHandleAddTag,
   onCalculation: dispatchHandleCalculation,
   onExport: dispatchHandleExport,

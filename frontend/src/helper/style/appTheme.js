@@ -42,7 +42,7 @@ export default createMuiTheme({
         margin: '0 !important',
         transition: 'none !important',
       },
-      expanded: {
+      '&$expanded': {
         margin: 0,
       },
     },
@@ -53,6 +53,7 @@ export default createMuiTheme({
         overflow: 'hidden',
         whiteSpace: 'nowrap',
         direction: 'rtl',
+        userSelect: 'none',
       },
       caption: {
         fontFamily: 'iranyekan',
@@ -93,15 +94,36 @@ export default createMuiTheme({
     },
     MuiToolbar: {
       root: {
+        userSelect: 'none',
+
         justifyContent: 'space-between',
       },
       regular: {
         minHeight: '45px',
       },
     },
+    MuiFormLabel: {
+      root: {
+        userSelect: 'none',
+
+        fontFamily: 'iranyekan',
+      },
+    },
+    MuiInput: {
+      underline: {
+        '&::before': {
+          display: 'none',
+        },
+
+        '&::after': {
+          display: 'none',
+        },
+      },
+    },
     MuiInputBase: {
       root: {
         fontSize: '16px',
+        fontFamily: 'iranyekan',
       },
     },
     MuiList: {

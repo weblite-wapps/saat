@@ -1,27 +1,31 @@
 @import '../../../../helper/style/mixin.scss';
 
-
 .intervalList {
-  margin-top: 70px;
+  margin-top: 15px;
   min-width: 200px;
+  padding: 0 20px;
+  height: calc(100% - 80px);
+  overflow-y: auto;
 }
 .title-panel {
-  width: 90%;
   margin: auto;
 }
 
-.todayWorklist {
-  justify-content: space-between;
-  margin: 5px 0px;
-  width: 100%;
-  padding-right: 5px;
+.edit-appbar {
+  font-size: 12px;
+  line-height: 21px;
+  letter-spacing: -0.08px;
+  font-weight: bold;
+  font-family: iranyekan;
+  user-select: none;
 }
 
 .interval-panel {
   @include flex-center;
-  flex-direction: column;
-  margin-left: 0px;
+  margin-left: 0;
   font-size: 10px;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .interval {
@@ -42,10 +46,4 @@
 
 .icon {
   color: white;
-}
-@media screen and(max-width: '200px') {
-  .todayWorklist {
-    display: flex;
-    flex-direction: column;
-  }
 }

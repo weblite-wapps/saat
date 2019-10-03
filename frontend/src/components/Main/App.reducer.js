@@ -65,7 +65,7 @@ const reducers = {
 
   [LOAD_LOGS_DATA]: (state, { logs }) => ({
     ...state,
-    logs: R.uniq(R.concat(state.logs, logs)),
+    logs: R.uniqBy(R.prop('_id'), R.concat(state.logs, logs)),
   }),
 
   [CHANGE_POPOVER_ID]: (state, { value }) => R.set(popoverIdLens, value, state),

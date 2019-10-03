@@ -72,7 +72,7 @@ class WorkList extends React.Component {
     const playing = !!(len && log.times[len - 1].end === 'running')
 
     return (
-      <List disablePadding>
+      <div>
         <div className="workList-root">
           <CollapsableLog
             onDeleteClick={this._handleOpenPopover}
@@ -80,6 +80,7 @@ class WorkList extends React.Component {
             logTime={playing ? formattedSeconds(secondsElapsed) : workDuration}
             logName={title}
             tags={tags}
+            showButtons={selectedUser === userId}
           />
         </div>
         {selectedUser === userId && (
@@ -92,7 +93,7 @@ class WorkList extends React.Component {
             onNop={() => changePopoverId('')}
           />
         )}
-      </List>
+      </div>
     )
   }
 }

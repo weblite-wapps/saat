@@ -57,8 +57,8 @@ app.get("/initialFetch", ({ query: { wis, userId, today, now } }, res) =>
     fetchLogs({ wis, date: today }),
     fetchPins({ wis, userId })
   ])
-    .then(success =>
-      res.json({
+    .then(success => {
+      const result = {
         logs: R.sort((a, b) => b.times.length - a.times.length, success[0]),
         tags: success[1],
         totalDurations: {
@@ -68,8 +68,9 @@ app.get("/initialFetch", ({ query: { wis, userId, today, now } }, res) =>
         },
         leaderboard: getLeaderboardData(success[5], now),
         pins: success[6]
-      })
-    )
+      };
+      return res.json(result);
+    })
     .catch(logger)
 );
 

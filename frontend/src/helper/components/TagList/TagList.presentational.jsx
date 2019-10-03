@@ -2,17 +2,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // components
-import TagShape from '../TagShape/TagShape.presentational'
+import Badge from '../Badge/Badge.presentational'
 // styles
 import './TagList.scss'
 
-const TagList = ({ tags, onTagClick }) => (
-  <div className="tagList-container">
-    {tags.map(tag => (
-      <TagShape onTagClick={() => onTagClick(tag)} key={tag._id} tag={tag} />
-    ))}
-  </div>
-)
+const TagList = ({ tags, onTagClick }) =>
+  tags.length ? (
+    <div className="tagList-container">
+      {tags.map(tag => (
+        <Badge
+          isSelected={tag.isSelected}
+          key={tag._id}
+          label={tag.label}
+          onClick={() => onTagClick(tag)}
+        />
+      ))}
+    </div>
+  ) : null
 
 TagList.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.object).isRequired,

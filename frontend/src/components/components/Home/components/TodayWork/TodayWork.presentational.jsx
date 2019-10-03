@@ -15,6 +15,7 @@ import {
 import {
   previousDay,
   formattedDate,
+  universlFormattedDate,
 } from '../../../../../helper/functions/date.helper'
 // styles
 import './TodayWork.scss'
@@ -74,7 +75,7 @@ export default class TodayWork extends React.Component {
         now,
       )
     ) {
-      addLogToNextDay(now, formattedDate(now))
+      addLogToNextDay(now, universlFormattedDate(now))
       onStopClick(_id, previousDay(formatTime('24:00:00')), null, null)
     } else {
       onStopClick(_id, getNow(), null, null)

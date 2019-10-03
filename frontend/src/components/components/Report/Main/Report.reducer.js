@@ -1,5 +1,6 @@
 // modules
 import * as R from 'ramda'
+import startOfToday from 'date-fns/start_of_today'
 // local modules
 import { getState } from '../../../../setup/redux'
 // helpers
@@ -28,6 +29,7 @@ import {
   NEXT_PAGE,
   ADD_PAGE,
   REMOVE_PAGE,
+  CHANGE_BAR_CHART_DATE_MODE,
   RESTORE_BAR_CHART_DATA,
   RESTORE_LEADERBOARD_DATA,
   CHANGE_IS_ERROR,
@@ -42,13 +44,14 @@ const initialState = {
   suggestions: [],
   selectedTags: [],
   tags: [],
-  startDate: '',
-  endDate: '',
-  totalDuration: 'Not calculated',
+  startDate: startOfToday(getNow()),
+  endDate: getNow(),
+  totalDuration: '',
   CSV: '',
   currentPage: getNow(),
   pages: {},
   barChartData: [],
+  barChartDateMode: 'today',
   isError: { startDate: false, endDate: false },
   leaderboard: [],
 }
@@ -85,6 +88,8 @@ export const currentPageView = () =>
 export const pagesView = () => R.path(['Report', 'pages'])(getState())
 export const barChartDataView = () =>
   R.path(['Report', 'barChartData'])(getState())
+export const barChartDateModeView = () =>
+  R.path(['Report', 'barChartDateMode'])(getState())
 export const expandModeView = () => R.path(['Report', 'expandMode'])(getState())
 export const isErrorView = () => R.path(['Report', 'isError'])(getState())
 export const leaderboardView = () =>
@@ -160,7 +165,7 @@ const reducers = {
   [CHANGE_END_DATE]: (state, { value }) => R.set(endDateLens, value, state),
 
   [CALCULATE_TOTAL_DURATION]: state =>
-    R.set(totalDurationLens, 'calculating', state),
+    R.set(totalDurationLens, 'calc', state),
 
   [RESTORE_TOTAL_DUARTION]: (state, { totalDuration }) =>
     R.set(totalDurationLens, totalDuration, state),
@@ -194,6 +199,11 @@ const reducers = {
       ...state.pages,
       [user]: R.remove(R.indexOf(date, state.pages[user]), 1, state.pages.user),
     },
+  }),
+
+  [CHANGE_BAR_CHART_DATE_MODE]: (state, mode) => ({
+    ...state,
+    barChartDateMode: mode,
   }),
 
   [RESTORE_BAR_CHART_DATA]: (state, { data }) =>

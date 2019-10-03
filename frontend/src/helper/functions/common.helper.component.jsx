@@ -29,18 +29,19 @@ export const TagPanel = ({
   <>
     <div className="textField">
       <Autocomplete
-        label="Tags"
+        label="تگ مورد نظر خود را وارد کنید"
         suggestions={suggestions}
         inputValue={queryTag}
         onInputValueChange={e => onQueryTagChange(e.target.value)}
         onSelect={value => onQueryTagChange(value)}
         onAdd={handleAddTag}
       />
-      <CustomizedButton
-        label="ADD"
-        onClick={handleAddTag}
-        componentName="Add"
-      />
+      {/*<CustomizedButton*/}
+      {/*  text="ADD"*/}
+      {/*  variant="labeled"*/}
+      {/*  onClick={handleAddTag}*/}
+      {/*  componentName="Add"*/}
+      {/*/>*/}
     </div>
     <TagList tags={tags} onTagClick={tag => onTagClick(tag)} />
   </>

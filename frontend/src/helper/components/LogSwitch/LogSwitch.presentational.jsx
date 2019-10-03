@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import LeftIcon from '@material-ui/icons/ChevronLeft'
 import RightIcon from '@material-ui/icons/ChevronRight'
 // helper
-import { cns, ab } from '../../../helper/functions/utils.helper'
+import { cns } from '../../../helper/functions/utils.helper'
 
 const useStyles = makeStyles(theme => ({
   paper: {

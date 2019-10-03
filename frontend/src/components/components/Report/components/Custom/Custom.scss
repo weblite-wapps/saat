@@ -1,8 +1,19 @@
 .custom-buttons {
-  margin: 20px 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.custom-textField {
-  display: flex;
-  margin: 25px 20px 20px 20px;
+.custom-button {
+  padding: 0;
+  width: 50%;
+  height: 35px;
+  margin-top: 25px;
+}
+
+.custom-button__typography {
+  font-size: 12px;
+  line-height: 21px;
+  font-weight: bold;
 }

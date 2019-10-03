@@ -1,8 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Autocomplete from 'react-autocomplete'
+import { withStyles } from '@material-ui/core'
+import InputBase from '@material-ui/core/InputBase'
 // styles
 import './Autocomplete.scss'
+
+const BootstrapInput = withStyles(() => ({
+  root: {
+    marginTop: 15,
+    width: '100%',
+  },
+
+  input: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'relative',
+    border: '1px solid #818181',
+    color: '#818181',
+    minHeight: 33,
+    maxHeight: 33,
+    fontSize: '12px',
+    lineHeight: '21px',
+    padding: '0 10px',
+    fontFamily: 'iranyekan',
+    borderRadius: '11px',
+    '&:focus': {
+      borderRadius: '11px',
+      borderColor: '#80bdff',
+    },
+  },
+}))(InputBase)
 
 const CustomizedAutocomplete = ({
   label,
@@ -23,18 +51,17 @@ const CustomizedAutocomplete = ({
         {item.label}
       </div>
     )}
-    renderInput={kind => (
+    renderInput={props => (
       <div className="autoComplete-group">
-        <input
-          {...kind}
-          dir="auto"
-          type="text"
-          required
-          onKeyPress={ev => {
-            if (ev.key === 'Enter') {
-              onAdd()
-              ev.preventDefault()
-            }
+        <BootstrapInput
+          {...props}
+          inputProps={{
+            onKeyPress: ev => {
+              if (ev.key === 'Enter') {
+                onAdd()
+                ev.preventDefault()
+              }
+            },
           }}
         />
         <span className="autoComplete-highlight" />

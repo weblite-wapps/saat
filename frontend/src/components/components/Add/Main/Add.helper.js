@@ -54,32 +54,31 @@ export const checkBeforeAddLog = ({ title, quickMode = false }) => {
 export const checkBeforeAddCustomLog = ({ title, date, start, end }) => {
   const logs = logsView()
   const now = getNow()
+  console.log({ title, date, start: !!start, end })
   if (title && date && start && end) {
-    if (isAfter(getTimeZone(date), now)) {
+    if (isAfter(getTimeZone(date), now))
       return getObject('date', 'Are you predictor?!', false)
-    } else if (date === formattedDate(now) && isAfter(formatTime(start), now)) {
+    else if (formattedDate(date) === formattedDate(now) && isAfter(start, now))
       return getObject('startTime', 'Are you predictor?!', false)
-    } else if (date === formattedDate(now) && isAfter(formatTime(end), now)) {
+    else if (formattedDate(date) === formattedDate(now) && isAfter(end, now))
       return getObject('endTime', 'Are you predictor?!', false)
-    } else if (isAfter(formatTime(end), formatTime(start))) {
+    else if (isAfter(end, start)) {
       if (
         areTimesOverlapping(
           R.filter(eachLog => eachLog.date === date, logs),
           formatTime(start),
           formatTime(end),
         )
-      ) {
+      )
         return getObject('endTime', 'Time is overlapping!', false)
-      }
+
       return getObject('', 'Added successfully!', true)
     }
     return getObject('startTime', 'StartTime is after EndTime!', false)
-  } else if (!title) {
-    return getObject('title', 'Please enter title!', false)
-  } else if (!date) {
-    return getObject('date', 'Please enter date!', false)
-  } else if (!start) {
+  } else if (!title) return getObject('title', 'Please enter title!', false)
+  else if (!date) return getObject('date', 'Please enter date!', false)
+  else if (!start)
     return getObject('startTime', 'Please enter start time!', false)
-  }
+
   return getObject('endTime', 'Please enter end time!', false)
 }

@@ -11,6 +11,7 @@ import RightIcon from '@material-ui/icons/ChevronRight'
 import {
   formattedDate,
   getToday,
+  getYesterday,
 } from '../../../../../helper/functions/date.helper'
 // styles
 import './Navigator.scss'
@@ -49,6 +50,7 @@ const styles = {
 
 const Navigator = ({ classes, onPreviousClick, onNextClick, currentPage }) => {
   const isToday = formattedDate(currentPage) === getToday()
+  const isYesterday = formattedDate(currentPage) === getYesterday()
   return (
     <div className="navigator-container">
       <Paper className={cns(classes.paper, classes.currentTimeContainer)}>
@@ -56,7 +58,11 @@ const Navigator = ({ classes, onPreviousClick, onNextClick, currentPage }) => {
           <LeftIcon className={isToday ? classes.iconDisabled : classes.icon} />
         </IconButton>
         <Typography className={classes.typography}>
-          {isToday ? 'امروز' : formattedDate(currentPage)}
+          {isToday
+            ? 'امروز'
+            : isYesterday
+            ? 'دیروز'
+            : formattedDate(currentPage)}
         </Typography>
         <IconButton onClick={onPreviousClick}>
           <RightIcon className={classes.icon} />

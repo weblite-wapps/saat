@@ -81,8 +81,8 @@ const submitEditEpic = action$ =>
       times: R.map(
         ({ _id, start, end }) => ({
           _id,
-          start: formatTime(start),
-          end: end === 'running' ? end : formatTime(end),
+          start,
+          end: end === 'running' ? end : end,
         }),
         times,
       ),

@@ -5,7 +5,7 @@ import Report from './Report.presentational'
 // actions
 import { dispatchChangeExpandMode } from './Report.action'
 // views
-import { userIdView, logsView } from '../../../Main/App.reducer'
+import { userIdView, logsView, creatorView } from '../../../Main/App.reducer'
 import {
   expandModeView,
   selectedUserView,
@@ -33,6 +33,7 @@ const mapStateToProps = state => ({
   totalDurationFromServer: totalDurationView(),
   pieChartData: getPieChartData(state),
   staffPieChartData: getStaffPieChartData(state),
+  creator: creatorView(),
 })
 
 const mapDispatchToProps = () => ({

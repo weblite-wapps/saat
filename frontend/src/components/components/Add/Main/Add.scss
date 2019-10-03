@@ -1,5 +1,19 @@
-.add-container {
-  margin-top: 80px;
+.c--add_container {
+  margin-left: 15px;
+  margin-right: 1px;
+  padding-right: 10px;
+  height: calc(100% - 80px);
+
+  &::before {
+    content: '';
+    display: block;
+    height: 15px;
+  }
+  &::after {
+    content: '';
+    display: block;
+    height: 20px;
+  }
 }
 
 .add-textField {

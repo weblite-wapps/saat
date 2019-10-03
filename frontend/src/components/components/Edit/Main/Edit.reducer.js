@@ -64,8 +64,8 @@ const reducers = {
       ({ _id, start, end }) => ({
         _id,
         date: R.prop('date', log),
-        start: getCurrentTime(start),
-        end: end === 'running' ? end : getCurrentTime(end),
+        start: new Date(start),
+        end: end === 'running' ? end : new Date(end),
       }),
       R.prop('times', log),
     ),

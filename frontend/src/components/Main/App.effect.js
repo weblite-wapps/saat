@@ -18,6 +18,7 @@ import {
   formattedDate,
   getToday,
   previousDay,
+  universlFormattedDate,
 } from '../../helper/functions/date.helper'
 // actions
 import { dispatchLoadTagsDataInAdd } from '../components/Add/Main/Add.action'
@@ -118,7 +119,7 @@ const initialFetchEpic = action$ =>
         .query({
           wis: wisView(),
           userId: userIdView(),
-          today: getToday(),
+          today: universlFormattedDate(getNow()),
           now: getParsedNow(),
         })
         .on(
@@ -133,13 +134,10 @@ const initialFetchEpic = action$ =>
     .do(({ body: { totalDurations } }) =>
       dispatchLoadTotalDurations(totalDurations),
     )
-    .do(({ body: { leaderboard } }) =>
-      dispatchRestoreLeaderboardData(leaderboard),
-    )
     .mergeMap(({ body: { pins } }) =>
       postRequest('/saveLogs')
         .send({
-          date: formattedDate(getNow()),
+          date: universlFormattedDate(getNow()),
           pins: getUnique(pins),
           userId: userIdView(),
           wis: wisView(),
@@ -354,7 +352,7 @@ const effectToggleIsPinned = action$ =>
     .mergeMap(({ _id }) =>
       postRequest('/saveLogs')
         .send({
-          date: formattedDate(getNow()),
+          date: universlFormattedDate(getNow()),
           pins: [getLog(_id)],
           userId: userIdView(),
           wis: wisView(),

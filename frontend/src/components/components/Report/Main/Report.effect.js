@@ -6,9 +6,16 @@ import { push } from '../../../../setup/redux'
 // local modules
 import { dispatchChangeSnackbarStage } from '../../Snackbar/Snackbar.action'
 // helpers
-import { getParsedNow } from '../../../../helper/functions/time.helper'
+import {
+  getNow,
+  getParsedNow,
+  formattedSeconds,
+} from '../../../../helper/functions/time.helper'
 import { getRequest } from '../../../../helper/functions/request.helper'
-import { formattedDate } from '../../../../helper/functions/date.helper'
+import {
+  formattedDate,
+  universlFormattedDate,
+} from '../../../../helper/functions/date.helper'
 import { checkBeforeAddTag } from '../../../Main/App.helper'
 import { checkBeforeAction } from './Report.helper'
 // actions
@@ -162,8 +169,8 @@ const calculateTotalDurationEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          startDate: startDateView(),
-          endDate: endDateView(),
+          startDate: universlFormattedDate(startDateView()),
+          endDate: universlFormattedDate(endDateView()),
           selectedTags: selectedTagsView(),
           now: getParsedNow(),
         })
@@ -176,7 +183,7 @@ const calculateTotalDurationEpic = action$ =>
     )
     .do(() => dispatchSetIsLoading(false))
     .do(() => W && W.analytics('CALCULATE_CLICK'))
-    .map(({ body }) => restoreTotalDuration(body))
+    .map(({ body }) => restoreTotalDuration(formattedSeconds(body, true)))
 
 const convertJSONToCSVEpic = action$ =>
   action$
@@ -187,8 +194,8 @@ const convertJSONToCSVEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          startDate: startDateView(),
-          endDate: endDateView(),
+          startDate: universlFormattedDate(startDateView()),
+          endDate: universlFormattedDate(endDateView()),
           selectedTags: selectedTagsView(),
           now: getParsedNow(),
         })
@@ -222,7 +229,7 @@ const fetchPreviousDayLogsDataEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          date: formattedDate(currentPageView()),
+          date: universlFormattedDate(currentPageView()),
         })
         .on('error', err => {
           if (err.status !== 304) {
@@ -261,7 +268,7 @@ const fetchNextDayLogsDataEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          date: formattedDate(currentPageView()),
+          date: universlFormattedDate(currentPageView()),
         })
         .on('error', err => {
           if (err.status !== 304) {
@@ -297,8 +304,8 @@ const updateChartEpic = action$ =>
         .query({
           wis: wisView(),
           userId: selectedUserView(),
-          startDate,
-          endDate,
+          startDate: universlFormattedDate(startDate),
+          endDate: universlFormattedDate(endDate),
           now: getParsedNow(),
         })
         .on(
@@ -320,8 +327,8 @@ const updateLeaderboardEpic = action$ =>
       getRequest('/leaderboardData')
         .query({
           wis: wisView(),
-          startDate,
-          endDate,
+          startDate: universlFormattedDate(startDate),
+          endDate: universlFormattedDate(endDate),
           now: getParsedNow(),
         })
         .on(

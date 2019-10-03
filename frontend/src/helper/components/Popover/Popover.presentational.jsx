@@ -5,12 +5,13 @@ import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Popover from '@material-ui/core/Popover'
-import { primary_color } from '../../style/_color'
+import { secondary_color } from '../../style/_color'
 
 const styles = {
   button: {
-    backgroundColor: primary_color,
+    backgroundColor: secondary_color,
     fontSize: '13px',
+    fontFamily: 'iranyekan',
     color: 'white',
     borderRadius: '5px',
     padding: '5px 10px',
@@ -50,8 +51,7 @@ const CustomizedPopover = ({
   >
     <Typography
       dir="rtl"
-      variant="subtitle1"
-      style={{ margin: '10px 15px 5px' }}
+      style={{ margin: '10px 15px 5px', fontSize: '14px', marginRight: 10 }}
     >
       آیا مطمئنید؟
     </Typography>
