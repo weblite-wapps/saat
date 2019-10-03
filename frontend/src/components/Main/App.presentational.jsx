@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 // helpers
 // import { Tabs } from './App.helper.component'
 import Tabs from '../../helper/components/Tabs/Tabs.presentational'
+import { push } from '../../setup/redux'
 // styles
 import './App.scss'
 
@@ -26,6 +27,7 @@ export default class App extends React.Component {
     const { setAPI, fetchTodayData } = this.props
     window.W.loadData().then(({ creator, user }) => {
       setAPI(creator, user)
+      creator && push('/report')
       fetchTodayData()
     })
   }
@@ -33,11 +35,12 @@ export default class App extends React.Component {
   _handleNormalMode() {
     const { setAPI, fetchTodayData } = this.props
     setAPI(true, { name: 'Ali', id: '110' })
+    this.props.creator && push('/report')
     fetchTodayData()
   }
 
   render() {
-    return <Tabs {...this.props} />
+    return !this.props.creator ? <Tabs {...this.props} /> : null
   }
 }
 

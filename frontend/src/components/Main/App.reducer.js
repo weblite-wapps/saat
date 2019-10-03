@@ -15,7 +15,6 @@ import {
   SAVE_START_TIME,
   SAVE_END_TIME,
   TOGGLE_IS_PINNED,
-  SET_ABOUT_MODE,
   SET_EDITED_LOG,
   SORT_ON_FREQUENTLY_USAGE,
 } from './App.action'
@@ -23,14 +22,13 @@ import {
 // state
 const initialState = {
   tabIndex: 'Home',
-  aboutMode: false,
   isLoading: false,
   popoverId: '',
   logs: [],
   users: [],
   user: {},
   wis: (window.W && window.W.wisId) || '110',
-  creator: false,
+  creator: true,
 }
 
 // lens
@@ -48,7 +46,6 @@ export const usersView = () => R.path(['App', 'users'])(getState())
 export const popoverIdView = () => R.path(['App', 'popoverId'])(getState())
 export const isLoadingView = () => R.path(['App', 'isLoading'])(getState())
 export const tabIndexView = () => R.path(['App', 'tabIndex'])(getState())
-export const aboutModeView = () => R.path(['App', 'aboutMode'])(getState())
 
 // reducers
 const reducers = {
@@ -126,8 +123,6 @@ const reducers = {
       state.logs,
     ),
   }),
-
-  [SET_ABOUT_MODE]: (state, aboutMode) => ({ ...state, aboutMode }),
 
   [SET_EDITED_LOG]: (state, newlog) => ({
     ...state,

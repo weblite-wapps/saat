@@ -96,10 +96,6 @@ export const toggleIsPinned = createAction(TOGGLE_IS_PINNED, (_id, value) => ({
 export const dispatchToggleIsPinned = (...args) =>
   dispatch(toggleIsPinned(...args))
 
-export const SET_ABOUT_MODE = 'SET_ABOUT_MODE'
-export const setAboutMode = createAction(SET_ABOUT_MODE)
-export const dispatchSetAboutMode = (...args) => dispatch(setAboutMode(...args))
-
 export const SET_EDITED_LOG = 'SET_EDITED_LOG'
 export const setEditedLog = createAction(SET_EDITED_LOG)
 export const dispatchSetEditedLog = (...args) => dispatch(setEditedLog(...args))

@@ -9,7 +9,6 @@ import store, { history } from './redux'
 // Component
 import AppBar from '../helper/components/AppBar/AppBar.presentational'
 import App from '../components/Main/App.container.react'
-import About from '../components/components/About/About.jsx'
 import Loading from '../helper/components/Loading/Loading.presentational'
 import Snackbar from '../components/components/Snackbar/Snackbar.container.react'
 // styles
@@ -39,7 +38,6 @@ export default () => (
             <Suspense fallback={<Loading />}>
               <Route exact path="/" render={() => <Home />} />
               <Route path="/Report" render={() => <Report />} />
-              <Route path="/About" render={() => <About />} />
               <Route path="/Edit" render={() => <Edit />} />
             </Suspense>
           </div>

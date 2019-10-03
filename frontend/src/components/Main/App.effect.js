@@ -41,13 +41,11 @@ import {
   HANDLE_SAVE_END_TIME,
   HANDLE_TOGGLE_IS_PINNED,
   CHANGE_TAB,
-  SET_ABOUT_MODE,
   dispatchAddLog,
   dispatchDeleteLog,
   dispatchLoadLogsData,
   dispatchLoadUsersData,
   dispatchSetIsLoading,
-  dispatchSetAboutMode,
   dispatchChangePopoverId,
   dispatchSaveStartTime,
   dispatchSaveEndTime,
@@ -63,7 +61,7 @@ import {
   ADD_LOG_TO_NEXT_DAY_REALTIME,
 } from './App.action'
 // views
-import { wisView, userIdView, userNameView, aboutModeView } from './App.reducer'
+import { wisView, userIdView, userNameView } from './App.reducer'
 import { selectedUserView } from '../components/Report/Main/Report.reducer'
 // selectors
 import { getTotalDuration } from '../components/Home/components/Summary/Summary.selector'
@@ -373,7 +371,6 @@ const changeTabEpic = action$ =>
   action$
     .ofType(CHANGE_TAB)
     .pluck('payload')
-    .do(() => aboutModeView() === true && dispatchSetAboutMode(false))
     .do(({ value }) => value === 'Home' && push('/'))
     .do(({ value }) => value !== 'Home' && push(`/${value}`))
     .do(
@@ -385,11 +382,6 @@ const changeTabEpic = action$ =>
     )
     .ignoreElements()
 
-const setAboutModeEpic = action$ =>
-  action$
-    .ofType(SET_ABOUT_MODE)
-    .do(() => push('/About'))
-    .ignoreElements()
 
 export default combineEpics(
   saveUsersEpic,
@@ -400,7 +392,6 @@ export default combineEpics(
   effectSaveEndTime,
   effectToggleIsPinned,
   changeTabEpic,
-  setAboutModeEpic,
   effectSaveEndTimeRealtimeEpic,
   effectDeleteLogRealTime,
   effectSaveStartTimeRealTime,

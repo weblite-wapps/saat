@@ -5,7 +5,6 @@ import MuiCollapse from '@material-ui/core/Collapse'
 import { makeStyles, darken } from '@material-ui/core/styles'
 // components
 import Button from '../../../../helper/components/Button/Button.presentational'
-// import Picker from '../../../../../helper/components/Picker/Picker.presentational'
 import TextField from '../../../../helper/components/TextField/TextField.presentational'
 import DatePicker from '../../../../helper/components/Picker/Picker.presentational'
 import TimePicker from '../../../../helper/components/TimePicker/TimePicker.presentational'
@@ -55,8 +54,6 @@ const Add = ({
   onTitleChange,
   onQueryTagChange,
   onTagClick,
-  changeTab,
-  changeIsError,
   onStartTimeChange,
   onEndTimeChange,
   onDateChange,
