@@ -2,12 +2,11 @@
 import * as R from 'ramda'
 import { areRangesOverlapping, isAfter } from 'date-fns'
 // helpers
+import { getNow, getTimeZone } from '../../../../helper/functions/time.helper'
 import {
-  formatTime,
-  getNow,
-  getTimeZone,
-} from '../../../../helper/functions/time.helper'
-import { formattedDate } from '../../../../helper/functions/date.helper'
+  formattedDate,
+  universlFormattedDate,
+} from '../../../../helper/functions/date.helper'
 // views
 import { logsView } from '../../../Main/App.reducer'
 
@@ -46,39 +45,45 @@ const getObject = (trueOption, message, permission) => {
 
 export const checkBeforeAddLog = ({ title, quickMode = false }) => {
   if (quickMode || title) {
-    return getObject('', 'Added successfully!', true)
+    return getObject('', 'شمارنده با موفقیت اضافه شد', true)
   }
-  return getObject('title', 'Enter title first!', false)
+  return getObject('title', 'عنوان شمارنده را وارد کنید', false)
 }
 
 export const checkBeforeAddCustomLog = ({ title, date, start, end }) => {
   const logs = logsView()
   const now = getNow()
-  console.log({ title, date, start: !!start, end })
   if (title && date && start && end) {
     if (isAfter(getTimeZone(date), now))
-      return getObject('date', 'Are you predictor?!', false)
+      return getObject('date', 'آینده هنوز فرا نرسیده !', false)
     else if (formattedDate(date) === formattedDate(now) && isAfter(start, now))
-      return getObject('startTime', 'Are you predictor?!', false)
+      return getObject('startTime', 'آینده هنوز فرا نرسیده !', false)
     else if (formattedDate(date) === formattedDate(now) && isAfter(end, now))
-      return getObject('endTime', 'Are you predictor?!', false)
+      return getObject('endTime', 'آینده هنوز فرا نرسیده !', false)
     else if (isAfter(end, start)) {
       if (
         areTimesOverlapping(
-          R.filter(eachLog => eachLog.date === date, logs),
-          formatTime(start),
-          formatTime(end),
+          R.filter(
+            eachLog => eachLog.date === universlFormattedDate(date),
+            logs,
+          ),
+          start,
+          end,
         )
       )
-        return getObject('endTime', 'Time is overlapping!', false)
+        return getObject('endTime', 'زمان ها با هم تداخل دارند', false)
 
-      return getObject('', 'Added successfully!', true)
+      return getObject('', 'شمارنده با موفقیت اضافه شد', true)
     }
-    return getObject('startTime', 'StartTime is after EndTime!', false)
-  } else if (!title) return getObject('title', 'Please enter title!', false)
-  else if (!date) return getObject('date', 'Please enter date!', false)
+    return getObject(
+      'startTime',
+      'زمان شروع باید قبل از زمان پایان باشد',
+      false,
+    )
+  } else if (!title) return getObject('title', 'عنوان را وارد کنید', false)
+  else if (!date) return getObject('date', 'تاریخ شمارنده را وارد کنید', false)
   else if (!start)
-    return getObject('startTime', 'Please enter start time!', false)
+    return getObject('startTime', 'زمان شروع را وارد کنید', false)
 
-  return getObject('endTime', 'Please enter end time!', false)
+  return getObject('endTime', 'زمان پایان را وارد کنید', false)
 }

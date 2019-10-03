@@ -14,7 +14,6 @@ import {
 } from '../../../../../helper/functions/time.helper'
 import {
   previousDay,
-  formattedDate,
   universlFormattedDate,
 } from '../../../../../helper/functions/date.helper'
 // styles

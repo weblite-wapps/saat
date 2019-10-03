@@ -42,6 +42,7 @@ const LeaderboardListItem = ({ rank, profileImage, fullName, score }) => (
           >
             <img
               src="user.svg"
+              alt="user"
               style={{
                 width: 22,
                 height: 22,
@@ -49,17 +50,12 @@ const LeaderboardListItem = ({ rank, profileImage, fullName, score }) => (
             />
           </span>
         )}
-
-        <div className="c--result-item_text">
-          <Typography variant="subtitle1" align="center">
-            {fullName}
-          </Typography>
-        </div>
+        <Typography className="c--result-item_text">{fullName}</Typography>
       </div>
 
       {getMedal(rank) && (
         <div className="c--result-item_medal">
-          <img alt="home" src={`/${getMedal(rank)}-medal.svg`} />
+          <img alt="home" src={`${getMedal(rank)}-medal.svg`} />
         </div>
       )}
 

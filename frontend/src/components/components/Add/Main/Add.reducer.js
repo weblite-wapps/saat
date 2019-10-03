@@ -18,11 +18,7 @@ import {
   LOAD_TAGS_DATA_IN_ADD,
 } from './Add.action'
 // helpers
-import { formattedDate } from '../../../../helper/functions/date.helper'
-import {
-  getCurrentTime,
-  getNow,
-} from '../../../../helper/functions/time.helper'
+import { getNow } from '../../../../helper/functions/time.helper'
 
 // state
 const initialState = {
@@ -121,9 +117,9 @@ const reducers = {
 
   [RESET_INPUTS]: state => ({
     ...state,
-    date: formattedDate(getNow()),
-    startTime: getCurrentTime(getNow()),
-    endTime: getCurrentTime(getNow()),
+    date: getNow(),
+    startTime: getNow(),
+    endTime: getNow(),
     title: '',
     selectedTags: [],
     queryTag: '',

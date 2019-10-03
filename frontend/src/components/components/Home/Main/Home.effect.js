@@ -35,6 +35,8 @@ import {
 import { wisView, userIdView, logsView } from '../../../Main/App.reducer'
 import { runningIdView } from '../../Home/Main/Home.reducer'
 import { getNow, getParsedNow } from '../../../../helper/functions/time.helper'
+// const
+import { SERVER_DISCONNECTED } from '../../Snackbar/Snackbar.action'
 
 const refetchTotalDurationEpic = action$ =>
   action$
@@ -52,7 +54,7 @@ const refetchTotalDurationEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(() => dispatchSetIsLoading(false))

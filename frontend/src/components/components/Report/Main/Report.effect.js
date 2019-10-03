@@ -75,6 +75,8 @@ import {
 } from './Report.reducer'
 import { dispatchInsertLog } from '../../Edit/Main/Edit.action'
 // const
+import { SERVER_DISCONNECTED } from '../../Snackbar/Snackbar.action'
+
 const { W } = window
 
 const resetStaffDataEpic = action$ =>
@@ -101,13 +103,13 @@ const loadStaffDataEpic = action$ =>
           .query({
             wis: wisView(),
             userId: selectedUserView(),
-            date: formattedDate(currentPageView()),
+            date: universlFormattedDate(currentPageView()),
           })
           .on('error', err => {
             if (err.status !== 304) {
-              dispatchChangeSnackbarStage('Server disconnected!')
+              dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true)
               dispatchRemovePage(
-                formattedDate(currentPageView()),
+                universlFormattedDate(currentPageView()),
                 selectedUserView(),
               )
             }
@@ -121,7 +123,7 @@ const loadStaffDataEpic = action$ =>
             'error',
             err =>
               err.status !== 304 &&
-              dispatchChangeSnackbarStage('Server disconnected!'),
+              dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
           ),
       ]),
     )
@@ -155,7 +157,7 @@ const effectSearchTagsEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .map(({ body }) => fetchTags(body))
@@ -178,7 +180,7 @@ const calculateTotalDurationEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(() => dispatchSetIsLoading(false))
@@ -203,7 +205,7 @@ const convertJSONToCSVEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(() => dispatchSetIsLoading(false))
@@ -233,7 +235,7 @@ const fetchPreviousDayLogsDataEpic = action$ =>
         })
         .on('error', err => {
           if (err.status !== 304) {
-            dispatchChangeSnackbarStage('Server disconnected!')
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true)
             dispatchRemovePage(
               formattedDate(currentPageView()),
               selectedUserView(),
@@ -272,7 +274,7 @@ const fetchNextDayLogsDataEpic = action$ =>
         })
         .on('error', err => {
           if (err.status !== 304) {
-            dispatchChangeSnackbarStage('Server disconnected!')
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true)
             dispatchRemovePage(
               formattedDate(currentPageView()),
               selectedUserView(),
@@ -312,7 +314,7 @@ const updateChartEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(() => dispatchSetIsLoading(false))
@@ -335,7 +337,7 @@ const updateLeaderboardEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(() => dispatchSetIsLoading(false))
@@ -350,7 +352,7 @@ const effectHandleAddTag = action$ =>
     .do(({ permission }) => permission && dispatchAddTag())
     .do(
       ({ permission, message }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     .ignoreElements()
 
@@ -362,7 +364,7 @@ const effectHandleCalculation = action$ =>
     .do(({ permission }) => permission && dispatchCalculateTotalDuration())
     .do(
       ({ permission, message }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     .ignoreElements()
 
@@ -374,7 +376,7 @@ const effectHandleExport = action$ =>
     .do(({ permission }) => permission && dispatchConvertJSONToCSV())
     .do(
       ({ permission, message }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     .ignoreElements()
 
@@ -390,7 +392,7 @@ const effectHandleUpdateChart = action$ =>
     )
     .do(
       ({ permission, message }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     .ignoreElements()
 
@@ -406,7 +408,7 @@ const effectHandleUpdateLeaderboard = action$ =>
     )
     .do(
       ({ permission, message }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     .ignoreElements()
 

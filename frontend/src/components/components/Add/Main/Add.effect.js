@@ -8,11 +8,8 @@ import {
   getRequest,
   postRequest,
 } from '../../../../helper/functions/request.helper'
-import {
-  formattedDate,
-  universlFormattedDate,
-} from '../../../../helper/functions/date.helper'
-import { formatTime, getNow } from '../../../../helper/functions/time.helper'
+import { universlFormattedDate } from '../../../../helper/functions/date.helper'
+import { getNow } from '../../../../helper/functions/time.helper'
 import { checkBeforeAddTag } from '../../../Main/App.helper'
 import { checkBeforeAddLog, checkBeforeAddCustomLog } from './Add.helper'
 // actions
@@ -38,7 +35,10 @@ import {
 import { wisView, userIdView } from '../../../Main/App.reducer'
 import { queryTagView, tagsView } from './Add.reducer'
 import { pulse } from '../../../../helper/functions/realTime.helper'
+import { dispatchSetIsOpenDialog } from '../../Home/Main/Home.action'
 // const
+import { SERVER_DISCONNECTED } from '../../Snackbar/Snackbar.action'
+
 const { W } = window
 
 const effectSearchTagsEpic = action$ =>
@@ -59,7 +59,7 @@ const effectSearchTagsEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(() => dispatchSetIsLoading(false))
@@ -73,7 +73,7 @@ const effectHandleAddTag = action$ =>
     .do(({ permission }) => permission && dispatchAddTagInAdd())
     .do(
       ({ permission, message }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     .ignoreElements()
 
@@ -84,7 +84,7 @@ const effectHandleAddLog = action$ =>
     .map(payload => ({ ...payload, ...checkBeforeAddLog(payload) }))
     .do(
       ({ permission, message }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     .do(({ isError }) => dispatchChangeIsErrorInAdd(isError))
     .filter(({ permission }) => permission)
@@ -108,7 +108,7 @@ const effectHandleAddLog = action$ =>
             'error',
             err =>
               err.status !== 304 &&
-              dispatchChangeSnackbarStage('Server disconnected!'),
+              dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
           ),
         postRequest('/saveTags')
           .send({
@@ -120,7 +120,7 @@ const effectHandleAddLog = action$ =>
             'error',
             err =>
               err.status !== 304 &&
-              dispatchChangeSnackbarStage('Server disconnected!'),
+              dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
           ),
       ]),
     )
@@ -128,7 +128,8 @@ const effectHandleAddLog = action$ =>
     .do(success => dispatchLoadTagsDataInAdd(success[1].body))
     .do(() => dispatchSetIsLoading(false))
     .do(() => dispatchChangeTab('Home'))
-    .do(() => dispatchChangeSnackbarStage('Added successfully!'))
+    .do(() => dispatchChangeSnackbarStage('شمارنده با موفقیت اضافه شد'))
+    .do(() => dispatchSetIsOpenDialog(false))
     .do(() => W && W.analytics('ADD_LOG', { custom: false }))
     .ignoreElements()
 
@@ -139,7 +140,7 @@ const effectHandleAddCustomLog = action$ =>
     .map(payload => ({ ...payload, ...checkBeforeAddCustomLog(payload) }))
     .do(
       ({ message, permission }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     .do(({ isError }) => dispatchChangeIsErrorInAdd(isError))
     .filter(({ permission }) => permission)
@@ -160,7 +161,7 @@ const effectHandleAddCustomLog = action$ =>
             'error',
             err =>
               err.status !== 304 &&
-              dispatchChangeSnackbarStage('Server disconnected!'),
+              dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
           ),
         postRequest('/saveTags')
           .send({
@@ -172,14 +173,15 @@ const effectHandleAddCustomLog = action$ =>
             'error',
             err =>
               err.status !== 304 &&
-              dispatchChangeSnackbarStage('Server disconnected!'),
+              dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
           ),
       ]),
     )
     .do(success => pulse(ADD_LOG, success[0].body))
     .do(success => dispatchLoadTagsDataInAdd(success[1].body))
-    .do(() => dispatchChangeSnackbarStage('Added successfully!'))
+    .do(() => dispatchChangeSnackbarStage('شمارنده با موفقیت اضافه شد'))
     .do(() => dispatchChangeTab('Home'))
+    .do(() => dispatchSetIsOpenDialog(false))
     .do(() => W && W.analytics('ADD_LOG', { custom: true }))
     .ignoreElements()
 

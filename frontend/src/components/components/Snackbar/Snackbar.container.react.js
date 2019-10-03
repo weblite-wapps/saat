@@ -5,10 +5,12 @@ import Snackbar from './Snackbar.presentational'
 // actions
 import { dispatchChangeSnackbarStage } from './Snackbar.action'
 //views
-import { snackbarIsOpenView, messageView } from './Snackbar.reducer'
+import { snackbarIsOpenView, messageView, typeView } from './Snackbar.reducer'
+
 const mapStateToProps = () => ({
   snackbarIsOpen: snackbarIsOpenView(),
   message: messageView(),
+  type: typeView(),
 })
 
 const mapDispatchToProps = () => ({

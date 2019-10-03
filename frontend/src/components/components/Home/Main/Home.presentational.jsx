@@ -29,7 +29,7 @@ const Home = ({ logs, isOpen, onClose, onAdd }) => (
       open={isOpen}
       fullScreen
       transitionDuration={300}
-      style={{ top: 40 }}
+      style={{ top: 45 }}
       hideBackdrop
       TransitionComponent={Transition}
     >

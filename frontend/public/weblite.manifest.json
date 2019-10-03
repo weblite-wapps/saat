@@ -1,8 +1,8 @@
 {
   "name": "ساعت",
-  "id": "5c64764ceb9d944ef8d701fe",
+  "id": "5d9607e3de56f067653806c0",
   "searchable": true,
-  "instancable": true,
+  "instantiable": true,
   "inline": false,
   "creator": true,
   "shareDB": true,
@@ -10,5 +10,5 @@
   "servIndexes": {
     "main": "index"
   },
-  "version": "1.0.2"
+  "version": "0.0.1"
 }

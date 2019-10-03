@@ -8,7 +8,7 @@ const Edit = props => (
   <Dialog
     open={props.isOpen}
     fullScreen
-    style={{ top: 40 }}
+    style={{ top: 45 }}
     hideBackdrop
     transitionDuration={300}
     TransitionComponent={Transition}

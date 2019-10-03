@@ -37,14 +37,16 @@
 .c--result-item_user-info {
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 70%;
 }
 
 .c--result-item_text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   margin-right: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.08px;
+  color: #4b4b4b;
 }
 
 .c--result-item_score {
@@ -58,6 +60,6 @@
 
 .c--result-item_medal {
   position: absolute;
-  left: 80px;
+  left: 75px;
   top: 0;
 }

@@ -36,7 +36,7 @@ const DialogToolbar = ({ title, onClose, classes, isLoading }) => {
       elevation={0}
     >
       <Toolbar className={defaultClasses.toolbar}>
-        <IconButton disabled={isLoading} className="icon" onClick={onClose}>
+        <IconButton className="icon" onClick={onClose}>
           <CloseButton classes={{ root: classes.svgIcon }} />
         </IconButton>
         <strong className={defaultClasses.title}>{title}</strong>

@@ -28,16 +28,15 @@ import {
   postRequest,
   getRequest,
 } from '../../../../helper/functions/request.helper'
-import {
-  formatTime,
-  checkEditTimesOrder,
-} from '../../../../helper/functions/time.helper'
+import { checkEditTimesOrder } from '../../../../helper/functions/time.helper'
 import { checkBeforeEditLog } from './Edit.helpers'
 import { wisView, userIdView } from '../../../Main/App.reducer'
 import { queryTagView, tagsView } from './Edit.reducer'
 import { checkBeforeAddTag } from '../../../Main/App.helper'
 import { pulse } from '../../../../helper/functions/realTime.helper'
 // const
+import { SERVER_DISCONNECTED } from '../../Snackbar/Snackbar.action'
+
 const { W } = window
 
 // epics
@@ -50,7 +49,7 @@ const submitEditEpic = action$ =>
         title.length ||
         (() => {
           dispatchChangeTitleIsError(true)
-          dispatchChangeSnackbarStage('Title is empty')
+          dispatchChangeSnackbarStage('عنوان شمارنده را وارد کنید', true)
           return false
         })(),
     )
@@ -58,9 +57,7 @@ const submitEditEpic = action$ =>
       ({ times }) =>
         checkEditTimesOrder(times) ||
         (() => {
-          dispatchChangeSnackbarStage(
-            'Your Edited intervals have overlap together',
-          )
+          dispatchChangeSnackbarStage('بازه ها با هم تداخل دارند', true)
           return false
         })(),
     )
@@ -70,7 +67,7 @@ const submitEditEpic = action$ =>
     }))
     .do(
       ({ message, permission }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     // TODO ISERROR MUST BE IMPLEMENTED
     // .do(({ isError }) => dispatchChangeIsErrorInAdd(isError))
@@ -95,7 +92,7 @@ const submitEditEpic = action$ =>
           .send(log)
           .on('error', err => {
             if (err.status !== 304) {
-              dispatchChangeSnackbarStage('Server disconnected!')
+              dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true)
             }
           })
           .then(() => log),
@@ -109,14 +106,14 @@ const submitEditEpic = action$ =>
             'error',
             err =>
               err.status !== 304 &&
-              dispatchChangeSnackbarStage('Server disconnected!'),
+              dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
           ),
       ]),
     )
     .do(success => pulse(SUBMIT_EDIT_REALTIME, success[0]))
     .do(() => {
       dispatchChangeIsOpenDialog(false)
-      dispatchChangeSnackbarStage('Updated Succesfully!')
+      dispatchChangeSnackbarStage('شمارنده با موفقیت ویرایش شد')
       push('/Report')
       dispatchChangeTitleIsError(false)
       W && W.analytics('EDIT_LOG')
@@ -166,7 +163,7 @@ const effectSearchTagsEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(() => dispatchSetIsLoading(false))
@@ -180,7 +177,7 @@ const effectHandleAddTag = action$ =>
     .do(({ permission }) => permission && dispatchAddTagInEdit())
     .do(
       ({ permission, message }) =>
-        !permission && dispatchChangeSnackbarStage(message),
+        !permission && dispatchChangeSnackbarStage(message, true),
     )
     .ignoreElements()
 

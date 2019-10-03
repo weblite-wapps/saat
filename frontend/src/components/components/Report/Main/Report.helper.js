@@ -10,10 +10,10 @@ import {
 import { getNow } from '../../../../helper/functions/time.helper'
 
 export const tooltipTitles = {
-  'workList': 'work list',
-  'export': 'export',
-  'showChart': 'own chart',
-  'leaderboard': 'leaderboard',
+  workList: 'work list',
+  export: 'export',
+  showChart: 'own chart',
+  leaderboard: 'leaderboard',
 }
 
 export const isTime = time => R.test(/^Total/, time)
@@ -38,7 +38,7 @@ export const formattedSeconds = seconds => {
     ? `Total: ${Math.floor(seconds / 3600)}h`
     : `Total: ${Math.floor(seconds / 3600)}h & ${Math.floor(
         (seconds % 3600) / 60,
-      )}m` 
+      )}m`
 }
 
 const getObject = (trueOption, message, permission) => {
@@ -56,9 +56,13 @@ export const checkBeforeAction = () => {
     if (end >= start) {
       return getObject('', null, true)
     }
-    return getObject('startDate', 'StartDate is after EndDate!', false)
+    return getObject(
+      'startDate',
+      'زمان شروع باید قبل از زمان پایان باشد',
+      false,
+    )
   } else if (!start) {
-    return getObject('startDate', 'Select start date!', false)
+    return getObject('startDate', 'زمان شروع را وارد کنید', false)
   }
-  return getObject('endDate', 'Select end date!', false)
+  return getObject('endDate', 'زمان پایان را وارد کنید', false)
 }

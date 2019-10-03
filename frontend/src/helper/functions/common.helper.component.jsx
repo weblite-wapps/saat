@@ -89,53 +89,6 @@ Pickers.propTypes = {
   onEndDateChange: PropTypes.func.isRequired,
 }
 
-export const Buttons = ({ startDate, endDate, update, handleUpdate }) => {
-  const now = getNow()
-
-  return (
-    <>
-      <div className="insertButton">
-        <Button
-          label="Insert Chart"
-          componentName="Add"
-          onClick={() => handleUpdate(startDate, endDate)}
-        />
-      </div>
-
-      <div className="buttons">
-        <Button
-          label="Today"
-          componentName="CustomAdd"
-          onClick={() =>
-            update(formattedDate(startOfToday(now)), formattedDate(now))
-          }
-        />
-        <Button
-          label="Last 7 days"
-          componentName="CustomAdd"
-          onClick={() =>
-            update(formattedDate(subDays(now, 6)), formattedDate(now))
-          }
-        />
-        <Button
-          label="Last 30 days"
-          componentName="CustomAdd"
-          onClick={() =>
-            update(formattedDate(subDays(now, 29)), formattedDate(now))
-          }
-        />
-      </div>
-    </>
-  )
-}
-
-Buttons.propTypes = {
-  startDate: PropTypes.string.isRequired,
-  endDate: PropTypes.string.isRequired,
-  update: PropTypes.func.isRequired,
-  handleUpdate: PropTypes.func.isRequired,
-}
-
 export const BarChart = ({ data, XDataKey, YDataKey }) =>
   data.length ? (
     <div className="chart">

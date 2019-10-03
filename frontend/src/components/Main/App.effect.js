@@ -68,6 +68,8 @@ import { selectedUserView } from '../components/Report/Main/Report.reducer'
 // selectors
 import { getTotalDuration } from '../components/Home/components/Summary/Summary.selector'
 import { pulse } from '../../helper/functions/realTime.helper'
+// consts
+import { SERVER_DISCONNECTED } from '../components/Snackbar/Snackbar.action'
 
 const saveUsersEpic = action$ =>
   action$
@@ -83,7 +85,7 @@ const saveUsersEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(({ body }) => body && dispatchLoadUsersData([body]))
@@ -96,7 +98,7 @@ const saveUsersEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(
@@ -126,7 +128,7 @@ const initialFetchEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(({ body: { logs } }) => dispatchLoadLogsData(logs))
@@ -146,7 +148,7 @@ const initialFetchEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(({ body }) => dispatchLoadLogsData(body))
@@ -182,7 +184,7 @@ const addLogToNextDayEpic = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(({ body }) =>
@@ -219,11 +221,11 @@ const effectDeleteLog = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(({ body }) => pulse(DELETE_LOG, body._id))
-    .do(() => dispatchChangeSnackbarStage('Deleted successfully !'))
+    .do(() => dispatchChangeSnackbarStage('شمارنده با موفقیت حذف شد'))
     .do(() => dispatchChangePopoverId(''))
     .do(() => window.W && window.W.analytics('DELETE_LOG'))
     .ignoreElements()
@@ -254,7 +256,7 @@ const effectSaveStartTime = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         )
         .then(res => ({ ...res.body, sumOfTimes })),
     )
@@ -290,7 +292,7 @@ const effectSaveEndTime = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .pluck('body')
@@ -334,7 +336,7 @@ const effectToggleIsPinned = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(() => dispatchSetIsLoading(false))
@@ -361,7 +363,7 @@ const effectToggleIsPinned = action$ =>
           'error',
           err =>
             err.status !== 304 &&
-            dispatchChangeSnackbarStage('Server disconnected!'),
+            dispatchChangeSnackbarStage(SERVER_DISCONNECTED, true),
         ),
     )
     .do(({ body }) => dispatchLoadLogsData(body))

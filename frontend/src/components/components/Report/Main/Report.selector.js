@@ -3,10 +3,7 @@ import { createSelector } from 'reselect'
 import * as R from 'ramda'
 // helpers
 import { sumTimes, sumLogs } from './Report.helper'
-import {
-  formattedDate,
-  universlFormattedDate,
-} from '../../../../helper/functions/date.helper'
+import { universlFormattedDate } from '../../../../helper/functions/date.helper'
 
 const getLogs = state => state.App.logs
 const getStaffLogs = state => state.Report.staffLogs

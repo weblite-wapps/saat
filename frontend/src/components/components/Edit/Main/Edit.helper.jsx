@@ -97,6 +97,7 @@ export const Content = ({
         }}
       />
       <TagList tags={tags} onTagClick={onTagClick} />
+      {!tags.length ? <div style={{ height: 15 }} /> : null}
       <List className={classes.list}>
         {times.map((time, index) => (
           <IntervalItem {...others} index={index} time={time} key={time._id} />
