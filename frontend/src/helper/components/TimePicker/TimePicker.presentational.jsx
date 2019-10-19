@@ -48,6 +48,7 @@ const useStyles = makeStyles(() => ({
   },
   datePicker: {
     marginTop: 0,
+    fontSize: 16,
   },
   typography: {
     color: '#818181',

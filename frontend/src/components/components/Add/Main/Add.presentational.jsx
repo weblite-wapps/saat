@@ -129,7 +129,8 @@ const Add = ({
       </MuiCollapse>
 
       <Button
-        variant="fixed"
+        style={{ position: 'absolute' }}
+        // variant="fixed"
         text="افزودن"
         onClick={() =>
           expanded
