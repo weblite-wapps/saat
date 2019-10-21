@@ -99,6 +99,25 @@ export default createMuiTheme({
         minHeight: '45px',
       },
     },
+    MuiPickersBasePicker: {
+      container: {
+        '& > div': {
+          height: 'unset',
+          minHeight: 60,
+          '& h2': {
+            fontSize: '2.5rem',
+          },
+          '& h4': {
+            fontSize: '1.5rem',
+          },
+        },
+      },
+    },
+    MuiPickersDatePickerRoot: {
+      toolbar: {
+        alignItems: 'flex-end',
+      },
+    },
     MuiFormLabel: {
       root: {
         userSelect: 'none',

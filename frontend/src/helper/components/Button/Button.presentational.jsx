@@ -64,7 +64,6 @@ const CustomizedButton = ({
   const classes = useStyles()
   const fixed = variant === 'fixed'
   const labeled = variant === 'labeled'
-
   return (
     <Button
       variant="contained"

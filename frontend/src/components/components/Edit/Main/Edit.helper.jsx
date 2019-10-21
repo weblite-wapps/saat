@@ -102,7 +102,13 @@ export const Content = ({
           <IntervalItem {...others} index={index} time={time} key={time._id} />
         ))}
       </List>
-      <Button variant="fixed" text="ذخیره" onClick={submit} disableAddIcon />
+      <Button
+        style={{ marginTop: '20px', width: '100%' }}
+        variant="normal"
+        text="ذخیره"
+        onClick={submit}
+        disableAddIcon
+      />
     </div>
   )
 }
