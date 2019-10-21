@@ -69,15 +69,15 @@ const Add = ({
     <div className="c--add_container scroll-bar">
       <TextField
         label="عنوان ساعت شمار"
-        placeholder="عنوان ساعت شمار را وارد کنید"
+        placeholder="مثلا: تست حرکت شناسی از خیلی سبز"
         value={title}
         onChange={e => onTitleChange(e.target.value)}
         isError={isError.title}
       />
 
       <TextField
-        label="تگ‌ها"
-        placeholder="تگ مورد نظر را وارد کنید"
+        label="برچسب‌ها"
+        placeholder="مثلا: تست - خیلی سبز - حرکت‌ شناسی"
         value={queryTag}
         onChange={e => onQueryTagChange(e.target.value)}
         isError={isError.queryTag}
