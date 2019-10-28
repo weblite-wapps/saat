@@ -1,7 +1,6 @@
 // modules
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
 import { differenceInSeconds } from 'date-fns'
 // components
 import Popover from '../../../../../../helper/components/Popover/Popover.presentational'
@@ -14,7 +13,6 @@ import {
 } from '../../../../../../helper/functions/time.helper'
 // styles
 import './WorkList.scss'
-import styles from '../../../../../../helper/components/Button/Button.style'
 
 class WorkList extends React.Component {
   constructor(props) {
@@ -114,4 +112,4 @@ WorkList.defaultProps = {
   editMode: false,
 }
 
-export default withStyles(styles)(WorkList)
+export default WorkList
