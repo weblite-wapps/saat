@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
   },
 
   selectedRoot: {
-    backgroundColor: '#84CE2C',
+    backgroundColor: '#68D200',
   },
   button: {
     borderRadius: 0,

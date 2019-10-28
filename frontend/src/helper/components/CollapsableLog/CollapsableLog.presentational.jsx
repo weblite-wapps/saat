@@ -37,22 +37,22 @@ const useStyles = makeStyles(() => ({
   },
   rightBtn: {
     flex: '2 2 auto',
-    backgroundColor: '#EDCB11',
+    backgroundColor: '#F2CB00',
     borderRadius: 0,
     borderTop: '5px solid #fff',
     borderLeft: '2.5px solid #fff',
     '&:hover': {
-      backgroundColor: darken('#EDCB11', 0.1),
+      backgroundColor: darken('#F2CB00', 0.1),
     },
   },
   leftBtn: {
     flex: '2 2 auto',
     borderRadius: 0,
-    backgroundColor: '#D65555',
+    backgroundColor: '#E6494F',
     borderTop: '5px solid #fff',
     borderRight: '2.5px solid #fff',
     '&:hover': {
-      backgroundColor: darken('#D65555', 0.1),
+      backgroundColor: darken('#E6494F', 0.1),
     },
   },
   buttonContainer: {

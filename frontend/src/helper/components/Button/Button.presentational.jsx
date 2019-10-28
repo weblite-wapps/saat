@@ -15,10 +15,9 @@ const useStyles = makeStyles(() => ({
   base: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#6DC2EF',
     borderRadius: 11,
     '&:hover': {
-      backgroundColor: darken('#6DC2EF', 0.1),
+      backgroundColor: darken('#4FC4F4', 0.1),
     },
   },
   fixedRoot: {
@@ -26,10 +25,12 @@ const useStyles = makeStyles(() => ({
     left: 0,
     bottom: 0,
     borderRadius: 0,
+    backgroundColor: '#5ADBDF',
   },
   labeledRoot: {
     '--size': '8px',
-    '--color': '#6DC2EF',
+    '--color': '#4FC4F4',
+    backgroundColor: '#4FC4F4',
   },
   typography: {
     color: '#fff',

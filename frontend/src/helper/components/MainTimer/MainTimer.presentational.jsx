@@ -28,11 +28,11 @@ const MainTimer = ({ hour, minute, second }) => {
 
   return (
     <div className={classes.root}>
-      <TimerSection color="#D65555" time={hour} label="ساعت" />
+      <TimerSection color="#E6494F" time={hour} label="ساعت" />
       <Typography className={classes.colon}>:</Typography>
-      <TimerSection color="#EDCB11" time={minute} label="دقیقه" />
+      <TimerSection color="#F2CB00" time={minute} label="دقیقه" />
       <Typography className={classes.colon}>:</Typography>
-      <TimerSection color="#6DC2EF" time={second} label="ثانیه" />
+      <TimerSection color="#4FC4F4" time={second} label="ثانیه" />
     </div>
   )
 }

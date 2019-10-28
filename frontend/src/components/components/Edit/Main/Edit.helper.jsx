@@ -130,7 +130,7 @@ const useIntervalItemStyles = makeStyles(() => ({
     width: 35,
     height: 35,
     borderRadius: 11,
-    backgroundColor: '#D65555',
+    backgroundColor: '#E6494F',
     '&:hover': {
       backgroundColor: '#be2f2f',
     },
