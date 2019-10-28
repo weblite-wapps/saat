@@ -1,3 +1,7 @@
+#root {
+  position: relative;
+}
+
 body {
   margin: 0;
   width: 100%;
@@ -11,8 +15,8 @@ body {
 }
 
 .app-body {
-  position: fixed;
-  top: 80px;
+  // position: fixed;
+  // top: 80px;
   height: calc(100% - 80px);
   width: 100%;
   overflow-x: hidden;

@@ -83,7 +83,7 @@ const Add = ({
         isError={isError.queryTag}
         inputProps={{
           onKeyDown: e => {
-            if (e.key === 'Enter' && !e.shiftKey && !isPhoneOrTablet) {
+            if (e.key === 'Enter' && !e.shiftKey) {
               e.preventDefault()
               handleAddTag()
             }
@@ -129,7 +129,8 @@ const Add = ({
       </MuiCollapse>
 
       <Button
-        variant="fixed"
+        style={{ marginTop: '20px', width: '100%' }}
+        variant="normal"
         text="افزودن"
         onClick={() =>
           expanded

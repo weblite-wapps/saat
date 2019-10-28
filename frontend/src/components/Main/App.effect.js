@@ -21,9 +21,7 @@ import {
 } from '../../helper/functions/date.helper'
 // actions
 import { dispatchLoadTagsDataInAdd } from '../components/Add/Main/Add.action'
-import {
-  dispatchAddPage,
-} from '../components/Report/Main/Report.action'
+import { dispatchAddPage } from '../components/Report/Main/Report.action'
 import {
   dispatchRefetchTotalDuration,
   dispatchLoadTotalDurations,
@@ -379,7 +377,6 @@ const changeTabEpic = action$ =>
         }),
     )
     .ignoreElements()
-
 
 export default combineEpics(
   saveUsersEpic,

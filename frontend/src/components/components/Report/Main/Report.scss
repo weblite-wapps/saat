@@ -2,7 +2,8 @@
 
 .report-container {
   position: fixed;
-  height: calc(100% - 80px);
+  // height: calc(100% - 80px);
+  height: calc(100%);
   top: 95px;
   width: 100%;
   display: flex;

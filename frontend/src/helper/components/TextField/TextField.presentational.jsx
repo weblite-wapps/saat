@@ -81,7 +81,7 @@ const BootstrapInput = withStyles(theme => ({
     position: 'relative',
     backgroundColor: theme.palette.common.white,
     border: '1px solid #818181',
-    fontSize: 12,
+    fontSize: 16,
     lineHeight: '21px',
     fontWeight: 500,
     letterSpacing: -0.08,

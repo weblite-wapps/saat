@@ -49,9 +49,10 @@ const useStyles = makeStyles(() => ({
     marginTop: 0,
     width: '100%',
     textAlign: 'right',
+    fontSize: 16,
   },
   typography: {
-    fontSize: 12,
+    fontSize: 16,
     lineHeight: '21px',
     letterSpacing: -0.08,
     fontWeight: 500,

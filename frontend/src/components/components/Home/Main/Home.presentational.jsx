@@ -20,8 +20,9 @@ const Home = ({ logs, isOpen, onClose, onAdd }) => (
       <TodayWorkList logs={logs} />
     </span>
     <Button
+      style={{ position: 'absolute' }}
       text="ساعت شمار جدید"
-      variant="fixed"
+      // variant="fixed"
       onClick={() => onAdd('work', [], true)}
     />
     <Dialog
