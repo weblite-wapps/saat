@@ -5,11 +5,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import TagList from '../../../../../helper/components/TagList/TagList.presentational'
 import TextField from '../../../../../helper/components/TextField/TextField.presentational'
 // helpers
-import {
-  Pickers,
-} from '../../../../../helper/functions/common.helper.component'
+import { Pickers } from '../../../../../helper/functions/common.helper.component'
 import { Buttons, CSVDownloader } from './Custom.helper.component'
-import { isPhoneOrTablet } from '../../../../../helper/functions/device.helper'
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -18,6 +15,9 @@ const useStyles = makeStyles(() => ({
   input: {
     minHeight: 35,
     padding: '0 12px',
+    '&::placeholder': {
+      fontSize: 12,
+    },
   },
 }))
 
@@ -40,7 +40,7 @@ export default ({
         onChange={e => onQueryTagChange(e.target.value)}
         inputProps={{
           onKeyDown: e => {
-            if (e.key === 'Enter' && !e.shiftKey && !isPhoneOrTablet) {
+            if (e.key === 'Enter') {
               e.preventDefault()
               handleAddTag()
             }

@@ -69,7 +69,17 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const LogItem = ({ playing, pinned, name, time, disableHandler, onPlay, onPause, onTogglePin }) => {
+const LogItem = ({
+  playing,
+  pinned,
+  name,
+  time,
+  disableHandler,
+  isLoading,
+  onPlay,
+  onPause,
+  onTogglePin,
+}) => {
   const classes = useStyles()
 
   return (
@@ -79,6 +89,7 @@ const LogItem = ({ playing, pinned, name, time, disableHandler, onPlay, onPause,
           <Fab
             size="small"
             aria-label="playPause"
+            disabled={isLoading}
             className={cns(classes.fab, ab(classes.fabPinned)(playing))}
           >
             {playing ? (
@@ -87,12 +98,13 @@ const LogItem = ({ playing, pinned, name, time, disableHandler, onPlay, onPause,
               <PlayIcon className={classes.fabIcon} onClick={onPlay} />
             )}
           </Fab>
-        )}{' '}
+        )}
         <Typography className={classes.logName}>{toPersian(name)}</Typography>
         {!disableHandler && (
           <Fab
             size="small"
             aria-label="pin"
+            disabled={isLoading}
             className={cns(classes.fab, ab(classes.fabPinned)(pinned))}
           >
             {pinned ? (

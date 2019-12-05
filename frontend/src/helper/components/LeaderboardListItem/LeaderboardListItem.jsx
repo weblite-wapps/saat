@@ -18,7 +18,7 @@ const getMedal = rank => {
 const LeaderboardListItem = ({ rank, profileImage, fullName, score }) => (
   <div className="c--result-item_container" dir="rtl">
     <div className="c--result-item_right-segment">
-      <Typography style={{ margin: '11px' }}>{toPersian(rank)}</Typography>
+      <Typography>{toPersian(rank)}</Typography>
     </div>
 
     <div className="c--result-item_left-segment">

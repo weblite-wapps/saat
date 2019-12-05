@@ -1,27 +1,57 @@
 .c--appBar_typo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .c--appBar_toolbar {
-  background-color: #0A2057;
+  background-color: #0d2154;
   max-height: 45px;
 }
 
-.c--appBar_toolbar:after {
-  content: '';
-  position: absolute;
+.c--appBar_colors {
   height: 4px;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  width: 100%;
+  background-position-x: 6px;
   background: linear-gradient(
     to right,
-    #EDCB19 25%,
-    #68D200 25%,
-    #68D200 50%,
-    E6494F 50%,
-    E6494F 75%,
-    #4FC4F4 75%
-  );}
+    #edcb19 25%,
+    #84ce2d 25%,
+    #84ce2d 50%,
+    #d65555 50%,
+    #d65555 75%,
+    #6dc2ef 75%
+  );
+}
+.appbar--animatable {
+  background-size: 99%;
+  animation: bar-loading-keyframes 1.5s cubic-bezier(0.38, 0.92, 0.74, 0.17)
+    forwards infinite;
+}
+
+@keyframes bar-loading-keyframes {
+  from {
+    background-position-x: 6px;
+  }
+  to {
+    background-position-x: 350px;
+  }
+}
+
+//.c--appBar_toolbar:after {
+//  content: '';
+//  position: absolute;
+//  height: 4px;
+//  right: 0;
+//  left: 0;
+//  bottom: 0;
+//  background: linear-gradient(
+//    to right,
+//    #edcb19 25%,
+//    #84ce2d 25%,
+//    #84ce2d 50%,
+//    #d65555 50%,
+//    #d65555 75%,
+//    #6dc2ef 75%
+//  );
+//}

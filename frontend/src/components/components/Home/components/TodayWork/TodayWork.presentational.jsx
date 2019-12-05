@@ -82,7 +82,13 @@ export default class TodayWork extends React.Component {
   }
 
   render() {
-    const { log, onToggleIsPinned, workDuration, secondsElapsed } = this.props
+    const {
+      log,
+      onToggleIsPinned,
+      workDuration,
+      secondsElapsed,
+      isLoading,
+    } = this.props
     const len = log.times.length
     const playing = !!(len && log.times[len - 1].end === 'running')
 
@@ -109,6 +115,7 @@ export default class TodayWork extends React.Component {
           onTogglePin={onToggleIsPinned}
           onPause={this.handleStopClick}
           onPlay={this.handleStartClick}
+          isLoading={isLoading}
         />
       </div>
     )

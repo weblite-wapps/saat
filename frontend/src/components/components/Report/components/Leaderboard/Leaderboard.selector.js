@@ -8,12 +8,16 @@ const getLeaderboard = state => state.Report.leaderboard
 
 const getLeaderboardData = createSelector(
   [getLeaderboard],
-  R.map(({ userId, ...other }) => ({
-    userId,
-    username: getUsername(userId), 
-    profileImage: getProfileImage(userId),
-    ...other,
-  })),
+  R.compose(
+    R.map(({ userId, ...other }) => ({
+      userId,
+      username: getUsername(userId),
+      profileImage: getProfileImage(userId),
+      ...other,
+    })),
+    R.reverse,
+    R.sortBy(R.prop('duration')),
+  ),
 )
 
 export { getLeaderboardData }

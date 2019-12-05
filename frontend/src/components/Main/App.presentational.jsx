@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // helpers
-// import { Tabs } from './App.helper.component'
+import AppBar from '../../helper/components/AppBar/AppBar.presentational'
 import Tabs from '../../helper/components/Tabs/Tabs.presentational'
 import { push } from '../../setup/redux'
 // styles
@@ -39,7 +39,12 @@ export default class App extends React.Component {
   }
 
   render() {
-    return !this.props.creator ? <Tabs {...this.props} /> : null
+    return (
+      <>
+        <AppBar isLoading={this.props.isLoading} />
+        {!this.props.creator ? <Tabs {...this.props} /> : null}
+      </>
+    )
   }
 }
 

@@ -20,7 +20,6 @@ import TimePicker from '../../../../helper/components/TimePicker/TimePicker.pres
 // helpers
 import { cns, toPersian } from '../../../../helper/functions/utils.helper'
 import TextField from '../../../../helper/components/TextField/TextField.presentational'
-import { isPhoneOrTablet } from '../../../../helper/functions/device.helper'
 // classes
 import './Edit.scss'
 import { default as style } from './Edit.style'
@@ -49,6 +48,9 @@ const useStyles = makeStyles(() => ({
   input: {
     minHeight: 35,
     padding: '0 12px',
+    '&::placeholder': {
+      fontSize: 12,
+    },
   },
   list: {
     padding: 0,
@@ -77,6 +79,9 @@ export const Content = ({
           value={title}
           onChange={onTitleChange}
           isError={isError && isError.title}
+          inputProps={{
+            className: classes.input,
+          }}
         />
       </div>
 
@@ -87,7 +92,7 @@ export const Content = ({
         onChange={e => onQueryTagChange(e.target.value)}
         inputProps={{
           onKeyDown: e => {
-            if (e.key === 'Enter' && !e.shiftKey && !isPhoneOrTablet) {
+            if (e.key === 'Enter') {
               e.preventDefault()
               handleAddTag()
             }
@@ -104,7 +109,7 @@ export const Content = ({
       </List>
       <Button
         style={{ marginTop: '20px', width: '100%' }}
-        variant="normal"
+        variant="labeled"
         text="ذخیره"
         onClick={submit}
         disableAddIcon

@@ -21,6 +21,11 @@ export default createMuiTheme({
     },
   },
   overrides: {
+    MuiMenuItem: {
+      root: {
+        fontFamily: 'iranyekan',
+      },
+    },
     MuiButton: {
       contained: {
         boxShadow: 'none',

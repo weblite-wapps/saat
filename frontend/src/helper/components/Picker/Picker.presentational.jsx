@@ -52,7 +52,7 @@ const useStyles = makeStyles(() => ({
     fontSize: 16,
   },
   typography: {
-    fontSize: 16,
+    fontSize: 12,
     lineHeight: '21px',
     letterSpacing: -0.08,
     fontWeight: 500,
@@ -63,6 +63,9 @@ const useStyles = makeStyles(() => ({
     color: '#818181',
     fontFamily: 'iranyekan',
     textAlign: 'center',
+    fontSize: 16,
+    transform: 'scale(0.75)',
+    transformOrigin: 'center center',
   },
 }))
 

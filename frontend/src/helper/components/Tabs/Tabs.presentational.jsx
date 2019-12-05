@@ -17,6 +17,7 @@ const StyledTabs = withStyles({
     height: '100%',
     color: 'white',
     backgroundColor: '#CCCCCC',
+    borderBottom: '3px solid #818181',
   },
 })(props => <Tabs {...props} />)
 

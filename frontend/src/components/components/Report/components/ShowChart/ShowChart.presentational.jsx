@@ -77,5 +77,6 @@ export default ({
     />
     <Divider />
     <BarChart {...props} XDataKey="name" YDataKey="duration" />
+    <div style={{ height: 20 }} />
   </div>
 )

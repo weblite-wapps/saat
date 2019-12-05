@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '21px',
     fontFamily: 'iranyekan',
     userSelect: 'none',
+    color: 'white',
   },
   toolbar: {
     minHeight: 40,
@@ -37,7 +38,10 @@ const DialogToolbar = ({ title, onClose, classes, isLoading }) => {
     >
       <Toolbar className={defaultClasses.toolbar}>
         <IconButton className="icon" onClick={onClose}>
-          <CloseButton classes={{ root: classes.svgIcon }} />
+          <CloseButton
+            style={{ color: 'white' }}
+            classes={{ root: classes.svgIcon }}
+          />
         </IconButton>
         <strong className={defaultClasses.title}>{title}</strong>
       </Toolbar>

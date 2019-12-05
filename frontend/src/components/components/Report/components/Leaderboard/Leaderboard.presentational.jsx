@@ -6,7 +6,7 @@ import LeaderboardListItem from '../../../../../helper/components/LeaderboardLis
 // components
 import {
   Pickers,
-  BarChart,
+  // BarChart,
 } from '../../../../../helper/functions/common.helper.component'
 // styles
 import './Leaderboard.scss'
@@ -38,10 +38,10 @@ const Leaderbord = ({
       text="نمایش نتایج"
       onClick={() => handleUpdate(props.startDate, props.endDate)}
       variant="labeled"
-      classesProp={{ button: 'showChart-button' }}
+      classesProp={{ button: 'leaderboard-button' }}
     />
 
-    <BarChart {...props} XDataKey="username" YDataKey="duration" />
+    {/*<BarChart {...props} XDataKey="username" YDataKey="duration" />*/}
 
     {props.data.length ? (
       <List style={{ paddingBottom: 25 }}>

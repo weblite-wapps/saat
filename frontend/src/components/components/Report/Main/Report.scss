@@ -48,7 +48,7 @@
   border-radius: 25px;
 }
 
-.report-worklist__text {
+p.report-worklist__text {
   font-size: 14px;
   line-height: 25px;
   letter-spacing: -0.1px;
@@ -56,12 +56,13 @@
 }
 
 .report-text {
+  margin-bottom: 25px;
   margin-top: 10px;
   margin-left: 30px;
   width: 100px;
 }
 
-.report-text__typography {
+p.report-text__typography {
   @include no-select;
   font-size: 12px;
   line-height: 21px;
@@ -75,7 +76,7 @@
   @include flex-center;
 }
 
-.report-controlBar__typography {
+p.report-controlBar__typography {
   font-size: 12px;
   line-height: 21px;
   font-weight: bold;

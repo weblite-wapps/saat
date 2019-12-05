@@ -10,7 +10,6 @@ import DatePicker from '../../../../helper/components/Picker/Picker.presentation
 import TimePicker from '../../../../helper/components/TimePicker/TimePicker.presentational'
 import TagList from '../../../../helper/components/TagList/TagList.presentational'
 // helpers
-import { isPhoneOrTablet } from '../../../../helper/functions/device.helper'
 import { cns, ab } from '../../../../helper/functions/utils.helper'
 // styles
 import './Add.scss'
@@ -30,6 +29,9 @@ const useStyles = makeStyles(() => ({
   input: {
     minHeight: 35,
     padding: '0 12px',
+    '&::placeholder': {
+      fontSize: 12,
+    },
   },
   buttonText: {
     fontSize: 12,
@@ -73,6 +75,9 @@ const Add = ({
         value={title}
         onChange={e => onTitleChange(e.target.value)}
         isError={isError.title}
+        inputProps={{
+          className: classes.input,
+        }}
       />
 
       <TextField
@@ -130,7 +135,7 @@ const Add = ({
 
       <Button
         style={{ marginTop: '20px', width: '100%' }}
-        variant="normal"
+        variant="labeled"
         text="افزودن"
         onClick={() =>
           expanded

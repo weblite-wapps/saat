@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   fixedRoot: {
-    position: 'fixed',
+    position: 'absolute',
     left: 0,
     bottom: 0,
     borderRadius: 0,

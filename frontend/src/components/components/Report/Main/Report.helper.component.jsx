@@ -26,9 +26,7 @@ import {
 } from '../../../../helper/selectors/workDuration.selector'
 // helpers
 import { toPersian, cns, ab } from '../../../../helper/functions/utils.helper'
-import {
-  universlFormattedDate
-} from '../../../../helper/functions/date.helper'
+import { universlFormattedDate } from '../../../../helper/functions/date.helper'
 import { formattedSeconds } from '../../../../helper/functions/time.helper'
 import { tooltipTitles } from './Report.helper'
 // styles
